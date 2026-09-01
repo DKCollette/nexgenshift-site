@@ -783,9 +783,7 @@
     const formSuccess = document.getElementById('formSuccess');
     const formError = document.getElementById('formError');
 
-    // The form uses mailto: fallback (sends to contact@nexgenshift.com)
-    // In production, replace with a Formspree, Web3Forms, or custom endpoint
-    form.addEventListener('submit', async (e) => {
+    form.addEventListener('submit', (e) => {
       e.preventDefault();
 
       const name = document.getElementById('name').value.trim();
@@ -802,47 +800,22 @@
       }
 
       const submitBtn = form.querySelector('.form-submit');
-      const originalText = submitBtn.textContent;
-      submitBtn.textContent = 'Sending...';
+      submitBtn.textContent = 'Opening email...';
       submitBtn.disabled = true;
 
-      // Mailto fallback — opens default mail client
-      const mailtoLink = `mailto:contact@nexgenshift.com?subject=${encodeURIComponent(subject || 'New Inquiry from ' + name)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\nSubject: ${subject}\n\n${message}`)}`;
+      // Opens default mail client to send to contact@nexgenshift.com
+      const mailtoLink = `mailto:contact@nexgenshift.com?subject=${encodeURIComponent(subject || 'New Inquiry from ' + name)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\nSubject: ${subject || 'N/A'}\n\n${message}`)}`;
 
-      // Try to submit via a form service (Web3Forms) then fallback
-      try {
-        // Using Web3Forms free tier as a reliable endpoint
-        const response = await fetch('https://api.web3forms.com/submit', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            access_key: 'YOUR_WEB3FORMS_KEY',  // REPLACE with actual key
-            name: name,
-            email: email,
-            subject: subject || 'New Inquiry',
-            message: message,
-            from_name: 'NexGenShift Website'
-          })
-        });
-
-        if (response.ok) {
-          form.style.display = 'none';
-          formSuccess.style.display = 'block';
-        } else {
-          // Fallback to mailto
-          window.location.href = mailtoLink;
-          form.style.display = 'none';
-          formSuccess.style.display = 'block';
-        }
-      } catch {
-        // Fallback to mailto
-        window.location.href = mailtoLink;
-        form.style.display = 'none';
-        formSuccess.style.display = 'block';
-      }
-
+      form.style.display = 'none';
+      formSuccess.style.display = 'block';
       submitBtn.disabled = false;
+
+      // Open mail client
+      window.location.href = mailtoLink;
     });
+
+    // For production: replace mailto with Web3Forms (https://web3forms.com)
+    // Sign up free → get an access key → add it to the form action.
 
     // ─── Parallax glow on hero ───
     document.querySelector('.hero')?.addEventListener('mousemove', (e) => {
