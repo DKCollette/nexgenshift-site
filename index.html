@@ -428,6 +428,21 @@
       transition: border-color .3s;
       outline: none;
     }
+    .form-group select option {
+          background: #0F1535;
+          color: #E0E4F0;
+        }
+        /* Custom select arrow */
+        .form-group select {
+          appearance: none;
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='%238A99AD'%3E%3Cpath d='M1.41 0L6 4.58 10.59 0 12 1.41l-6 6-6-6z'/%3E%3C/svg%3E");
+          background-repeat: no-repeat;
+          background-position: right 14px center;
+          padding-right: 36px;
+          background-color: rgba(255, 255, 255, .03);
+        }
     .form-group input:focus,
     .form-group textarea:focus,
     .form-group select:focus {
