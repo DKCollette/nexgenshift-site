@@ -783,7 +783,7 @@
     const formSuccess = document.getElementById('formSuccess');
     const formError = document.getElementById('formError');
 
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
 
       const name = document.getElementById('name').value.trim();
@@ -800,22 +800,39 @@
       }
 
       const submitBtn = form.querySelector('.form-submit');
-      submitBtn.textContent = 'Opening email...';
+      submitBtn.textContent = 'Sending...';
       submitBtn.disabled = true;
 
-      // Opens default mail client to send to contact@nexgenshift.com
-      const mailtoLink = `mailto:contact@nexgenshift.com?subject=${encodeURIComponent(subject || 'New Inquiry from ' + name)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\nSubject: ${subject || 'N/A'}\n\n${message}`)}`;
+      try {
+        const response = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            access_key: 'fd874481-7338-4901-87c3-1d8e139e08ab',
+            name: name,
+            email: email,
+            subject: subject || 'New Inquiry from nexgenshift.com',
+            message: message,
+            from_name: 'NexGenShift Website'
+          })
+        });
 
-      form.style.display = 'none';
-      formSuccess.style.display = 'block';
+        if (response.ok) {
+          form.style.display = 'none';
+          formSuccess.style.display = 'block';
+        } else {
+          throw new Error('Web3Forms error');
+        }
+      } catch {
+        // Fallback: open mail client
+        const mailtoLink = `mailto:contact@nexgenshift.com?subject=${encodeURIComponent(subject || 'New Inquiry from ' + name)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\nSubject: ${subject || 'N/A'}\n\n${message}`)}`;
+        window.location.href = mailtoLink;
+        form.style.display = 'none';
+        formSuccess.style.display = 'block';
+      }
+
       submitBtn.disabled = false;
-
-      // Open mail client
-      window.location.href = mailtoLink;
     });
-
-    // For production: replace mailto with Web3Forms (https://web3forms.com)
-    // Sign up free → get an access key → add it to the form action.
 
     // ─── Parallax glow on hero ───
     document.querySelector('.hero')?.addEventListener('mousemove', (e) => {
