@@ -711,7 +711,7 @@
           </p>
           <div class="contact-detail">
             <div class="contact-detail-label">Email</div>
-            <div class="contact-detail-value"><a href="mailto:contact@nexgenshift.com">contact@nexgenshift.com</a></div>
+            <div class="contact-detail-value"><a href="mailto:contact@nexgenshift.onmicrosoft.com">contact@nexgenshift.onmicrosoft.com</a></div>
           </div>
           <div class="contact-detail">
             <div class="contact-detail-label">Company</div>
@@ -762,7 +762,7 @@
     <div class="container">
       <p>&copy; 2026 NexGenShift. All rights reserved.</p>
       <div class="footer-links">
-        <a href="mailto:contact@nexgenshift.com">contact@nexgenshift.com</a>
+        <a href="mailto:contact@nexgenshift.onmicrosoft.com">contact@nexgenshift.onmicrosoft.com</a>
         <a href="#about">About</a>
         <a href="#services">Services</a>
       </div>
@@ -824,6 +824,7 @@
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             access_key: 'fd874481-7338-4901-87c3-1d8e139e08ab',
+            to: 'contact@nexgenshift.onmicrosoft.com',
             name: name,
             email: email,
             subject: subject || 'New Inquiry from nexgenshift.com',
@@ -840,7 +841,7 @@
         }
       } catch {
         // Fallback: open mail client
-        const mailtoLink = `mailto:contact@nexgenshift.com?subject=${encodeURIComponent(subject || 'New Inquiry from ' + name)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\nSubject: ${subject || 'N/A'}\n\n${message}`)}`;
+        const mailtoLink = `mailto:contact@nexgenshift.onmicrosoft.com?subject=${encodeURIComponent(subject || 'New Inquiry from ' + name)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\nSubject: ${subject || 'N/A'}\n\n${message}`)}`;
         window.location.href = mailtoLink;
         form.style.display = 'none';
         formSuccess.style.display = 'block';
