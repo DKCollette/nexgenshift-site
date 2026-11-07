@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://nexgenshift.com/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://nexgenshift.com/services/websites-apps-digital-experiences.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://nexgenshift.com/services/automation-integrations-communications.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://nexgenshift.com/services/cloud-infrastructure-systems.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://nexgenshift.com/services/security-reliability-scalability.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://nexgenshift.com/services/managed-services-improvement.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://nexgenshift.com/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://nexgenshift.com/services/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://nexgenshift.com/services/web-development/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://nexgenshift.com/services/mobile-apps/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://nexgenshift.com/services/automation/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://nexgenshift.com/services/data-analytics/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://nexgenshift.com/services/cloud-infrastructure/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://nexgenshift.com/services/security/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://nexgenshift.com/solutions/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://nexgenshift.com/process/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://nexgenshift.com/pricing/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://nexgenshift.com/portfolio/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://nexgenshift.com/about/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://nexgenshift.com/contact/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
 </urlset>

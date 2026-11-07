@@ -1,0 +1,136 @@
+{
+  "$comment": "CENTRAL PRICING CONFIG \u2014 edit prices here; pricing page and service pages read this file. All prices are provisional owner-provided design placeholders, not approved final prices.",
+  "packages": [
+    {
+      "id": "web-presence",
+      "name": "Web Presence",
+      "price": "$750",
+      "priceNote": "Starting at",
+      "supportPrice": "Custom Quote",
+      "target": "Professional websites and foundational digital presence for small businesses.",
+      "includes": [
+        "Professional business website (up to ~5 pages)",
+        "Mobile-responsive, accessible design",
+        "Contact / quote-request forms",
+        "Basic on-page SEO setup",
+        "Launch walkthrough & training"
+      ],
+      "upgrades": [
+        "Booking & payment flows",
+        "Blog / content sections",
+        "E-commerce integrations"
+      ],
+      "exclusions": "Excludes hosting, domain, and third-party fees. Ongoing support quoted separately."
+    },
+    {
+      "id": "business-systems",
+      "name": "Business Systems",
+      "price": "$2,500",
+      "priceNote": "Starting at",
+      "supportPrice": "Custom Quote",
+      "target": "Custom applications, connected systems, and workflow automation.",
+      "includes": [
+        "Custom web or mobile app (scoped MVP)",
+        "1\u20132 core integrations with your tools",
+        "Workflow or notification automation",
+        "Testing across devices",
+        "Docs, handoff & training"
+      ],
+      "upgrades": [
+        "Additional integrations",
+        "Advanced user roles & permissions",
+        "Customer portal modules"
+      ],
+      "exclusions": "Excludes app-store fees, third-party licenses, and cloud usage. Support quoted separately."
+    },
+    {
+      "id": "data-cloud",
+      "name": "Data & Cloud",
+      "price": "$5,000",
+      "priceNote": "Starting at",
+      "supportPrice": "Custom Quote",
+      "target": "Dashboards, data ingestion, cloud infrastructure, and integrated solutions.",
+      "includes": [
+        "Data pipeline from your key sources",
+        "Business dashboard with core views",
+        "Cloud infrastructure setup (serverless-first)",
+        "Monitoring, backups & recovery plan",
+        "Docs, handoff & training"
+      ],
+      "upgrades": [
+        "AI knowledge assistant",
+        "Advanced analytics & scheduled reports",
+        "Multi-environment setups"
+      ],
+      "exclusions": "Excludes cloud consumption charges and third-party data tools. Support quoted separately."
+    },
+    {
+      "id": "enterprise",
+      "name": "Enterprise Solutions",
+      "price": "Custom Quote",
+      "priceNote": "",
+      "supportPrice": "Custom Quote",
+      "target": "Complex applications, advanced integration, cloud architecture, and specialized engineering engagements.",
+      "includes": [
+        "Multi-system platform architecture",
+        "Custom scope across web, mobile, data & cloud",
+        "Security & compliance planning",
+        "Dedicated build phases with check-ins",
+        "Full docs, training & handoff"
+      ],
+      "upgrades": [
+        "Compliance support packages",
+        "Team training programs",
+        "Long-term optimization roadmap"
+      ],
+      "exclusions": "Scoped individually in a written proposal. No unlimited revisions, hosting, or guarantees unless explicitly included."
+    }
+  ],
+  "optionalServices": [
+    {
+      "icon": "\u2601\ufe0f",
+      "name": "Hosting & cloud management",
+      "note": "Quoted per project"
+    },
+    {
+      "icon": "\ud83d\udee0\ufe0f",
+      "name": "Website maintenance",
+      "note": "Custom Quote"
+    },
+    {
+      "icon": "\u26a1",
+      "name": "Workflow automation",
+      "note": "From Business Systems"
+    },
+    {
+      "icon": "\ud83d\udd17",
+      "name": "Additional integrations",
+      "note": "Quoted per integration"
+    },
+    {
+      "icon": "\ud83e\udd16",
+      "name": "AI integrations",
+      "note": "Quoted per project"
+    },
+    {
+      "icon": "\ud83d\udcca",
+      "name": "Dashboards & reporting",
+      "note": "From Data & Cloud"
+    },
+    {
+      "icon": "\ud83d\udee1\ufe0f",
+      "name": "Security monitoring",
+      "note": "Custom Quote"
+    },
+    {
+      "icon": "\u2709\ufe0f",
+      "name": "Email & notification systems",
+      "note": "Quoted per project"
+    },
+    {
+      "icon": "\ud83d\udea8",
+      "name": "Priority support",
+      "note": "Custom Quote"
+    }
+  ]
+}
