@@ -3,264 +3,100 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cloud Infrastructure — NexGenShift</title>
-<meta name="description" content="AWS/Azure architecture, serverless hosting, databases, observability, and cost control.">
+<title>Cloud Infrastructure | NexGenShift</title>
+<meta name="description" content="Hosting, CI/CD, backups, monitoring and cost visibility.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://nexgenshift.com/services/cloud-infrastructure/">
+<meta property="og:title" content="Cloud Infrastructure | NexGenShift">
+<meta property="og:description" content="Hosting, CI/CD, backups, monitoring and cost visibility.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://nexgenshift.com/services/cloud-infrastructure/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>:root{
---background:#050507;--surface:#101016;--surface-raised:#171420;--surface-hover:#21182D;
---primary:#9333EA;--primary-bright:#A855F7;--primary-light:#C084FC;--accent:#6366F1;
---text-primary:#F8FAFC;--text-secondary:#A1A1AA;--text-muted:#71717A;
---border:#292333;--border-highlight:#6B21A8;
---radius:14px;--max:1200px}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:'Inter',-apple-system,'Segoe UI',sans-serif;background:var(--background);color:var(--text-primary);line-height:1.65;-webkit-font-smoothing:antialiased}
-h1,h2,h3{font-family:'Poppins','Inter',sans-serif;letter-spacing:-.4px;line-height:1.2}
-a{color:var(--primary-light)}
-a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible,summary:focus-visible,[role=tab]:focus-visible{outline:2px solid var(--primary-light);outline-offset:2px;border-radius:6px}
-.skip{position:absolute;left:-9999px;top:0;background:var(--primary-bright);color:#fff;font-weight:700;padding:10px 18px;z-index:400;border-radius:0 0 8px 0}
-.skip:focus{left:0}
-.container{max-width:var(--max);margin:0 auto;padding:0 24px}
-.eyebrow{font-size:.72rem;font-weight:700;letter-spacing:2.6px;text-transform:uppercase;color:var(--primary-light);margin-bottom:14px}
-section{padding:76px 0}
-section h2{font-size:clamp(1.6rem,3.2vw,2.4rem);font-weight:700;margin-bottom:12px;color:var(--text-primary)}
-.lede{color:var(--text-secondary);font-size:1.02rem;max-width:740px;line-height:1.7}
-.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:10px;font-weight:700;font-size:.93rem;cursor:pointer;transition:transform .18s,box-shadow .18s,background .18s,border-color .18s;border:none;font-family:'Poppins',sans-serif;text-decoration:none}
-.btn-primary{background:linear-gradient(135deg,#9333EA,#6366F1);color:#fff;box-shadow:0 4px 24px rgba(147,51,234,.35)}
-.btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 32px rgba(147,51,234,.5);color:#fff}
-.btn-ghost{background:rgba(255,255,255,.04);color:var(--text-primary);border:1px solid var(--border)}
-.btn-ghost:hover{border-color:var(--border-highlight);background:var(--surface-hover)}
-/* NAV */
-nav.mainnav{position:sticky;top:0;width:100%;z-index:100;background:rgba(5,5,7,.9);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
-nav.mainnav .container{display:flex;align-items:center;justify-content:space-between;height:68px}
-.nav-logo{font-family:'Poppins',sans-serif;font-size:1.22rem;font-weight:800;color:var(--text-primary);letter-spacing:-.5px;white-space:nowrap;text-decoration:none}
-.nav-logo span{color:var(--primary-bright)}
-.nav-links{display:flex;gap:2px;list-style:none;align-items:center}
-.nav-links>li{position:relative;list-style:none}
-.nav-links a.nl{display:block;color:var(--text-secondary);font-size:.86rem;font-weight:600;padding:10px 11px;border-radius:8px;text-decoration:none}
-.nav-links a.nl:hover{color:#fff;background:rgba(255,255,255,.05)}
-.nav-links a.nl.active{color:var(--primary-light)}
-.nav-cta{margin-left:8px;padding:10px 18px!important;border-radius:8px;background:linear-gradient(135deg,#9333EA,#6366F1);color:#fff!important;font-weight:700!important;font-size:.82rem!important;white-space:nowrap;text-decoration:none}
-.dropdown-panel{display:none;position:absolute;top:100%;left:0;min-width:280px;background:var(--surface);border:1px solid var(--border-highlight);border-radius:12px;padding:8px;box-shadow:0 24px 60px rgba(0,0,0,.6)}
-.has-drop:hover .dropdown-panel,.has-drop:focus-within .dropdown-panel{display:block}
-.dropdown-panel a{display:block;padding:10px 12px;border-radius:8px;color:var(--text-secondary);font-size:.85rem;font-weight:600;text-decoration:none}
-.dropdown-panel a:hover{background:var(--surface-hover);color:#fff}
-.dropdown-panel a small{display:block;font-weight:400;color:var(--text-muted);font-size:.72rem}
-.mobile-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:8px}
-.mobile-toggle span{width:24px;height:2px;background:#fff;border-radius:2px}
-/* PAGE HERO */
-.page-hero{background:radial-gradient(900px 420px at 80% -10%,rgba(147,51,234,.14),transparent 60%),var(--background);padding:64px 0 44px}
-.page-hero h1{font-size:clamp(2rem,4.4vw,3.1rem);font-weight:800;color:var(--text-primary);margin-bottom:14px}
-.page-hero h1 .grad{background:linear-gradient(135deg,#C084FC,#6366F1);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
-.page-hero .sub{color:var(--text-secondary);font-size:1.03rem;max-width:680px}
-.page-hero .sub strong{color:var(--text-primary)}
-.crumb{font-size:.76rem;color:var(--text-muted);margin-bottom:14px}
-.crumb a{color:var(--text-muted)}
-/* CARDS & GRIDS */
-.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:26px 24px}
-.card h3{color:var(--text-primary)}
-.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:36px}
-.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:36px}
-.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:34px}
-.price-tag{font-family:'Poppins',sans-serif;font-weight:700;color:var(--primary-light);font-size:.9rem}
-.svc-card{transition:transform .2s,border-color .2s,box-shadow .2s;display:flex;flex-direction:column}
-.svc-card:hover{transform:translateY(-4px);border-color:var(--border-highlight);box-shadow:0 18px 44px rgba(0,0,0,.5)}
-.svc-icon{width:48px;height:48px;border-radius:12px;background:rgba(147,51,234,.14);display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:14px}
-.svc-card h3{font-size:1.04rem;margin-bottom:8px;color:var(--text-primary)}
-.svc-card p{color:var(--text-secondary);font-size:.87rem;margin-bottom:12px}
-/* CTA BAND */
-.cta-band{background:radial-gradient(700px 300px at 50% 0%,rgba(147,51,234,.12),transparent 65%),#08080c;text-align:center;border-top:1px solid var(--border)}
-.cta-band h2{color:var(--text-primary)}
-.cta-band p{color:var(--text-secondary);max-width:620px;margin:0 auto 24px}
-/* LISTS / FAQ */
-ul.tick{list-style:none;margin-top:14px}
-ul.tick li{padding:8px 0 8px 28px;position:relative;font-size:.9rem;color:#C9C9D1}
-ul.tick li::before{content:'✓';position:absolute;left:0;color:var(--primary-light);font-weight:800}
-details.faq{border:1px solid var(--border);border-radius:12px;margin-top:12px;background:var(--surface);overflow:hidden}
-details.faq summary{cursor:pointer;padding:16px 20px;font-weight:600;font-size:.92rem;font-family:'Poppins',sans-serif;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px;color:var(--text-primary)}
-details.faq summary::-webkit-details-marker{display:none}
-details.faq summary::after{content:'+';color:var(--primary-light);font-size:1.3rem;flex-shrink:0}
-details.faq[open] summary::after{content:'–'}
-details.faq .faq-a{padding:0 20px 20px;color:var(--text-secondary);font-size:.88rem}
-/* SHOWCASE */
-.show-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:26px 0 0}
-.show-tab{background:rgba(255,255,255,.04);border:1px solid var(--border);color:var(--text-secondary);font-family:'Poppins',sans-serif;font-weight:600;font-size:.82rem;padding:10px 18px;border-radius:24px;cursor:pointer;transition:all .18s}
-.show-tab:hover{border-color:var(--border-highlight);color:#fff}
-.show-tab[aria-selected=true]{background:linear-gradient(135deg,#9333EA,#6366F1);color:#fff;border-color:transparent;box-shadow:0 4px 20px rgba(147,51,234,.4)}
-.showcase-stage{margin-top:18px;background:var(--surface);border:1px solid var(--border);border-radius:18px;box-shadow:0 30px 80px rgba(0,0,0,.5);overflow:hidden;min-height:460px}
-.show-panel{display:none;padding:28px}
-.show-panel.active{display:grid;grid-template-columns:1fr 1.1fr;gap:28px;align-items:center}
-.show-panel h3{font-size:1.35rem;margin-bottom:10px;color:var(--text-primary)}
-.show-panel p{color:var(--text-secondary);font-size:.92rem;margin-bottom:16px}
-/* device mockups */
-.devices{position:relative;min-height:340px}
-.mock-laptop{background:#0B0B10;border:1px solid var(--border-highlight);border-radius:12px 12px 0 0;overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,.55),0 0 40px rgba(147,51,234,.12)}
-.mock-laptop .mbar{display:flex;gap:6px;padding:9px 12px;border-bottom:1px solid var(--border);background:rgba(255,255,255,.02)}
-.mock-laptop .mbar i{width:9px;height:9px;border-radius:50%;background:#3a3a44}
-.mock-laptop .mbar i:first-child{background:var(--primary)}
-.msite{padding:14px}
-.msite .mnav{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
-.msite .mlogo{font-family:'Poppins',sans-serif;font-weight:800;font-size:.72rem;color:#fff}
-.msite .mlogo span{color:var(--primary-bright)}
-.msite .mlinks{display:flex;gap:8px}
-.msite .mlinks i{width:26px;height:7px;border-radius:4px;background:#2c2c36;display:block}
-.mhero{background:linear-gradient(135deg,rgba(147,51,234,.35),rgba(99,102,241,.25));border:1px solid var(--border-highlight);border-radius:8px;padding:14px;margin-bottom:10px}
-.mhero b{display:block;font-family:'Poppins',sans-serif;font-size:.78rem;color:#fff}
-.mhero span{font-size:.6rem;color:#cfc3e8}
-.mhero .mbtn{display:inline-block;margin-top:8px;font-size:.58rem;font-weight:700;background:linear-gradient(135deg,#9333EA,#6366F1);color:#fff;padding:4px 12px;border-radius:6px}
-.mcards{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.mcards i{display:block;height:40px;border-radius:6px;background:rgba(255,255,255,.05);border:1px solid var(--border)}
-.laptop-base{height:10px;background:#1c1c24;border-radius:0 0 12px 12px;border:1px solid var(--border);border-top:none}
-.mock-phone{position:absolute;right:2px;bottom:-6px;width:118px;background:#0B0B10;border:1px solid var(--border-highlight);border-radius:20px;overflow:hidden;box-shadow:0 18px 44px rgba(0,0,0,.6)}
-.mock-phone .notch{height:16px;display:flex;justify-content:center}
-.mock-phone .notch i{width:44px;height:12px;background:#1c1c24;border-radius:0 0 8px 8px;display:block}
-.mapp{padding:10px}
-.mapp .ahead{font-family:'Poppins',sans-serif;font-size:.6rem;font-weight:700;color:#fff;margin-bottom:8px}
-.mapp .arow{height:30px;border-radius:6px;background:rgba(147,51,234,.14);border:1px solid var(--border);margin-bottom:6px}
-.mapp .arow:last-child{background:rgba(255,255,255,.04)}
-.mapp .afoot{display:flex;gap:6px;margin-top:8px}
-.mapp .afoot i{flex:1;height:5px;border-radius:3px;background:#2c2c36;display:block}
-.mapp .afoot i:first-child{background:var(--primary-bright)}
-/* dashboard visual */
-.dashx{background:#0B0B10;border:1px solid var(--border-highlight);border-radius:12px;overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,.55)}
-.dashx .dbar{display:flex;align-items:center;gap:8px;padding:11px 14px;border-bottom:1px solid var(--border)}
-.dashx .dbar i{width:9px;height:9px;border-radius:50%;background:#3a3a44}
-.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:12px}
-.kpi{background:rgba(147,51,234,.08);border:1px solid var(--border);border-radius:8px;padding:8px 10px}
-.kpi b{display:block;font-family:'Poppins',sans-serif;font-size:.8rem;color:#fff}
-.kpi span{font-size:.58rem;color:var(--text-muted)}
-.bars{display:flex;align-items:flex-end;gap:6px;height:80px;padding:4px 12px 0}
-.bars i{flex:1;border-radius:4px 4px 2px 2px;background:linear-gradient(180deg,#A855F7,rgba(147,51,234,.2));min-height:12%}
-.pipe{display:flex;align-items:center;gap:6px;padding:12px}
-.pipe div{flex:1;text-align:center;font-size:.6rem;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:8px;padding:8px 4px;color:#C9C9D1}
-.pipe div b{display:block;font-size:.62rem;color:#fff}
-.pipe em{color:var(--primary-bright);font-style:normal;font-weight:700}
-.act{padding:0 12px 12px;font-size:.64rem;color:var(--text-muted)}
-.act div{display:flex;justify-content:space-between;padding:5px 0;border-top:1px solid var(--border)}
-.pill{font-size:.56rem;font-weight:700;padding:1px 8px;border-radius:10px}
-.ok{background:rgba(52,211,153,.14);color:#34D399}
-.live{background:rgba(99,102,241,.18);color:#A5B4FC}
-.sample-note{font-size:.68rem;color:var(--text-muted);text-align:center;padding:0 12px 12px}
-/* cloud diagram */
-.cloudx{background:#0B0B10;border:1px solid var(--border-highlight);border-radius:12px;padding:18px;box-shadow:0 20px 50px rgba(0,0,0,.55)}
-.clayer{display:flex;gap:8px;margin-bottom:8px}
-.cnode{flex:1;text-align:center;font-size:.62rem;background:rgba(147,51,234,.1);border:1px solid var(--border-highlight);border-radius:8px;padding:10px 6px;color:#E7D9FB}
-.cnode b{display:block;font-size:.64rem;color:#fff}
-.cnode.dim{background:rgba(255,255,255,.03);border-color:var(--border)}
-.clink{text-align:center;color:var(--primary-bright);font-weight:700;font-size:.8rem;line-height:1;padding:1px 0}
-/* workflow chain */
-.flow{display:flex;align-items:stretch;gap:0;margin-top:20px;flex-wrap:wrap}
-.fstep{flex:1;min-width:130px;text-align:center;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px 10px;font-size:.78rem}
-.fstep b{display:block;font-size:.8rem;color:#fff;margin-bottom:2px}
-.fstep span{color:var(--text-muted);font-size:.7rem}
-.farrow{align-self:center;color:var(--primary-bright);font-weight:700;padding:0 8px}
-/* portfolio filter */
-.pf-filters{display:flex;gap:8px;flex-wrap:wrap;margin-top:26px}
-/* FORMS */
-.form-group{margin-bottom:15px}
-.form-group label{display:block;font-size:.83rem;font-weight:600;margin-bottom:6px;color:#C9C9D1}
-.form-group input,.form-group textarea,.form-group select{width:100%;padding:12px 14px;border-radius:8px;border:1px solid var(--border);background:#0B0B10;color:var(--text-primary);font-family:inherit;font-size:.92rem;outline:none}
-.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--primary-bright)}
-.form-group select option{background:#0B0B10}
-.form-group textarea{min-height:110px;resize:vertical}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.form-error{color:#F0A3A3;background:rgba(255,80,80,.08);border:1px solid rgba(255,80,80,.4);font-size:.85rem;margin-top:10px;display:none;padding:10px 14px;border-radius:8px}
-.form-success{display:none;text-align:center;padding:30px 14px}
-/* FOOTER */
-footer{border-top:1px solid var(--border);padding:44px 0 32px;color:var(--text-muted);background:#040405}
-.foot-grid{display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;gap:28px;margin-bottom:28px}
-.foot-grid h4{font-size:.76rem;text-transform:uppercase;letter-spacing:1.6px;color:#fff;margin-bottom:12px;font-family:'Inter',sans-serif}
-.foot-grid a{display:block;color:var(--text-muted);font-size:.85rem;padding:3px 0;text-decoration:none}
-.foot-grid a:hover{color:#fff}
-.foot-bottom{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;border-top:1px solid var(--border);padding-top:20px;font-size:.8rem}
-.fade-in{opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease}
-.fade-in.visible{opacity:1;transform:none}
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.fade-in{opacity:1;transform:none;transition:none}}
-@media(max-width:960px){section{padding:56px 0}.grid3,.grid2{grid-template-columns:1fr 1fr}.grid4{grid-template-columns:1fr 1fr}.foot-grid{grid-template-columns:1fr 1fr}
-.nav-links{display:none}.mobile-toggle{display:flex}
-.nav-links.open{display:flex;flex-direction:column;position:absolute;top:68px;left:0;right:0;background:#0A0A0e;padding:18px 22px 24px;border-bottom:1px solid var(--border);gap:2px;align-items:stretch}
-.nav-links.open .dropdown-panel{position:static;display:block;border:none;box-shadow:none;background:transparent;padding:0 0 0 12px}
-.form-row{grid-template-columns:1fr}.show-panel.active{grid-template-columns:1fr}.showcase-stage{min-height:0}.mock-phone{right:8px}}
-@media(max-width:600px){.grid3,.grid2,.grid4{grid-template-columns:1fr}.foot-grid{grid-template-columns:1fr}.fstep{min-width:45%}}
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="stylesheet" href="/assets/extra.css">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
-<nav class="mainnav" aria-label="Primary">
-  <div class="container">
-    <a class="nav-logo" href="/">Nex<span>Gen</span>Shift</a>
-    <ul class="nav-links" id="navLinks">
-      <li><a class="nl" data-route="home" href="/">Home</a></li>
-      <li class="has-drop"><a class="nl" data-route="services" href="/services/">Services ▾</a>
-        <div class="dropdown-panel" aria-label="Services submenu">
-          <a href="/services/web-development/">Websites &amp; Web Apps<small>Responsive sites, portals, web apps</small></a>
-          <a href="/services/mobile-apps/">Mobile Applications<small>iOS, Android, cross-platform</small></a>
-          <a href="/services/automation/">Automation &amp; Workflows<small>Connect tools, remove busywork</small></a>
-          <a href="/services/data-analytics/">Data &amp; Dashboards<small>Pipelines, BI, AI tools</small></a>
-          <a href="/services/cloud-infrastructure/">Cloud Infrastructure<small>AWS/Azure, serverless, IaC</small></a>
-          <a href="/services/security/">Security &amp; Compliance<small>Zero Trust, IAM, monitoring</small></a>
-        </div></li>
-      <li><a class="nl" data-route="solutions" href="/solutions/">Solutions</a></li>
-      <li><a class="nl" data-route="process" href="/process/">Process</a></li>
-      <li><a class="nl" data-route="pricing" href="/pricing/">Pricing</a></li>
-      <li><a class="nl" data-route="portfolio" href="/portfolio/">Portfolio</a></li>
-      <li><a class="nl" data-route="about" href="/about/">About</a></li>
-      <li><a class="nl" data-route="contact" href="/contact/">Contact</a></li>
-      <li><a href="/start/" class="nav-cta">Start a Project</a></li>
-    </ul>
-    <button class="mobile-toggle" id="mobileToggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+
+<header class="site-header">
+  <div class="nav-inner">
+    <a class="logo" href="/" aria-label="NexGenShift home"><span class="logo-mark">N</span>NexGenShift</a>
+    <button class="hamburger" id="hamburger" aria-expanded="false" aria-controls="primaryNav" aria-label="Open menu">☰</button>
+    <nav class="nav-links" id="primaryNav" aria-label="Primary"><a href="/">Home</a><a href="/services/" aria-current="page" class="active">Services</a><a href="/solutions/">Solutions</a><a href="/portfolio/">Portfolio</a><a href="/reviews/">Reviews</a><a href="/process/">Process</a><a href="/pricing/">Pricing</a><a href="/about/">About</a><a href="/contact/">Contact</a><a href="/start/">Start</a><button class="linklike mobile-only" data-open-wizard data-mode="consult">Book a Consultation</button><a href="/start/" class="mobile-only">Start a Project →</a></nav>
+    <div class="nav-cta">
+      <button class="btn btn-ghost btn-sm" data-open-wizard data-mode="consult">Book a Consultation</button>
+      <button class="btn btn-primary btn-sm" data-open-wizard data-mode="project">Start a Project →</button>
+    </div>
   </div>
-</nav>
+</header>
 <main id="main">
-<header class="page-hero"><div class="container"><div class="crumb"><a href="/">Home</a> / <a href="/services/">Services</a> / Cloud Infrastructure & Architecture</div>
-<div class="eyebrow">Service 05 of 06 · AWS/Azure · Serverless · IaC</div><h1>Cloud Infrastructure & Architecture</h1><p class="sub">Infrastructure should be invisible when it works. We design cloud systems on AWS and Azure — serverless-first, defined as code, monitored throughout — in business-friendly language, with costs explained up front.</p>
-<p style="margin-top:16px"><span class="price-tag" data-price-key="data-cloud">Starting at $5,000</span></p>
-<p style="margin-top:14px"><a href="/contact/?mode=consult&service=cloud" class="btn btn-primary">Request a Technical Assessment →</a>&nbsp;&nbsp;<a href="/pricing/" class="btn btn-ghost">See Pricing</a></p></div></header>
-<section><div class="container"><div class="grid2 fade-in" style="align-items:center">
-<div class="card" aria-label="Visual demonstration"><div class="cloudx"><div class="clayer"><div class="cnode"><b>🌐 Site</b>hosted UI</div><div class="cnode"><b>📱 App</b>API-driven</div></div>
-<div class="clink">↕</div><div class="clayer"><div class="cnode dim"><b>⚙️ Serverless</b>auto-scale</div><div class="cnode dim"><b>🗄️ Database</b>+ backups</div></div>
-<div class="clink">↕</div><div class="clayer"><div class="cnode dim"><b>📡 Monitor</b>alerts</div><div class="cnode dim"><b>💰 FinOps</b>cost view</div></div></div><p style="font-size:.72rem;color:var(--text-muted);margin-top:10px">Illustrative concept — every system is designed around your operation.</p></div>
-<div><div class="eyebrow">Problems Solved</div><h2>Does This Sound Familiar?</h2><ul class="tick"><li><strong>Mystery hosting</strong> — Nobody is sure how anything is set up, and changes feel risky.</li><li><strong>Can't scale</strong> — Traffic spikes or growth break fragile setups.</li><li><strong>Surprise bills</strong> — Cloud costs nobody can explain or control.</li></ul></div>
-</div></div></section>
-<section style="padding-top:0"><div class="container"><div class="eyebrow">Capabilities</div><h2>What You Get</h2><div class="grid3"><div class='card'><h3 style='font-size:.96rem;margin-bottom:6px'>☁️ AWS & Azure architecture</h3><p style='font-size:.85rem;color:var(--text-secondary)'>Right-sized design on the platform that fits you.</p></div><div class='card'><h3 style='font-size:.96rem;margin-bottom:6px'>⚡ Serverless solutions</h3><p style='font-size:.85rem;color:var(--text-secondary)'>Scale to zero, burst on demand — no servers to patch.</p></div><div class='card'><h3 style='font-size:.96rem;margin-bottom:6px'>🖥️ Application hosting</h3><p style='font-size:.85rem;color:var(--text-secondary)'>Websites, APIs, and apps deployed safely.</p></div><div class='card'><h3 style='font-size:.96rem;margin-bottom:6px'>🗄️ Databases & storage</h3><p style='font-size:.85rem;color:var(--text-secondary)'>Data models plus backups you can restore.</p></div><div class='card'><h3 style='font-size:.96rem;margin-bottom:6px'>🌐 Networking</h3><p style='font-size:.85rem;color:var(--text-secondary)'>Sensible, secure connectivity between pieces.</p></div><div class='card'><h3 style='font-size:.96rem;margin-bottom:6px'>📡 Observability</h3><p style='font-size:.85rem;color:var(--text-secondary)'>Health checks, logs, and alerts before customers notice.</p></div><div class='card'><h3 style='font-size:.96rem;margin-bottom:6px'>💰 Cost optimization</h3><p style='font-size:.85rem;color:var(--text-secondary)'>Budgets, alerts, and right-sizing from day one.</p></div></div></div></section>
-<section style="padding-top:0"><div class="container"><div class="eyebrow">Use Cases</div><h2>Ways Businesses Use This</h2><div class="grid3"><div class='card'><h3 style='font-size:.94rem;margin-bottom:6px'>Survive launch day</h3><p style='font-size:.84rem;color:var(--text-secondary)'>Traffic spikes handled without a phone call.</p></div><div class='card'><h3 style='font-size:.94rem;margin-bottom:6px'>Clean migration</h3><p style='font-size:.84rem;color:var(--text-secondary)'>Move off fragile hosting with a tested path.</p></div><div class='card'><h3 style='font-size:.94rem;margin-bottom:6px'>Weekly safe releases</h3><p style='font-size:.84rem;color:var(--text-secondary)'>CI/CD so improvements ship without fear.</p></div></div></div></section>
-<section style="padding-top:0"><div class="container"><div class="grid2"><div><div class="eyebrow">Integrated Platform</div><h2>Works With Everything Else</h2><ul class="tick"><li><strong>Web & mobile hosting</strong> — Your apps run here, monitored end to end.</li><li><strong>Data pipelines</strong> — Ingestion and dashboards on the same foundation.</li><li><strong>Security everywhere</strong> — Identity, encryption, and logging standard.</li></ul></div>
-<div><div class="eyebrow">Technology</div><h2>Built on Proven Tools</h2><div class="grid2" style="margin-top:16px"><div class='card' style='text-align:center;padding:18px 12px'><div style='font-size:1.4rem'>☁️</div><b style='display:block;font-size:.84rem;font-family:Poppins,sans-serif'>Serverless</b><span style='font-size:.76rem;color:var(--text-muted)'>Scale on demand</span></div><div class='card' style='text-align:center;padding:18px 12px'><div style='font-size:1.4rem'>🧱</div><b style='display:block;font-size:.84rem;font-family:Poppins,sans-serif'>IaC</b><span style='font-size:.76rem;color:var(--text-muted)'>Environments as code</span></div><div class='card' style='text-align:center;padding:18px 12px'><div style='font-size:1.4rem'>🚀</div><b style='display:block;font-size:.84rem;font-family:Poppins,sans-serif'>CI/CD</b><span style='font-size:.76rem;color:var(--text-muted)'>Tested, repeatable releases</span></div><div class='card' style='text-align:center;padding:18px 12px'><div style='font-size:1.4rem'>💾</div><b style='display:block;font-size:.84rem;font-family:Poppins,sans-serif'>Backups</b><span style='font-size:.76rem;color:var(--text-muted)'>Strategy + restore tests</span></div></div></div></div></div></section>
-<section style="padding-top:0"><div class="container"><div class="eyebrow">Engagement</div><h2>Typical Ways to Work Together</h2><div class="grid3"><div class='card'><h3 style='font-size:.94rem'>Cloud Setup</h3><p style='font-size:.84rem;color:var(--text-secondary)'>Architecture, environments, deployment pipeline.</p></div><div class='card'><h3 style='font-size:.94rem'>Migration</h3><p style='font-size:.84rem;color:var(--text-secondary)'>Careful move with monitoring and rollback plan.</p></div><div class='card'><h3 style='font-size:.94rem'>Managed Platform</h3><p style='font-size:.84rem;color:var(--text-secondary)'>Setup plus ongoing monitoring and improvements.</p></div></div>
-<p style="margin-top:16px"><a href="/contact/?mode=consult&service=cloud" class="btn btn-primary">Request a Technical Assessment →</a>&nbsp;&nbsp;<a href="/contact/?mode=consult" class="btn btn-ghost">Book a Consultation</a></p></div></section>
-<section class="cta-band" aria-label="Call to action"><div class="container"><div class="fade-in">
-<div class="eyebrow">Ready When You Are</div><h2>Stop Piecing It Together. Start Operating as a System.</h2><p>Tell us where you're losing time — we'll help you build something better.</p>
-<a href="/start/" class="btn btn-primary">Start a Project →</a>&nbsp;&nbsp;<a href="/pricing/" class="btn btn-ghost">See Pricing</a>
+
+<section class="page-hero"><div class="container">
+<p class="crumbs"><a href="/">Home</a> / <a href="/services/">Services</a> / Cloud Infrastructure</p>
+<p class="eyebrow">Service</p><h1 style="color:var(--plum);font-size:clamp(2rem,4.5vw,3.2rem);letter-spacing:-1px">Grow without rebuilding everything.</h1>
+<p style="color:var(--muted);max-width:36rem;margin-top:12px">Secure, observable environments on major cloud platforms — built with infrastructure-as-code so growth is a setting, not a rebuild.</p>
+</div></section>
+<section class="block"><div class="container split rev">
+<div class="txt reveal"><p class="eyebrow">What's included</p><h2 style="color:var(--plum)">Boring reliability, on purpose.</h2>
+<ul class="feat"><li>Hosting, CI/CD &amp; backups handled</li><li>Staging → production release flow</li><li>Monitoring, alerts &amp; cost visibility</li></ul></div>
+<div class="demo-box reveal"><h3>⚙ Reference architecture (illustrative)</h3>
+<div class="arch"><div class="layer hot">🌐 CDN + DNS <span class="pill info">Edge</span></div><div class="conn">▼</div>
+<div class="layer hot">⚙ App services (auto-scaling) <span class="pill info">Containers</span></div><div class="conn">▼</div>
+<div class="layer">🗄 Managed database + backups <span class="pill ok">Encrypted</span></div><div class="conn">▼</div>
+<div class="layer">📊 Monitoring, logs &amp; alerts <span class="pill warn">24/7</span></div></div>
+<p class="hint">Shapes, not vendors: the same pattern runs on AWS, Azure, or GCP.</p></div>
+</div></section><section class="block" style="padding-top:0"><div class="container">
+<div class="sec-head reveal"><div><p class="eyebrow">FAQ</p><h2>Common questions.</h2></div></div>
+<div class="faq"><details class='reveal'><summary>Which cloud do you use?</summary><p>AWS, Azure, or GCP — chosen for fit and cost, never for lock-in.</p></details><details class='reveal'><summary>What happens if something breaks at 2am?</summary><p>Monitoring pages us first; care plans include defined response windows.</p></details></div></div></section>
+<section class="block final"><div class="container reveal">
+<h2>Ready to build something powerful?</h2><p>Let's turn your idea into a real solution that moves your business forward.</p>
+<div class="row">
+<button class="btn btn-primary" data-open-wizard data-mode="project">Start a Project <span aria-hidden="true">→</span></button>
+<button class="btn btn-ghost" data-open-wizard data-mode="consult">📅 Book a Consultation</button>
 </div></div></section>
 </main>
 <footer>
   <div class="container">
     <div class="foot-grid">
-      <div><div class="nav-logo" style="margin-bottom:10px">Nex<span>Gen</span>Shift</div>
-        <p style="font-size:.85rem;max-width:280px">We Build the Systems Behind Your Business. Websites, apps, automation, data, and secure cloud infrastructure.</p></div>
-      <div><h4>Services</h4><a href="/services/web-development/">Websites &amp; Web Apps</a><a href="/services/mobile-apps/">Mobile Apps</a><a href="/services/automation/">Automation</a><a href="/services/data-analytics/">Data &amp; Dashboards</a><a href="/services/cloud-infrastructure/">Cloud Infrastructure</a><a href="/services/security/">Security &amp; Compliance</a></div>
-      <div><h4>Company</h4><a href="/solutions/">Solutions</a><a href="/process/">Our Process</a><a href="/pricing/">Pricing</a><a href="/portfolio/">Portfolio</a><a href="/about/">About</a></div>
-      <div><h4>Get Started</h4><a href="/start/">Start a Project</a><a href="/contact/?mode=consult">Book a Consultation</a><a href="mailto:contact@nexgenshift.com">contact@nexgenshift.com</a><span style="font-size:.8rem">Serving businesses remotely across the US</span></div>
+      <div><a class="logo" href="/" style="margin-bottom:12px"><span class="logo-mark">N</span>NexGenShift</a><p>Websites, apps, automation, cloud, data, and security for growing businesses. Serving businesses remotely across the US.</p></div>
+      <div><h4>Explore</h4><a href="/">Home</a><a href="/services/">Services</a><a href="/solutions/">Solutions</a><a href="/portfolio/">Portfolio</a><a href="/reviews/">Reviews</a></div>
+      <div><h4>Company</h4><a href="/process/">Process</a><a href="/pricing/">Pricing</a><a href="/about/">About</a><a href="/contact/">Contact</a></div>
+      <div><h4>Get Started</h4><a href="/start/">Start a Project</a><button class="linklike" data-open-wizard data-mode="consult">Book a Consultation</button></div>
     </div>
-    <div class="foot-bottom"><span>© 2026 NexGenShift · We Build the Systems Behind Your Business </span><span>Reply within one business day · You own everything we build</span></div>
+    <div class="foot-base"><span>© <span id="year">2026</span> NexGenShift —.</span><span>Replies within one business day.</span></div>
   </div>
 </footer>
-<script>
-(function(){
-var t=document.getElementById('mobileToggle'),n=document.getElementById('navLinks');
-if(t){t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o?'true':'false')});}
-var p=location.pathname.replace(/\/+$/,'')||'/';
-var map={'/':'home','/services':'services','/solutions':'solutions','/process':'process','/pricing':'pricing','/portfolio':'portfolio','/work':'portfolio','/about':'about','/contact':'contact'};
-var key=map[p]||(p.indexOf('/services')===0?'services':null);
-if(key){document.querySelectorAll('[data-route="'+key+'"]').forEach(function(a){a.classList.add('active')});}
-var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}})},{threshold:.08});
-document.querySelectorAll('.fade-in').forEach(function(el){io.observe(el)});
-})();
-</script>
-
+<!-- INTAKE WIZARD -->
+<div class="modal" id="wizardModal" role="dialog" aria-modal="true" aria-labelledby="wizTitle">
+  <div class="wizard">
+    <button class="close" id="wizClose" aria-label="Close">✕</button>
+    <p class="eyebrow">Start a Project</p>
+    <h2 id="wizTitle" style="color:var(--plum)">What are we building?</h2>
+    <div class="wsteps" aria-hidden="true"><i class="done" id="s1"></i><i id="s2"></i><i id="s3"></i><i id="s4"></i></div>
+    <div class="wpane on" data-pane="1"><p>Pick the closest fit — you can refine it later.</p>
+      <div class="opt-grid" id="typeGrid">
+        <button class="opt" data-val="Website">🌐 New Website</button>
+        <button class="opt" data-val="Automation">⚡ Automation</button>
+        <button class="opt" data-val="Business system">🗂 Business System</button>
+        <button class="opt" data-val="Data dashboard">📊 Data / Dashboard</button>
+        <button class="opt" data-val="Cloud">☁ Cloud / Hosting</button>
+        <button class="opt" data-val="Security">🛡 Security Review</button>
+      </div></div>
+    <div class="wpane" data-pane="2"><h3>Tell us a little more</h3><p>Two quick fields — plain English is perfect.</p>
+      <div class="field"><label for="wGoal">What should this achieve?</label><textarea id="wGoal" rows="3" placeholder="e.g. Take online bookings so I stop missing after-hours calls"></textarea></div>
+      <div class="field"><label for="wBudget">Rough budget range</label><select id="wBudget"><option>Under $2k</option><option>$2k – $5k</option><option>$5k – $15k</option><option>$15k+ / ongoing</option><option>Not sure yet</option></select></div></div>
+    <div class="wpane" data-pane="3"><h3>Where do we reach you?</h3><p>We reply within one business day.</p>
+      <div class="field"><label for="wName">Name</label><input id="wName" type="text" autocomplete="name" placeholder="Jordan Smith"></div>
+      <div class="field"><label for="wEmail">Email</label><input id="wEmail" type="email" autocomplete="email" placeholder="you@business.com"></div></div>
+    <div class="wpane" data-pane="4"><h3>Review &amp; send</h3><p id="wizReview">—</p>
+      <div class="mock-note">ⓘ Pressing Submit sends your brief to our team — we reply within one business day.</div></div>
+    <div class="wpane" data-pane="5"><h3>🎉 Request received</h3><p>Thanks! Your brief is on its way — we reply within one business day.</p></div>
+    <div class="wnav"><button class="btn btn-ghost btn-sm" id="wizBack">← Back</button><button class="btn btn-primary btn-sm" id="wizNext">Continue →</button></div>
+  </div>
+</div>
+<script src="/assets/site.js"></script>
+<script src="/assets/widgets.js"></script>
 </body>
 </html>
