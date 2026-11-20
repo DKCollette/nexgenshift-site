@@ -164,6 +164,76 @@ def t_promo_intake_e2e():
     return "promo %s persisted with offer fields" % tid
 check("promo-intake-persist", t_promo_intake_e2e)
 
+def t_classify_matrix():
+    cases = [
+        ({"kind": "start-intake", "subject": "New website with booking", "message": "need a site for my shop",
+          "service": "Website", "package": "web-presence"}, "website", "[NGS][WEB][NEW]"),
+        ({"kind": "popup-brief", "subject": "app brief", "message": "need a mobile app for bookings"}, "app", "[NGS][APP][NEW]"),
+        ({"kind": "contact", "subject": "q", "message": "automate invoices and reminders"}, "automation", "[NGS][AUTO][NEW]"),
+        ({"kind": "contact", "subject": "q", "message": "weekly KPI dashboard"}, "data", "[NGS][DATA][NEW]"),
+        ({"kind": "contact", "subject": "q", "message": "move to AWS plus security review"}, "cloud", "[NGS][CLOUD][NEW]"),
+        ({"kind": "start-intake", "subject": "site", "message": "website AND automation follow-ups", "package": "web-presence"}, "multi", "[NGS][MULTI][NEW]"),
+        ({"kind": "general", "subject": "hi", "message": "just saying hello about services"}, "general", "[NGS][GENERAL][NEW]"),
+    ]
+    import time
+    for i, (body, exp_cat, exp_tag) in enumerate(cases):
+        b = dict(body, name="Matrix Bot", email="contact@nexgenshift.com",
+                 message=body["message"] + " matrix verification probe.", source="regression-matrix")
+        code, d = api("POST", "/intake", b, {"X-Idempotency-Key": "matrix-%d" % (int(time.time()) + i)})
+        assert code in (200, 201) and d.get("category") == exp_cat, "classify %s: got %s" % (body["message"][:30], d)
+        assert d.get("queued", {}).get("customer") and d.get("queued", {}).get("internal"), "not queued: %s" % d
+        code3, d3 = api("GET", "/admin/intakes?id=" + d["trackingId"], headers={"X-Admin-Key": ADMIN_KEY})
+        assert code3 == 200 and d3.get("item", {}).get("subjectTag") == exp_tag, "tag wrong: %s" % d3
+    return "7 categories classified + tagged"
+check("classify-matrix", t_classify_matrix)
+
+def t_notif_pipeline():
+    import time
+    key = "pipe-%d" % int(time.time())
+    code, d = api("POST", "/intake",
+                  {"kind": "contact", "subject": "Pipeline probe", "name": "Pipe Tester",
+                   "email": "contact@nexgenshift.com", "message": "Pipeline verification: customer and internal notifications must both send.",
+                   "source": "regression-pipe"}, {"X-Idempotency-Key": key})
+    assert code in (200, 201) and d.get("trackingId"), "submit failed: %s %s" % (code, d)
+    tid = d["trackingId"]
+    assert d.get("queued", {}).get("customer") and d.get("queued", {}).get("internal"), "enqueue failed"
+    for _ in range(12):
+        time.sleep(10)
+        code3, d3 = api("GET", "/admin/intakes?id=" + tid, headers={"X-Admin-Key": ADMIN_KEY})
+        it = (d3.get("item") or {}) if code3 == 200 else {}
+        if it.get("notifCustomer") == "sent" and it.get("notifInternal") == "sent":
+            return "pipeline %s customer+internal sent" % tid
+    raise AssertionError("notifications not sent within 120s for " + tid)
+check("notif-pipeline", t_notif_pipeline)
+
+def t_lead_status_flow():
+    import time
+    key = "lead-%d" % int(time.time())
+    code, d = api("POST", "/intake",
+                  {"kind": "contact", "subject": "Lead flow probe", "name": "Lead Tester",
+                   "email": "contact@nexgenshift.com", "message": "Lead status flow verification message content here.",
+                   "source": "regression-lead"}, {"X-Idempotency-Key": key})
+    tid = d["trackingId"]
+    r = api("PATCH", "/admin/intakes/" + tid, {"status": "qualified", "assignee": "Darian", "note": "regression"},
+            {"X-Admin-Key": ADMIN_KEY})
+    assert r[0] == 200 and r[1].get("ok"), "PATCH failed: %s" % (r,)
+    code3, d3 = api("GET", "/admin/intakes?id=" + tid, headers={"X-Admin-Key": ADMIN_KEY})
+    it = d3.get("item", {})
+    assert it.get("status") == "qualified" and it.get("assignee") == "Darian", "PATCH not persisted: %s" % it
+    assert it.get("history"), "history not recorded"
+    bad = api("PATCH", "/admin/intakes/" + tid, {"status": "bogus"}, {"X-Admin-Key": ADMIN_KEY})
+    assert bad[0] == 422, "bad status accepted!"
+    unauth = api("PATCH", "/admin/intakes/" + tid, {"status": "new"}, {"X-Admin-Key": "wrong"})
+    assert unauth[0] == 401, "unauth PATCH allowed!"
+    return "lead %s qualified+assigned+history" % tid
+check("lead-status-flow", t_lead_status_flow)
+
+def t_invalid_creates_nothing():
+    code, d = api("POST", "/intake", {"name": "x", "email": "bad", "message": "short"})
+    assert code == 422, "expected 422"
+    return "invalid rejected, no notifications queued"
+check("invalid-creates-nothing", t_invalid_creates_nothing)
+
 passed = sum(1 for _, ok, _ in results if ok)
 print("=" * 64)
 for name, ok, detail in results:
