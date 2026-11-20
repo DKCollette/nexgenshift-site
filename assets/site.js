@@ -17,7 +17,7 @@ tabs.forEach(function(t,i){t.addEventListener('click',function(){activate(t);});
 /* wizard */
 var modal=document.getElementById('wizardModal'),step=1,type='',lastFocus=null;
 var next=document.getElementById('wizNext'),back=document.getElementById('wizBack');
-function show(n){step=n;document.querySelectorAll('.wpane').forEach(function(p){p.classList.toggle('on',+p.dataset.pane===n);});[1,2,3,4].forEach(function(i){document.getElementById('s'+i).classList.toggle('done',i<=Math.min(n,4));});back.style.visibility=(n===1||n===5)?'hidden':'visible';next.textContent=n===4?'Submit (demo)' :(n===5?'Done':'Continue →');if(n===4){document.getElementById('wizReview').textContent='Type: '+(type||'Not selected yet')+' — '+(document.getElementById('wGoal').value||'no description yet')+'.';}}
+function show(n){step=n;document.querySelectorAll('.wpane').forEach(function(p){p.classList.toggle('on',+p.dataset.pane===n);});[1,2,3,4].forEach(function(i){document.getElementById('s'+i).classList.toggle('done',i<=Math.min(n,4));});back.style.visibility=(n===1||n===5)?'hidden':'visible';next.textContent=n===4?'Submit →' :(n===5?'Done':'Continue →');if(n===4){document.getElementById('wizReview').textContent='Type: '+(type||'Not selected yet')+' — '+(document.getElementById('wGoal').value||'no description yet')+'.';}}
 function openWiz(mode){lastFocus=document.activeElement;modal.classList.add('open');document.body.style.overflow='hidden';if(mode==='consult'){type='Consultation';}show(1);document.getElementById('wizClose').focus();}
 function closeWiz(){modal.classList.remove('open');document.body.style.overflow='';show(1);if(lastFocus)lastFocus.focus();}
 document.querySelectorAll('[data-open-wizard]').forEach(function(b){b.addEventListener('click',function(e){e.preventDefault();openWiz(b.dataset.mode);});});
@@ -34,9 +34,13 @@ var err=document.getElementById('wizErr');
 function werr(m){if(!err){var d=document.createElement('p');d.id='wizErr';d.style.color='#b91c1c';document.querySelector('.wizard').appendChild(d);err=d;}err.textContent=m||'';err.style.display=m?'block':'none';}
 werr('');
 var n=nm?nm.value.trim():'',e=em?em.value.trim():'';
-if(n.length<2||!/^[^\\s@]+@[^\\s@]+\\.[^\\s@]{2,}$/.test(e)){werr('Please add your name and a valid email.');return;}
+if(n.length<2||!/^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/.test(e)){werr('Please add your name and a valid email.');return;}
 next.disabled=true;next.textContent='Sending…';
-fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({access_key:'fd874481-7338-4901-87c3-1d8e139e08ab',subject:'New Project Brief: '+(type||'General')+' | '+n,name:n,email:e,message:'Type: '+(type||'Not selected')+'\nGoal: '+((gl&&gl.value.trim())||'Not specified')+'\nBudget: '+((document.getElementById('wBudget')||{}).value||'Not specified'),from_name:'NexGenShift Website'})}).then(function(r){return r.json().catch(function(){return {};});}).then(function(){next.disabled=false;show(5);}).catch(function(){next.disabled=false;next.textContent='Submit →';werr('Could not send automatically — please email contact@nexgenshift.com directly.');});
+var promoQ='';try{promoQ=new URLSearchParams(location.search).get('promo')||'';}catch(e){}
+var idem=window.NGSIntake?NGSIntake.uuid():'wiz-'+Date.now();
+var promoNote=promoQ?('\nPromotion: '+promoQ+' (see /pricing/ for current terms). No payment taken; billing is manual.'):'';
+var subj='New Project Brief: '+(type||'General')+' | '+n+(promoQ?' | promo '+promoQ:'');
+NGSIntake.send({kind:'popup-brief',subject:subj,name:n,email:e,message:'Type: '+(type||'Not selected')+'\nGoal: '+((gl&&gl.value.trim())||'Not specified')+'\nBudget: '+((document.getElementById('wBudget')||{}).value||'Not specified')+promoNote,source:'popup-wizard',promo:promoQ||null},idem).then(function(d){next.disabled=false;var ok=document.querySelector('.wpane[data-pane="5"] h3');if(ok&&d.trackingId)ok.textContent='🎉 Request received — '+d.trackingId;show(5);}).catch(function(err){next.disabled=false;next.textContent='Submit →';var det=err.details?(' ('+err.details.join('; ')+')'):'';werr('Could not send your brief'+det+' — your answers are safe on this page. Please try again or email contact@nexgenshift.com directly.');});
 return;}
 closeWiz();});
 })();

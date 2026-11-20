@@ -27,8 +27,10 @@ function $(id){return document.getElementById(id);}
 var panels=Array.prototype.slice.call(document.querySelectorAll("[data-step]"));
 var labels={1:"Step 1 of 5 — Business",2:"Step 2 of 5 — Goals",3:"Step 3 of 5 — Features",4:"Step 4 of 5 — Design, budget & timeline",5:"Step 5 of 5 — Review & submit"};
 (function preselect(){
-  var notes=[],pkg=Q.get("package"),svc=Q.get("service"),need=Q.get("need");
+  var notes=[],pkg=Q.get("package"),svc=Q.get("service"),need=Q.get("need"),promo=Q.get("promo");
+  if(promo){S.promo=promo;notes.push("Promotion applied: "+promo);}
   if(pkg&&PKG_MAP[pkg]){S.pkg=pkg;notes.push("Pre-selected package: "+pkg.replace(/-/g," "));if(PKG_MAP[pkg].service&&!svc)svc=PKG_MAP[pkg].service;}
+  if(pkg==="web-presence"&&promo){notes.push("Small-Business Website promo: $0 build + first month free ($50/mo from month two)");}
   if(svc&&SERVICE_MAP[svc]){S.service=svc;notes.push("Pre-selected service: "+SERVICE_MAP[svc]);}
   if(need&&NEED_MAP[need]){S.need=need;S.goals[NEED_MAP[need]]=1;notes.push("Pre-selected goal: "+NEED_MAP[need]);}
   if(need&&!svc&&SERVICE_MAP[need]){S.service=need;notes.push("Pre-selected service: "+SERVICE_MAP[need]);}
@@ -60,13 +62,18 @@ $("wizSubmit").onclick=function(){
   var btn=$("wizSubmit");btn.textContent="Sending…";btn.disabled=true;
   var g=Object.keys(S.goals).join(", "),f=Object.keys(S.features).join(", ");
   var svcLabel=S.service?SERVICE_MAP[S.service]:"Not specified",pkgLabel=S.pkg?S.pkg.replace(/-/g," "):"None",needLabel=S.need?(NEED_MAP[S.need]||S.need):"None";
-  var subject="New Project Intake: "+$("bizName").value.trim()+" | "+(S.pkg?("package "+S.pkg):svcLabel)+" | "+$("budget").value;
+  var promoId=S.promo||Q.get("promo")||"";
+  var promoLine="";
+  if(promoId==="SBW-LAUNCH-2026"&&S.pkg==="web-presence"){promoLine="Promotion: SBW-LAUNCH-2026 — Small-Business Website promo (regular build $750 → promotional build $0 FREE; subscription $50/month, first month FREE, recurring from month two at launch). No payment taken; billing is manual.";}
+  else if(promoId){promoLine="Promotion: "+promoId+" (see pricing page for current terms). No payment taken; billing is manual.";}
+  var subject="New Project Intake: "+$("bizName").value.trim()+" | "+(S.pkg?("package "+S.pkg):svcLabel)+" | "+$("budget").value+(promoId?" | promo "+promoId:"");
   var message="Business: "+$("bizName").value.trim()+"\nType: "+bizTypeVal()+"\nDescription: "+($("bizDesc").value.trim()||"Not specified")+"\nPhone: "+($("bizPhone").value.trim()||$("cPhone").value.trim()||"Not specified")+"\nService: "+svcLabel+"\nPackage: "+pkgLabel+"\nNeed: "+needLabel+"\nGoals: "+(g||"Not specified")+"\nFeatures: "+(f||"Not specified")+"\nStyle: "+$("styleSel").value+"\nAccent: "+S.accent+"\nDesign notes: "+($("designNotes").value.trim()||"None")+"\nTimeline: "+$("timeline").value+"\nBudget: "+$("budget").value;
-  fetch("https://api.web3forms.com/submit",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({access_key:"fd874481-7338-4901-87c3-1d8e139e08ab",subject:subject,name:nm,email:em,message:message,from_name:"NexGenShift Website"})}).then(function(r){return r.json().catch(function(){/* intake engine (production, light-theme) */return {};});}).then(function(d){
+  fetch(NGSIntake.endpoint+"/intake",{method:"POST",headers:{"Content-Type":"application/json","X-Idempotency-Key":NGSIntake.uuid()},body:JSON.stringify({kind:"start-intake",subject:subject,name:nm,email:em,message:message+(promoLine?"\n"+promoLine:""),source:"start-flow",promo:promoId||null})}).then(function(r){return r.json().catch(function(){return {ok:false};});}).then(function(d){
+    if(!d||!d.ok||!d.trackingId)throw new Error((d&&d.error)||"send_failed");
     $("wizCard").classList.add("hidden");
-    $("doneText").textContent="Thank you, "+nm.split(" ")[0]+" — your intake for "+$("bizName").value.trim()+" is in. Our guided demo pipeline is coming soon: in the meantime we reply within one business day with clear next steps and a first preview of your project.";
+    $("doneText").textContent="Thank you, "+nm.split(" ")[0]+" — your intake for "+$("bizName").value.trim()+" is in (reference "+d.trackingId+"). We reply within one business day with clear next steps and a first preview of your project.";
     $("doneCard").classList.remove("hidden");window.scrollTo(0,0);
-  }).catch(function(){/* intake engine (production, light-theme) */wizErr("Could not send automatically. Please email contact@nexgenshift.com directly — your answers are safe on this page, just try again.");btn.textContent="Submit project intake →";btn.disabled=false;});
+  }).catch(function(err){wizErr("Could not send automatically ("+((err&&err.message)||"network error")+"). Please email contact@nexgenshift.com directly — your answers are safe on this page, just try again.");btn.textContent="Submit project intake →";btn.disabled=false;});
 };
 renderGoals();renderColors();renderFeats();render();
 })();
