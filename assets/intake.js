@@ -62,11 +62,12 @@ $("wizSubmit").onclick=function(){
   var svcLabel=S.service?SERVICE_MAP[S.service]:"Not specified",pkgLabel=S.pkg?S.pkg.replace(/-/g," "):"None",needLabel=S.need?(NEED_MAP[S.need]||S.need):"None";
   var subject="New Project Intake: "+$("bizName").value.trim()+" | "+(S.pkg?("package "+S.pkg):svcLabel)+" | "+$("budget").value;
   var message="Business: "+$("bizName").value.trim()+"\nType: "+bizTypeVal()+"\nDescription: "+($("bizDesc").value.trim()||"Not specified")+"\nPhone: "+($("bizPhone").value.trim()||$("cPhone").value.trim()||"Not specified")+"\nService: "+svcLabel+"\nPackage: "+pkgLabel+"\nNeed: "+needLabel+"\nGoals: "+(g||"Not specified")+"\nFeatures: "+(f||"Not specified")+"\nStyle: "+$("styleSel").value+"\nAccent: "+S.accent+"\nDesign notes: "+($("designNotes").value.trim()||"None")+"\nTimeline: "+$("timeline").value+"\nBudget: "+$("budget").value;
-  fetch("https://api.web3forms.com/submit",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({access_key:"fd874481-7338-4901-87c3-1d8e139e08ab",subject:subject,name:nm,email:em,message:message,from_name:"NexGenShift Website"})}).then(function(r){return r.json().catch(function(){/* intake engine (production, light-theme) */return {};});}).then(function(d){
+  fetch(NGSIntake.endpoint+"/intake",{method:"POST",headers:{"Content-Type":"application/json","X-Idempotency-Key":NGSIntake.uuid()},body:JSON.stringify({kind:"start-intake",subject:subject,name:nm,email:em,message:message,source:"start-flow"})}).then(function(r){return r.json().catch(function(){return {ok:false};});}).then(function(d){
+    if(!d||!d.ok||!d.trackingId)throw new Error((d&&d.error)||"send_failed");
     $("wizCard").classList.add("hidden");
-    $("doneText").textContent="Thank you, "+nm.split(" ")[0]+" — your intake for "+$("bizName").value.trim()+" is in. Our guided demo pipeline is coming soon: in the meantime we reply within one business day with clear next steps and a first preview of your project.";
+    $("doneText").textContent="Thank you, "+nm.split(" ")[0]+" — your intake for "+$("bizName").value.trim()+" is in (reference "+d.trackingId+"). We reply within one business day with clear next steps and a first preview of your project.";
     $("doneCard").classList.remove("hidden");window.scrollTo(0,0);
-  }).catch(function(){/* intake engine (production, light-theme) */wizErr("Could not send automatically. Please email contact@nexgenshift.com directly — your answers are safe on this page, just try again.");btn.textContent="Submit project intake →";btn.disabled=false;});
+  }).catch(function(err){wizErr("Could not send automatically ("+((err&&err.message)||"network error")+"). Please email contact@nexgenshift.com directly — your answers are safe on this page, just try again.");btn.textContent="Submit project intake →";btn.disabled=false;});
 };
 renderGoals();renderColors();renderFeats();render();
 })();

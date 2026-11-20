@@ -46,9 +46,8 @@
 
 <div class="demo-box reveal"><h3>Send a message</h3>
 <p class="hint">We reply within one business day. Your details are used only to reply — no spam, no obligation.</p>
-<form id="contactForm" data-live-contact action="https://api.web3forms.com/submit" method="POST" novalidate style="margin-top:14px">
-<input type="hidden" name="access_key" value="fd874481-7338-4901-87c3-1d8e139e08ab">
-<input type="checkbox" name="botcheck" id="cf-company" style="display:none" tabindex="-1" autocomplete="off">
+<form id="contactForm" data-live-contact novalidate style="margin-top:14px">
+<input type="checkbox" name="botcheck" id="cf-company" value="" style="display:none" tabindex="-1" autocomplete="off">
 <div class="mode-cards" role="tablist" aria-label="Choose how to work with us" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px">
 <button type="button" role="tab" id="modeBuild" aria-selected="true">🚀 Ready to build</button>
 <button type="button" role="tab" id="modeConsult" aria-selected="false">🧭 Need guidance</button>
@@ -117,6 +116,7 @@
     <div class="wnav"><button class="btn btn-ghost btn-sm" id="wizBack">← Back</button><button class="btn btn-primary btn-sm" id="wizNext">Continue →</button></div>
   </div>
 </div>
+<script src="/assets/intake-client.js"></script>
 <script src="/assets/site.js"></script>
 <script src="/assets/widgets.js"></script>
 <script src="/assets/contact-modes.js"></script>

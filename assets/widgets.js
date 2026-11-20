@@ -1,11 +1,11 @@
-/* Production widgets: live Web3Forms contact, reviews queue, calculators, admin. */
+/* Production widgets: AWS intake-receiver contact, reviews queue, calculators, admin. */
 (function () {
   "use strict";
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
   var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  /* ---- Live contact form (Web3Forms POST, production) ---- */
+  /* ---- Live contact form (AWS intake receiver POST, production) ---- */
   $$("form[data-live-contact]").forEach(function (f) {
     var err = $(".form-err", f) || $(".form-error", f), ok = $(".form-ok", f) || $(".form-success", f);
     f.addEventListener("submit", function (e) {
@@ -16,28 +16,29 @@
       var consult = consultF && !consultF.classList.contains("hidden");
       var name = $("#cf-name", f).value.trim();
       var email = $("#cf-email", f).value.trim();
-      var topic = consult ? ((document.getElementById("cfc-topic")||{}).value || "Consultation") : $("#cf-topic", f).value;
+      var topic = consult ? ((document.getElementById("cfc-topic")||{}).value || "Consultation") : ((($("#cf-topic", f)||{}).value) || ((document.getElementById("cf-service")||{}).value) || "General inquiry");
       var msg = consult ? ((document.getElementById("cfc-msg")||{}).value || "").trim() : $("#cf-msg", f).value.trim();
       var svcExtra = consult ? "" : ("Service: " + ((document.getElementById("cf-service")||{}).value || "Not specified") + " | Budget: " + ((document.getElementById("cf-budget")||{}).value || "Not specified") + "\n");
-      if ($("#cf-company", f).value) { return; } // honeypot
+      var _hp=$("#cf-company", f); if (_hp && (_hp.checked || (_hp.value && _hp.value !== "" && _hp.value !== "on"))) { if(err){err.textContent="Something looked automated — please try again.";err.style.display="block";} return; } // honeypot
       var problems = [];
       if (name.length < 2) problems.push("your name");
-      if (!/^[^\\s@]+@[^\\s@]+\\.[^\\s@]{2,}$/.test(email)) problems.push("a valid email");
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) problems.push("a valid email");
       if (msg.length < 10) problems.push("a message (10+ characters)");
       if (problems.length) {
         if (err) { err.textContent = "Please add " + problems.join(", ") + "."; err.style.display = "block"; err.tabIndex = -1; err.focus(); }
         return;
       }
       var btn = f.querySelector("[type=submit]"); if (btn) { btn.disabled = true; btn.textContent = "Sending…"; }
-      fetch("https://api.web3forms.com/submit", { method: "POST", headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ access_key: "fd874481-7338-4901-87c3-1d8e139e08ab", subject: (consult ? "Consultation Request: " : "New Inquiry: ") + topic + " | " + name, name: name, email: email, message: "Topic: " + topic + "\n\n" + msg, from_name: "NexGenShift Website" }) })
-        .then(function (r) { return r.json().catch(function () { return {}; }); })
-        .then(function () {
-          if (ok) { ok.textContent = "Thanks, " + name.split(" ")[0] + "! Message received — we reply within one business day."; ok.style.display = "block"; }
+      var idem = (window.NGSIntake ? NGSIntake.uuid() : "contact-" + Date.now());
+      var post = (window.NGSIntake ? NGSIntake.send : function () { return Promise.reject(new Error("intake_unavailable")); });
+      post({ kind: consult ? "consultation" : "contact", subject: (consult ? "Consultation Request: " : "New Inquiry: ") + topic + " | " + name, name: name, email: email, message: "Topic: " + topic + "\n" + svcExtra + "\n" + msg, source: "contact-form" }, idem)
+        .then(function (d) {
+          if (ok) { ok.textContent = "Thanks, " + name.split(" ")[0] + "! Message received" + (d.trackingId ? " (" + d.trackingId + ")" : "") + " — we reply within one business day."; ok.style.display = "block"; }
           f.querySelectorAll("input[type=text],input[type=email],textarea").forEach(function (i) { i.value = ""; });
           if (btn) { btn.disabled = false; btn.textContent = "Send message →"; }
-        }).catch(function () {
-          if (err) { err.textContent = "Could not send automatically — please email contact@nexgenshift.com directly."; err.style.display = "block"; }
+        }).catch(function (sendErr) {
+          var det = (sendErr && sendErr.details) ? " (" + sendErr.details.join("; ") + ")" : "";
+          if (err) { err.textContent = "Could not send automatically" + det + " — please email contact@nexgenshift.com directly."; err.style.display = "block"; }
           if (btn) { btn.disabled = false; btn.textContent = "Send message →"; }
         });
     });
