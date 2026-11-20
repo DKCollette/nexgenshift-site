@@ -36,8 +36,11 @@ werr('');
 var n=nm?nm.value.trim():'',e=em?em.value.trim():'';
 if(n.length<2||!/^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/.test(e)){werr('Please add your name and a valid email.');return;}
 next.disabled=true;next.textContent='Sending…';
+var promoQ='';try{promoQ=new URLSearchParams(location.search).get('promo')||'';}catch(e){}
 var idem=window.NGSIntake?NGSIntake.uuid():'wiz-'+Date.now();
-NGSIntake.send({kind:'popup-brief',subject:'New Project Brief: '+(type||'General')+' | '+n,name:n,email:e,message:'Type: '+(type||'Not selected')+'\nGoal: '+((gl&&gl.value.trim())||'Not specified')+'\nBudget: '+((document.getElementById('wBudget')||{}).value||'Not specified'),source:'popup-wizard'},idem).then(function(d){next.disabled=false;var ok=document.querySelector('.wpane[data-pane="5"] h3');if(ok&&d.trackingId)ok.textContent='🎉 Request received — '+d.trackingId;show(5);}).catch(function(err){next.disabled=false;next.textContent='Submit →';var det=err.details?(' ('+err.details.join('; ')+')'):'';werr('Could not send your brief'+det+' — your answers are safe on this page. Please try again or email contact@nexgenshift.com directly.');});
+var promoNote=promoQ?('\nPromotion: '+promoQ+' (see /pricing/ for current terms). No payment taken; billing is manual.'):'';
+var subj='New Project Brief: '+(type||'General')+' | '+n+(promoQ?' | promo '+promoQ:'');
+NGSIntake.send({kind:'popup-brief',subject:subj,name:n,email:e,message:'Type: '+(type||'Not selected')+'\nGoal: '+((gl&&gl.value.trim())||'Not specified')+'\nBudget: '+((document.getElementById('wBudget')||{}).value||'Not specified')+promoNote,source:'popup-wizard',promo:promoQ||null},idem).then(function(d){next.disabled=false;var ok=document.querySelector('.wpane[data-pane="5"] h3');if(ok&&d.trackingId)ok.textContent='🎉 Request received — '+d.trackingId;show(5);}).catch(function(err){next.disabled=false;next.textContent='Submit →';var det=err.details?(' ('+err.details.join('; ')+')'):'';werr('Could not send your brief'+det+' — your answers are safe on this page. Please try again or email contact@nexgenshift.com directly.');});
 return;}
 closeWiz();});
 })();

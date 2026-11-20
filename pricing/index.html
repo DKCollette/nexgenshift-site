@@ -60,7 +60,7 @@
 </div></section>
 <section class="block" style="padding-top:0"><div class="container">
 <div class="sec-head reveal"><div><p class="eyebrow">FAQ</p><h2>Common questions.</h2></div></div>
-<div class="faq"><details class='reveal'><summary>Project development fee vs. everything else?</summary><p>The <b>development fee</b> pays for design and build work. <b>Hosting</b> is where your site lives, <b>cloud consumption</b> is metered usage, <b>third-party fees</b> go to vendors, and <b>maintenance</b> keeps everything updated. We itemize each in your proposal.</p></details><details class='reveal'><summary>What do the &ldquo;starting at&rdquo; prices include?</summary><p>Each card lists inclusions, optional upgrades, and exclusions. Starting prices assume the smallest useful scope. They exclude hosting, cloud usage, third-party licenses, and ongoing support unless explicitly listed.</p></details><details class='reveal'><summary>How does ongoing support work?</summary><p>Support plans are quoted per system and shown as Custom Quote. Support is always optional; you own the system either way.</p></details><details class='reveal'><summary>Do you require long contracts?</summary><p>No. Development is fixed-scope per proposal. Support is optional and explained up front.</p></details><details class='reveal'><summary>How do we start?</summary><p>Send a project inquiry in plain language → discovery conversation (no commitment) → written proposal with scope, timeline, and cost.</p></details></div></div></section>
+<div class="faq"><details class='reveal'><summary>How does the Small-Business Website promotion work?</summary><p>Qualifying standard small-business websites get a <b>$0 (FREE) promotional build</b> (regularly $750) plus the <b>first subscription month free</b> at <b>$50/month</b>. The first recurring payment starts in <b>month two, measured from your website launch / subscription activation</b>. No payments are taken online — billing is handled manually after launch. Custom applications, extensive integrations, specialized functionality, and complex development are quoted separately.</p></details><details class='reveal'><summary>What don't the discounts apply to?</summary><p>Promotional discounts apply to development only. They never apply to AWS bills, hosting fees, third-party services or licensing, taxes, or recurring subscriptions.</p></details><details class='reveal'><summary>Project development fee vs. everything else?</summary><p>The <b>development fee</b> pays for design and build work. <b>Hosting</b> is where your site lives, <b>cloud consumption</b> is metered usage, <b>third-party fees</b> go to vendors, and <b>maintenance</b> keeps everything updated. We itemize each in your proposal.</p></details><details class='reveal'><summary>What do the &ldquo;starting at&rdquo; prices include?</summary><p>Each card lists inclusions, optional upgrades, and exclusions. Starting prices assume the smallest useful scope. They exclude hosting, cloud usage, third-party licenses, and ongoing support unless explicitly listed.</p></details><details class='reveal'><summary>How does ongoing support work?</summary><p>Support plans are quoted per system and shown as Custom Quote. Support is always optional; you own the system either way.</p></details><details class='reveal'><summary>Do you require long contracts?</summary><p>No. Development is fixed-scope per proposal. Support is optional and explained up front.</p></details><details class='reveal'><summary>How do we start?</summary><p>Send a project inquiry in plain language → discovery conversation (no commitment) → written proposal with scope, timeline, and cost.</p></details></div></div></section>
 <section class="block final"><div class="container reveal">
 <h2>Ready to build something powerful?</h2><p>Let's turn your idea into a real solution that moves your business forward.</p>
 <div class="row">
@@ -116,7 +116,18 @@
 var cards=document.getElementById('priceCards'),addons=document.getElementById('addonGrid'),tgl=document.getElementById('billToggle'),mode='once';
 function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;')}
 function render(cfg){
-  cards.innerHTML=(cfg.packages||[]).map(function(p){
+  var promo=(cfg.promotions&&cfg.promotions.active)?cfg.promotions:null;
+  var sbw=promo?promo.smallBusinessWebsite:null;
+  var html='';
+  if(sbw){
+    html+='<div class="price-card hot" style="margin-bottom:18px;text-align:center;padding:32px 26px"><p class="tier">✦ '+(promo.label||'Limited-Time Offer')+'</p>'
+    +'<h3>Small-Business Website — Promotional Offer</h3>'
+    +'<p class="amt"><s style="color:var(--faint);font-size:1.1rem">'+esc(sbw.regularBuildPrice)+' build</s> <span style="color:var(--purple)">'+esc(sbw.promoBuildPrice)+' — FREE build</span></p>'
+    +'<p style="font-size:.9rem;color:var(--muted)">Subscription <b>'+esc(sbw.subscriptionPerMonth)+'</b> · first month <b>'+esc(sbw.firstMonth)+'</b>. '+esc(sbw.billingNote)+'</p>'
+    +'<p style="font-size:.78rem;color:var(--faint);margin-top:10px">'+esc(sbw.appliesTo)+' No payments taken online.</p>'
+    +'<p style="margin-top:14px"><a href="/start/?package=web-presence&promo='+esc(promo.id||'')+'" class="btn btn-primary btn-sm">Claim the Free Build →</a></p></div>';
+  }
+  cards.innerHTML=html+(cfg.packages||[]).map(function(p){
     var price=(mode==='support')?(p.supportPrice||'Custom Quote'):((p.priceNote?p.priceNote+' ':'')+p.price);
     var inc=(p.includes||[]).map(function(i){return '<li>'+esc(i)+'</li>'}).join('');
     var up=(p.upgrades||[]).map(function(i){return '<li>'+esc(i)+'</li>'}).join('');
@@ -127,8 +138,8 @@ function render(cfg){
     +'<ul>'+inc+'</ul>'
     +(up?'<p style="font-size:.76rem;font-weight:700;letter-spacing:1px;color:var(--purple);margin:14px 0 6px">OPTIONAL UPGRADES</p><ul>'+up+'</ul>':'')
     +'<p style="font-size:.76rem;color:var(--faint);margin-top:12px">'+esc(p.exclusions||'')+'</p>'
-    +'<p style="margin-top:auto;padding-top:16px"><a href="/start/?package='+esc(p.id)+'" class="btn btn-primary btn-sm" style="width:100%;justify-content:center">Start Inquiry →</a></p></div>';
-  }).join('');
+    +'<p style="margin-top:auto;padding-top:16px"><a href="/start/?package='+esc(p.id)+(promo?'&promo='+esc(promo.id||''):'')+'" class="btn btn-primary btn-sm" style="width:100%;justify-content:center">Start Inquiry →</a></p></div>';
+  }).join('')+((promo&&(promo.serviceDiscounts||[]).length)?'<div class="price-card" style="text-align:center"><p class="tier">LIMITED-TIME DEVELOPMENT DISCOUNTS</p><h3>Custom Services — Save Now</h3><ul style="text-align:left">'+promo.serviceDiscounts.map(function(d){return '<li><b>'+esc(d.discountPct)+'% OFF</b> '+esc(d.name)+' — Request a Quote</li>'}).join('')+'</ul><p style="font-size:.76rem;color:var(--faint);margin-top:10px">Custom-quoted development only. Excludes AWS bills, hosting, third-party fees, licenses, taxes &amp; subscriptions.</p><p style="margin-top:12px"><a href="/start/?promo='+esc(promo.id||'')+'" class="btn btn-primary btn-sm">Request a Quote →</a></p></div>':'');
   addons.innerHTML=(cfg.optionalServices||[]).map(function(a){
     return '<div class="card" style="text-align:center;padding:20px 14px"><div style="font-size:1.4rem">'+esc(a.icon||'•')+'</div><b style="display:block;font-size:.84rem">'+esc(a.name)+'</b><span style="font-size:.74rem;color:var(--faint)">'+esc(a.note||'Quoted per project')+'</span></div>';
   }).join('');

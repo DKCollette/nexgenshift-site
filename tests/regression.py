@@ -80,7 +80,7 @@ def t_pricing_config():
     assert "web-presence" in ids, "missing web-presence"
     wp = [p for p in d["packages"] if p["id"] == "web-presence"][0]
     assert wp["price"] == "$750", "web-presence price changed unexpectedly: " + wp["price"]
-    return "pricing intact ($750 web-presence), no promo terms (on hold)"
+    return "pricing intact ($750 web-presence) + promo config active"
 check("pricing-config-intact", t_pricing_config)
 
 def t_admin_deindexed():
@@ -126,6 +126,43 @@ def t_api_submit_persist():
     assert code4 == 401, "admin auth bypass! got %s" % code4
     return "submit %s persisted + deduped + admin-verified" % tid
 check("api-submit-persist-idem-admin", t_api_submit_persist)
+
+def t_promo_present():
+    _, home = get("/")
+    assert 'id="promo-banner"' in home, "homepage promo banner missing"
+    assert "$0" in home and "Limited-Time Offer" in home, "promo terms missing on homepage"
+    _, cfg = get("/config/pricing.json")
+    d = json.loads(cfg)
+    assert d["promotions"]["active"] is True, "promotions not active"
+    sbw = d["promotions"]["smallBusinessWebsite"]
+    assert sbw["promoBuildPrice"] == "$0" and sbw["subscriptionPerMonth"] == "$50/month", "SBW terms wrong"
+    discs = {x["key"]: x["discountPct"] for x in d["promotions"]["serviceDiscounts"]}
+    assert discs.get("automation") == 25, "automation discount wrong: %s" % discs
+    assert discs.get("apps") == 20 and discs.get("data") == 20 and discs.get("integrations") == 20, "20% tiers wrong: %s" % discs
+    assert discs.get("cloud-security") == 15, "cloud-security discount wrong: %s" % discs
+    assert "countdown" not in home.lower(), "fake countdown present"
+    _, svc = get("/services/websites-apps/")
+    assert "FREE build" in svc, "service page promo missing"
+    return "SBW $0+$50/mo + 25/20/20/20/15 discounts, no fake expiry"
+check("promo-present-site-wide", t_promo_present)
+
+def t_promo_intake_e2e():
+    import time
+    key = "promo-reg-%d" % int(time.time())
+    code, d = api("POST", "/intake",
+                  {"kind": "start-intake", "subject": "Promo regression - ignore | promo SBW-LAUNCH-2026",
+                   "name": "Promo Regression", "email": "contact@nexgenshift.com",
+                   "message": "Promo regression probe. Regular $750, promo $0, sub $50/mo. Ignore.",
+                   "source": "regression-suite", "promo": "SBW-LAUNCH-2026"},
+                  {"X-Idempotency-Key": key})
+    assert code in (200, 201) and d.get("trackingId"), "promo submit failed: %s %s" % (code, d)
+    tid = d["trackingId"]
+    code3, d3 = api("GET", "/admin/intakes", headers={"X-Admin-Key": ADMIN_KEY})
+    assert code3 == 200, "admin read failed"
+    hit = [i for i in d3.get("items", []) if i.get("trackingId") == tid]
+    assert hit and hit[0].get("promo") == "SBW-LAUNCH-2026", "promo not persisted: %s" % hit
+    return "promo %s persisted with offer fields" % tid
+check("promo-intake-persist", t_promo_intake_e2e)
 
 passed = sum(1 for _, ok, _ in results if ok)
 print("=" * 64)

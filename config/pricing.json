@@ -1,5 +1,26 @@
 {
-  "$comment": "CENTRAL PRICING CONFIG \u2014 edit prices here; pricing page and service pages read this file. All prices are provisional owner-provided design placeholders, not approved final prices.",
+  "$comment": "CENTRAL PRICING + PROMOTION CONFIG. Edit prices/discounts here; pricing page, service pages and intake read this file. Nothing here creates charges or subscriptions — all billing is manual until a payment system is approved. Set promotions.active=false to end a promo site-wide.",
+  "promotions": {
+    "active": true,
+    "id": "SBW-LAUNCH-2026",
+    "label": "Limited-Time Offer",
+    "smallBusinessWebsite": {
+      "appliesTo": "Qualifying standard small-business websites only. Excludes custom applications, extensive integrations, specialized functionality, and complex development (separately priced).",
+      "regularBuildPrice": "$750",
+      "promoBuildPrice": "$0",
+      "promoBuildNote": "FREE promotional build",
+      "subscriptionPerMonth": "$50/month",
+      "firstMonth": "FREE",
+      "billingNote": "First subscription month free. First recurring payment starts in month two, measured from website launch / subscription activation."
+    },
+    "serviceDiscounts": [
+      { "key": "automation", "name": "Workflow Automation", "discountPct": 25, "pricing": "custom", "note": "25% OFF development. Custom-quoted — Request a Quote. Excludes AWS bills, hosting, third-party fees, licenses, taxes, subscriptions." },
+      { "key": "apps", "name": "Web & Mobile App Development", "discountPct": 20, "pricing": "custom", "note": "20% OFF development. Custom-quoted — Request a Quote. Excludes app-store fees, third-party licenses, cloud usage, taxes." },
+      { "key": "data", "name": "Data Analytics & Dashboards", "discountPct": 20, "pricing": "custom", "note": "20% OFF development. Custom-quoted — Request a Quote. Excludes cloud consumption, third-party data tools, taxes." },
+      { "key": "integrations", "name": "Custom Integrations", "discountPct": 20, "pricing": "custom", "note": "20% OFF development. Custom-quoted — Request a Quote. Excludes third-party licenses and usage fees, taxes." },
+      { "key": "cloud-security", "name": "Cloud Infrastructure & Security", "discountPct": 15, "pricing": "custom", "note": "15% OFF development. Custom-quoted — Request a Quote. Excludes AWS bills, hosting, licenses, taxes." }
+    ]
+  },
   "packages": [
     {
       "id": "web-presence",
@@ -31,7 +52,7 @@
       "target": "Custom applications, connected systems, and workflow automation.",
       "includes": [
         "Custom web or mobile app (scoped MVP)",
-        "1\u20132 core integrations with your tools",
+        "1–2 core integrations with your tools",
         "Workflow or notification automation",
         "Testing across devices",
         "Docs, handoff & training"
@@ -88,47 +109,47 @@
   ],
   "optionalServices": [
     {
-      "icon": "\u2601\ufe0f",
+      "icon": "☁️",
       "name": "Hosting & cloud management",
       "note": "Quoted per project"
     },
     {
-      "icon": "\ud83d\udee0\ufe0f",
+      "icon": "🛠️",
       "name": "Website maintenance",
       "note": "Custom Quote"
     },
     {
-      "icon": "\u26a1",
+      "icon": "⚡",
       "name": "Workflow automation",
       "note": "From Business Systems"
     },
     {
-      "icon": "\ud83d\udd17",
+      "icon": "🔗",
       "name": "Additional integrations",
       "note": "Quoted per integration"
     },
     {
-      "icon": "\ud83e\udd16",
+      "icon": "🤖",
       "name": "AI integrations",
       "note": "Quoted per project"
     },
     {
-      "icon": "\ud83d\udcca",
+      "icon": "📊",
       "name": "Dashboards & reporting",
       "note": "From Data & Cloud"
     },
     {
-      "icon": "\ud83d\udee1\ufe0f",
+      "icon": "🛡️",
       "name": "Security monitoring",
       "note": "Custom Quote"
     },
     {
-      "icon": "\u2709\ufe0f",
+      "icon": "✉️",
       "name": "Email & notification systems",
       "note": "Quoted per project"
     },
     {
-      "icon": "\ud83d\udea8",
+      "icon": "🚨",
       "name": "Priority support",
       "note": "Custom Quote"
     }
