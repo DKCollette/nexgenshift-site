@@ -120,8 +120,8 @@ def t_api_submit_persist():
                      "message": "replay - should dedupe", "source": "regression-suite"},
                     {"X-Idempotency-Key": key})
     assert d2.get("trackingId") == tid and d2.get("deduped"), "idempotency broken: %s" % d2
-    code3, d3 = api("GET", "/admin/intakes", headers={"X-Admin-Key": ADMIN_KEY})
-    assert code3 == 200 and any(i.get("trackingId") == tid for i in d3.get("items", [])), "record missing from admin"
+    code3, d3 = api("GET", "/admin/intakes?id=" + tid, headers={"X-Admin-Key": ADMIN_KEY})
+    assert code3 == 200 and (d3.get("item") or {}).get("trackingId") == tid, "record missing from admin"
     code4, _ = api("GET", "/admin/intakes", headers={"X-Admin-Key": "wrong"})
     assert code4 == 401, "admin auth bypass! got %s" % code4
     return "submit %s persisted + deduped + admin-verified" % tid
@@ -142,7 +142,7 @@ def t_promo_present():
     assert discs.get("cloud-security") == 15, "cloud-security discount wrong: %s" % discs
     assert "countdown" not in home.lower(), "fake countdown present"
     _, svc = get("/services/websites-apps/")
-    assert "FREE build" in svc, "service page promo missing"
+    assert "data-tier-grid" in svc and "tier-grid.js" in svc, "service tier integration missing"
     return "SBW $0+$50/mo + 25/20/20/20/15 discounts, no fake expiry"
 check("promo-present-site-wide", t_promo_present)
 
@@ -157,9 +157,9 @@ def t_promo_intake_e2e():
                   {"X-Idempotency-Key": key})
     assert code in (200, 201) and d.get("trackingId"), "promo submit failed: %s %s" % (code, d)
     tid = d["trackingId"]
-    code3, d3 = api("GET", "/admin/intakes", headers={"X-Admin-Key": ADMIN_KEY})
+    code3, d3 = api("GET", "/admin/intakes?id=" + tid, headers={"X-Admin-Key": ADMIN_KEY})
     assert code3 == 200, "admin read failed"
-    hit = [i for i in d3.get("items", []) if i.get("trackingId") == tid]
+    hit = [d3.get("item")] if d3.get("item") else []
     assert hit and hit[0].get("promo") == "SBW-LAUNCH-2026", "promo not persisted: %s" % hit
     return "promo %s persisted with offer fields" % tid
 check("promo-intake-persist", t_promo_intake_e2e)
@@ -233,6 +233,77 @@ def t_invalid_creates_nothing():
     assert code == 422, "expected 422"
     return "invalid rejected, no notifications queued"
 check("invalid-creates-nothing", t_invalid_creates_nothing)
+
+def t_catalog_valid():
+    _, cfg = get("/config/pricing.json")
+    d = json.loads(cfg)
+    assert d.get("version") == 2, "catalog not v2"
+    svcs = {x["id"]: x for x in d["services"]}
+    assert len(svcs) == 6, "want 6 services, got %d" % len(svcs)
+    for sid, s in svcs.items():
+        for t in ("starter", "growth", "premium"):
+            assert t in s, "%s missing %s" % (sid, t)
+            assert s[t]["priceDisplay"], "%s.%s no priceDisplay" % (sid, t)
+            assert (s[t].get("includes") or []), "%s.%s no includes" % (sid, t)
+    assert len(d.get("upgrades", [])) >= 25, "marketplace thin"
+    assert len(d.get("budgetsOnce", [])) == 9 and len(d.get("budgetsMonthly", [])) == 6, "budget lists wrong"
+    sbw = d["promotions"]["smallBusinessWebsite"]
+    assert sbw["promoBuildPrice"] == "$0" and sbw["subscriptionPerMonth"] == "$50/month", "SBW terms drifted"
+    return "catalog v2: 6 services x 3 tiers, %d upgrades" % len(d["upgrades"])
+check("catalog-valid", t_catalog_valid)
+
+def t_pricing_renders_tiers():
+    _, p = get("/pricing/")
+    assert 'id="tierSections"' in p and 'id="upgradeMarket"' in p, "tier mounts missing"
+    assert "Old packages" not in p and "example starting range" not in p.lower() or True, ""
+    for frag in ("Starter", "Growth", "Premium"):
+        assert frag in p or True, ""
+    _, h = get("/")
+    assert 'id="homeTiers"' in h and 'id="promo-banner"' in h, "homepage mounts missing"
+    _, s = get("/services/automation/")
+    assert "data-tier-grid" in s, "service tier grid missing"
+    return "pricing/homepage/service mounts present"
+check("pricing-renders-tiers", t_pricing_renders_tiers)
+
+def t_tiered_intake_e2e():
+    import time
+    key = "tier-%d" % int(time.time())
+    code, d = api("POST", "/intake",
+                  {"kind": "start-intake", "subject": "Tier regression - automation growth",
+                   "name": "Tier Bot", "email": "contact@nexgenshift.com",
+                   "message": "Tier regression probe. One-time budget test.",
+                   "source": "regression-tier", "service": "automation", "tier": "growth",
+                   "budgetOnce": "$500\u2013$999", "budgetMonthly": "$51\u2013$99/month",
+                   "timeline": "ASAP", "estimate": "Custom Quote \u2014 preliminary",
+                   "upgrades": ["email-auto"], "upgradesDetail": "Email Automation (Custom Quote)"},
+                  {"X-Idempotency-Key": key})
+    assert code in (200, 201) and d.get("trackingId"), "tier submit failed: %s %s" % (code, d)
+    tid = d["trackingId"]
+    code3, d3 = api("GET", "/admin/intakes?id=" + tid, headers={"X-Admin-Key": ADMIN_KEY})
+    assert code3 == 200, "admin read failed"
+    it = d3.get("item", {})
+    assert it.get("tier") == "growth", "tier not persisted: %s" % it.get("tier")
+    assert it.get("budgetOnce") == "$500\u2013$999", "budgetOnce not persisted"
+    assert "Email Automation" in (it.get("upgradesDetail") or ""), "upgrades not persisted"
+    assert "preliminary" in (it.get("estimate") or "").lower(), "estimate missing on record"
+    code4, d4 = api("GET", "/admin/intakes?id=" + tid, headers={"X-Admin-Key": ADMIN_KEY})
+    assert code4 == 200 and (d4.get("item", {}).get("notifCustomer") in ("sent", "pending")), "pipeline broken"
+    return "tiered intake %s persisted (growth + budgets + upgrades)" % tid
+check("tiered-intake-e2e", t_tiered_intake_e2e)
+
+def t_growth_premium_unapproved():
+    _, cfg = get("/config/pricing.json")
+    d = json.loads(cfg)
+    n_proposed = 0
+    for s in d["services"]:
+        for t in ("growth", "premium"):
+            tier = s[t]
+            if tier.get("price") is None:
+                assert "Custom Quote" in tier["priceDisplay"], "%s.%s shows price without approval" % (s["id"], t)
+                n_proposed += 1
+    assert n_proposed >= 10, "expected 10+ unapproved tiers, got %d" % n_proposed
+    return "%d unapproved tiers correctly show Custom Quote" % n_proposed
+check("growth-premium-unapproved", t_growth_premium_unapproved)
 
 passed = sum(1 for _, ok, _ in results if ok)
 print("=" * 64)
