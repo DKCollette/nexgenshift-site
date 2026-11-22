@@ -138,13 +138,22 @@
 
 <section class="block" id="promo" style="padding-top:0"><div class="container">
 <div class="price-card hot reveal" style="text-align:center;padding:36px 28px" id="promo-banner">
-<p class="tier">✦ Limited-Time Offer</p>
-<h2 style="color:var(--plum);font-size:clamp(1.5rem,3.4vw,2.3rem);letter-spacing:-.5px;margin:8px 0 4px">Small-Business Website: <s style="color:var(--faint);font-weight:600">$750 build</s> <span style="color:var(--purple)">$0 — FREE build</span></h2>
-<p style="color:var(--muted);max-width:40rem;margin:8px auto 0;font-size:1rem">Professional small-business website, <b>free to build</b> — plus your <b>first subscription month free</b> at <b>$50/month</b>. First recurring payment starts in month two, from launch.</p>
-<p style="margin-top:16px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap"><a href="/start/?package=web-presence&promo=SBW-LAUNCH-2026" class="btn btn-primary">Claim the Free Build →</a><a href="/pricing/" class="btn btn-ghost">See details &amp; eligibility</a></p>
+<p class="tier">✦ <span data-promo-label>Limited-Time Offer</span></p>
+<h2 style="color:var(--plum);font-size:clamp(1.5rem,3.4vw,2.3rem);letter-spacing:-.5px;margin:8px 0 4px">Small-Business Website: <s style="color:var(--faint);font-weight:600" data-promo-regular>$750 build</s> <span style="color:var(--purple)"><span data-promo-price>$0</span> — FREE build</span></h2>
+<p style="color:var(--muted);max-width:40rem;margin:8px auto 0;font-size:1rem">Professional small-business website, <b>free to build</b> — plus your <b>first subscription month free</b> at <b data-promo-sub>$50/month</b>. First recurring payment starts in month two, from launch.</p>
+<p style="margin-top:16px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap"><a data-promo-cta href="/start/?service=websites&tier=starter&promo=SBW-LAUNCH-2026" class="btn btn-primary">Claim the Free Build →</a><a href="/pricing/" class="btn btn-ghost">See details &amp; eligibility</a></p>
 <p class="hint" style="margin-top:12px;font-size:.78rem;color:var(--faint)">Qualifying standard small-business websites only. Custom apps, extensive integrations &amp; complex builds are quoted separately. No payments taken online.</p>
 </div>
 </div></section>
+
+<section class="block" style="padding-top:0"><div class="container">
+<div class="sec-head reveal"><div><p class="eyebrow">Packages</p><h2>Starter, Growth, Premium — pick your pace.</h2></div>
+<p>Three clear tiers per service. <a href="/pricing/">Compare all packages →</a></p></div>
+<div class="price-grid reveal" id="homeTiers"></div>
+<noscript><p><a href="/pricing/">See Starter, Growth and Premium packages →</a></p></noscript>
+</div></section>
+
+
 
 <section class="block final"><div class="container reveal">
 <h2>Ready to build something powerful?</h2><p>Let's turn your idea into a real solution that moves your business forward.</p>
@@ -195,5 +204,32 @@
 <script src="/assets/intake-client.js"></script>
 <script src="/assets/site.js"></script>
 <script src="/assets/widgets.js"></script>
+
+<script>
+(function(){
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;')}
+fetch('/config/pricing.json').then(function(r){return r.json()}).then(function(cfg){
+  var promo=(cfg.promotions&&cfg.promotions.active)?cfg.promotions:null;
+  if(promo&&promo.smallBusinessWebsite){
+    var sbw=promo.smallBusinessWebsite;
+    document.querySelectorAll('[data-promo-label]').forEach(function(e){e.textContent=promo.label||'Limited-Time Offer'});
+    document.querySelectorAll('[data-promo-regular]').forEach(function(e){e.textContent=(sbw.regularBuildPrice||'$750')+' build'});
+    document.querySelectorAll('[data-promo-price]').forEach(function(e){e.textContent=sbw.promoBuildPrice||'$0'});
+    document.querySelectorAll('[data-promo-sub]').forEach(function(e){e.textContent=sbw.subscriptionPerMonth||'$50/month'});
+    document.querySelectorAll('[data-promo-cta]').forEach(function(a){a.href='/start/?service=websites&tier=starter&promo='+encodeURIComponent(promo.id)});
+  } else { var b=document.getElementById('promo-banner'); if(b) b.style.display='none'; }
+  var mount=document.getElementById('homeTiers'); if(!mount) return;
+  mount.innerHTML=(cfg.services||[]).map(function(svc){
+    var t=svc.starter||{};var feats=(t.includes||[]).slice(0,4).map(function(i){return '<li>'+esc(i)+'</li>'}).join('');
+    var promoParam=(t.promoId&&promo)?'&promo='+encodeURIComponent(promo.id):'';
+    return '<div class="price-card" style="display:flex;flex-direction:column"><p class="tier">STARTER · '+esc(svc.name.toUpperCase())+'</p>'
+      +'<h3>'+esc(t.name||'Starter')+'</h3><p class="amt">'+esc(t.priceDisplay||'Custom Quote')+'</p>'
+      +'<p style="font-size:.84rem;color:var(--muted)">'+esc(t.value||svc.tagline||'')+'</p><ul>'+feats+'</ul>'
+      +'<p style="margin-top:auto;padding-top:16px"><a href="/start/?service='+svc.id+'&tier=starter'+promoParam+'" class="btn btn-ghost btn-sm" style="width:100%;justify-content:center">Start with Starter →</a> <a href="/pricing/#svc-'+svc.id+'" style="font-size:.8rem">Compare tiers →</a></p></div>';
+  }).join('');
+}).catch(function(){});
+})();
+</script>
+
 </body>
 </html>
