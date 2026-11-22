@@ -291,19 +291,20 @@ def t_tiered_intake_e2e():
     return "tiered intake %s persisted (growth + budgets + upgrades)" % tid
 check("tiered-intake-e2e", t_tiered_intake_e2e)
 
-def t_growth_premium_unapproved():
+def t_growth_premium_approved():
     _, cfg = get("/config/pricing.json")
     d = json.loads(cfg)
-    n_proposed = 0
+    n_priced = 0
     for s in d["services"]:
-        for t in ("growth", "premium"):
+        for t in ("starter", "growth", "premium"):
             tier = s[t]
-            if tier.get("price") is None:
-                assert "Custom Quote" in tier["priceDisplay"], "%s.%s shows price without approval" % (s["id"], t)
-                n_proposed += 1
-    assert n_proposed >= 10, "expected 10+ unapproved tiers, got %d" % n_proposed
-    return "%d unapproved tiers correctly show Custom Quote" % n_proposed
-check("growth-premium-unapproved", t_growth_premium_unapproved)
+            if tier.get("price") is not None:
+                assert "Custom Quote" not in tier["priceDisplay"], "%s.%s shows Custom Quote despite approval" % (s["id"], t)
+                n_priced += 1
+            assert "proposedPrice" not in tier and "pending approval" not in json.dumps(tier).lower(), "%s.%s still has proposal markers" % (s["id"], t)
+    assert n_priced == 18, "expected all 18 tiers priced, got %d" % n_priced
+    return "all 18 tiers show approved starting prices, no proposal markers"
+check("growth-premium-approved", t_growth_premium_approved)
 
 passed = sum(1 for _, ok, _ in results if ok)
 print("=" * 64)
