@@ -306,6 +306,66 @@ def t_growth_premium_approved():
     return "all 18 tiers show approved starting prices, no proposal markers"
 check("growth-premium-approved", t_growth_premium_approved)
 
+def t_unified_no_popup_divergence():
+    _, site = get("/assets/site.js")
+    assert "wizardModal" not in site and "popup-brief" not in site, "popup logic still in site.js"
+    for p in ["/", "/pricing/", "/services/automation/", "/contact/", "/start/"]:
+        _, html = get(p)
+        assert "wizardModal" not in html, p + " still hosts popup modal"
+        assert "data-open-wizard" not in html, p + " still has popup trigger"
+    _, start = get("/start/")
+    for frag in ['id="svcGrid"', 'id="tierPick"', 'id="featList"', 'id="upList"',
+                  'id="budgetOnce"', 'id="budgetMonthly"', 'id="reviewBox"',
+                  'id="flowBack"', 'id="flowNext"', 'id="flowSubmit"',
+                  'id="bizType"', 'id="siteUrl"', 'id="timelineNote"', 'id="preselectNote"']:
+        assert frag in start, "start flow missing " + frag
+    _, intake = get("/assets/intake.js")
+    for frag in ["__guidance", "upgrade", "promoIds", "source:\"start-flow-v3\""]:
+        assert frag in intake, "intake.js missing " + frag
+    return "no popup divergence; canonical 6-step flow intact"
+check("unified-no-popup-divergence", t_unified_no_popup_divergence)
+
+def t_unified_entry_links():
+    _, home = get("/")
+    assert 'href="/start/"' in home and 'href="/contact/?mode=consult"' in home, "homepage CTAs wrong"
+    _, pricing = get("/pricing/")
+    assert "/start/?service=" in pricing and "&amp;tier=" not in pricing and "&tier=" in pricing, "pricing tier CTAs missing preselect"
+    assert "upgrade=" in pricing, "pricing upgrade preselect links missing"
+    _, auto = get("/services/automation/")
+    assert "data-tier-grid" in auto, "service tier grid missing"
+    _, trades = get("/solutions/trades-home-services/")
+    assert "/start/?service=webapps&upgrade=appt-sched" in trades, "solution CTA missing preselect"
+    _, contact = get("/contact/")
+    assert "Website Development" in contact and "$15,000+" not in contact, "contact taxonomy not unified"
+    assert "$500–$999" in contact and "$2,500–$4,999" in contact, "contact budgets not catalog-aligned"
+    _, start = get("/start/")
+    assert "Not sure" in start, "guidance path missing"
+    return "all entry points route to canonical flow with preselects"
+check("unified-entry-links", t_unified_entry_links)
+
+def t_unified_presubmit_contract():
+    import time
+    key = "uni-%d" % int(time.time())
+    code, d = api("POST", "/intake",
+                  {"kind": "start-intake", "subject": "Unified regression - guidance + upgrade",
+                   "name": "Unified Bot", "email": "contact@nexgenshift.com",
+                   "message": "Unified probe. Service guidance, upgrade preselect, budgets, timeline.",
+                   "source": "regression-unified", "service": "guidance", "tier": None,
+                   "budgetOnce": "Not Sure — Help Me Estimate", "budgetMonthly": "Not Sure",
+                   "timeline": "Flexible / exploring", "estimate": "Custom Quote — preliminary",
+                   "upgrades": ["ai-chatbot"], "upgradesDetail": "AI Chatbot (Custom Quote)",
+                   "needsGuidance": True, "package": "start-intake"},
+                  {"X-Idempotency-Key": key})
+    assert code in (200, 201) and d.get("trackingId"), "unified submit failed: %s %s" % (code, d)
+    tid = d["trackingId"]
+    code3, d3 = api("GET", "/admin/intakes?id=" + tid, headers={"X-Admin-Key": ADMIN_KEY})
+    assert code3 == 200, "admin read failed"
+    it = d3.get("item", {})
+    assert "AI Chatbot" in (it.get("upgradesDetail") or ""), "upgrade detail not persisted"
+    assert "Not Sure" in (it.get("budgetOnce") or ""), "guidance budget not persisted"
+    return "unified contract %s persisted (guidance + upgrade + budgets)" % tid
+check("unified-presubmit-contract", t_unified_presubmit_contract)
+
 passed = sum(1 for _, ok, _ in results if ok)
 print("=" * 64)
 for name, ok, detail in results:
