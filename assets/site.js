@@ -6,10 +6,18 @@ document.documentElement.classList.add('js-reveal');
 /* mobile nav */
 var ham=document.getElementById('hamburger'),nav=document.getElementById('primaryNav'),cta=document.querySelector('.nav-cta');
 ham.addEventListener('click',function(){var open=nav.classList.toggle('mobile-open');cta.classList.toggle('mobile-open',open);ham.setAttribute('aria-expanded',open);ham.textContent=open?'✕':'☰';});
-/* reveal */
+/* reveal (shared helper: also observes JS-injected .reveal nodes, e.g. pricing sections) */
 var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-if(!reduced&&'IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12});document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});}
-else{document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('in');});}
+function revealOne(el){el.classList.add('in');}
+var io=null;
+if(!reduced&&'IntersectionObserver' in window){io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){revealOne(e.target);io.unobserve(e.target);}});},{threshold:.05});document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+window.__ngsReveal=function(root){(root||document).querySelectorAll('.reveal:not(.in)').forEach(function(el){var r=el.getBoundingClientRect();if(r.top<window.innerHeight&&r.bottom>0){revealOne(el);}else{io.observe(el);}});};}
+else{document.querySelectorAll('.reveal').forEach(revealOne);window.__ngsReveal=function(root){(root||document).querySelectorAll('.reveal:not(.in)').forEach(revealOne);};}
+/* Safety: never strand content invisible (e.g. observer never fires) — poll for late .reveal nodes */
+(function ngsRevealSweep(){
+  document.querySelectorAll('.reveal:not(.in)').forEach(function(el){var r=el.getBoundingClientRect();if(r.top<window.innerHeight*1.5&&r.bottom>-200){revealOne(el);}});
+  if(window.__ngsReveal&&document.querySelectorAll('.reveal:not(.in)').length){setTimeout(ngsRevealSweep,800);}
+})();
 /* tabs */
 var tabs=Array.prototype.slice.call(document.querySelectorAll('[role=tab]'));
 function activate(tab){tabs.forEach(function(t){var on=t===tab;t.setAttribute('aria-selected',on);t.tabIndex=on?0:-1;var p=document.getElementById(t.getAttribute('aria-controls'));if(on){p.hidden=false;p.classList.add('active');}else{p.classList.remove('active');p.hidden=true;}});}

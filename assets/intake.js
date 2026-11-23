@@ -193,11 +193,14 @@ function preselect(){
   var rawSvc=(Q.get("service")||"").toLowerCase().trim();
   var rawTier=(Q.get("tier")||"").toLowerCase().trim();
   var svcMap={websites:"websites",web:"websites",website:"websites",
-    automation:"automation",automations:"automation",
-    webapps:"webapps",webapp:"webapps",apps:"webapps",business:"webapps",
+    automation:"automation",automations:"automation",workflow:"automation",
+    webapps:"webapps",webapp:"webapps",apps:"webapps",
     mobileapps:"mobileapps",mobile:"mobileapps",
     data:"data",dashboards:"data",analytics:"data",
-    cloud:"cloud",security:"cloud"};
+    cloud:"cloud",infrastructure:"cloud",
+    integrations:"integrations",integration:"integrations",custom:"integrations",
+    business:"business",systems:"business",
+    security:"security"};
   var preSvc=svcMap[rawSvc]||(rawSvc==="guidance"?"__guidance":null);
   var tierAllow=["starter","growth","premium"];
   var preTier=tierAllow.indexOf(rawTier)>=0?rawTier:null;
@@ -205,6 +208,9 @@ function preselect(){
   var pkgMap={"web-presence":"websites","business-systems":"webapps","data-cloud":"data","enterprise":null};
   if(preSvc)S.service=preSvc;
   else if(pkg&&pkgMap[pkg])S.service=pkgMap[pkg];
+  /* Legacy ?service=business-systems / ?service=data-cloud fallbacks */
+  if(!S.service&&rawSvc==="business-systems")S.service="business";
+  if(!S.service&&rawSvc==="data-cloud")S.service="data";
   if(preTier&&S.service&&S.service!=="__guidance")S.tier=preTier;
   else if(pkg==="enterprise"){/* enterprise legacy: no tier preselect, customer picks */}
   /* Upgrade preselect: ?upgrade=id or ?upgrades=id1,id2 — must exist in catalog for the chosen service */

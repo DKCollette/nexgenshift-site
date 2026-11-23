@@ -85,6 +85,23 @@ table.clean th{background:var(--lavender);color:var(--plum)}
 .form-error{color:#991B1B;background:#FEF2F2;border:1px solid #FECACA;font-size:.85rem;margin-top:10px;display:none;padding:10px 14px;border-radius:10px;font-weight:600}
 .form-success{display:none;text-align:center;padding:30px 14px}
 .hidden{display:none!important}
+/* ---- Pricing v3: sticky service nav, rich tier cards (same tokens) ---- */
+.svc-nav{position:sticky;top:76px;z-index:20;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);border:1px solid var(--line);border-radius:16px;padding:10px 12px;margin-bottom:22px;box-shadow:var(--shadow-sm)}
+.svc-nav .row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.svc-nav a{font-size:.8rem;font-weight:800;color:var(--plum);text-decoration:none;border:1px solid var(--line);background:#FBFAFF;border-radius:999px;padding:8px 14px;white-space:nowrap}
+.svc-nav a.on,.svc-nav a:hover{border-color:var(--purple);background:rgba(147,51,234,.12)}
+.svc-sec{margin-bottom:40px;scroll-margin-top:140px}
+.svc-sec .sec-head{margin-bottom:14px;padding-top:8px}
+.tier-meta{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0;font-size:.76rem;color:var(--muted)}
+.tier-meta span{background:var(--lavender);border:1px solid var(--line);border-radius:8px;padding:4px 10px}
+.price-card .excl{font-size:.78rem;color:var(--faint);margin-top:12px;border-top:1px dashed var(--line);padding-top:10px}
+.price-card .prem{font-size:.8rem;color:var(--purple);margin-top:10px;font-weight:700}
+.svc-ups{margin-top:16px}
+.svc-ups .up-cat{font-size:.8rem;font-weight:800;color:var(--plum);letter-spacing:.6px;text-transform:uppercase;margin:12px 0 6px}
+.svc-ups ul{list-style:none;margin:0;font-size:.86rem;color:var(--muted)}
+.svc-ups li{margin:6px 0;padding-left:20px;position:relative}
+.svc-ups li::before{content:"+";position:absolute;left:0;color:var(--purple);font-weight:800}
+details.svc-sec summary{cursor:pointer}
 ul.tick{list-style:none;margin-top:14px}
 ul.tick li{padding:8px 0 8px 28px;position:relative;font-size:.9rem;color:var(--muted)}
 ul.tick li::before{content:'✓';position:absolute;left:0;color:var(--purple);font-weight:800}

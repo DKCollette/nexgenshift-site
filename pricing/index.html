@@ -4,11 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pricing & Packages | NexGenShift</title>
-<meta name="description" content="NexGenShift pricing: example starting ranges for Web Presence, Business Systems, Data & Cloud, Enterprise custom. Fixed quote confirmed in writing.">
+<meta name="description" content="NexGenShift pricing: Starter, Growth, Premium packages for websites, automation, apps, data, integrations, cloud, business systems, security. Fixed quote confirmed in writing.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://nexgenshift.com/pricing/">
 <meta property="og:title" content="Pricing & Packages | NexGenShift">
-<meta property="og:description" content="NexGenShift pricing: example starting ranges for Web Presence, Business Systems, Data & Cloud, Enterprise custom. Fixed quote confirmed in writing.">
+<meta property="og:description" content="NexGenShift pricing: Starter, Growth, Premium packages for websites, automation, apps, data, integrations, cloud, business systems, security. Fixed quote confirmed in writing.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://nexgenshift.com/pricing/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -36,18 +36,26 @@
 <section class="page-hero"><div class="container">
 <p class="crumbs"><a href="/">Home</a> / Pricing</p>
 <p class="eyebrow">Pricing</p><h1 style="color:var(--plum);font-size:clamp(2rem,4.5vw,3.2rem);letter-spacing:-1px">Transparent ranges. Fixed quotes.</h1>
-<p style="color:var(--muted);max-width:40rem;margin-top:12px">Every figure below is an <b>example starting range</b> for scoping — your fixed quote lands in writing before we build. Nothing here is a promise or an approved price.</p>
+<p style="color:var(--muted);max-width:40rem;margin-top:12px">Pick a service, compare Starter / Growth / Premium, see what each includes — and start your project with the right package preselected. Your fixed quote lands in writing before we build.</p>
 </div></section>
 <section class="block"><div class="container">
 <div class="reveal" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:18px">
 <span style="font-size:.85rem;color:var(--muted)">Show prices for:</span>
 <button id="billToggle" class="btn btn-ghost btn-sm" aria-pressed="false">One-Time Development ✓ · Click for Ongoing Support</button>
 </div>
+<div class="reveal svc-nav" id="svcNav" aria-label="Service shortcuts"><div class="row" id="svcNavRow"></div></div>
 <div class="reveal" id="promoSlot"></div>
 <div id="tierSections"></div>
 <noscript><div class="card-grid">
-<div class="card"><h3>Starter packages from $0–$1,499</h3><p>Websites, automation, apps, data, cloud.</p><p style="margin-top:10px"><a href="/start/" class="btn btn-primary btn-sm">Start Inquiry →</a></p></div>
-<div class="card"><h3>Growth &amp; Premium — Custom Quote</h3><p>Scoped in writing before we build.</p><p style="margin-top:10px"><a href="/start/" class="btn btn-primary btn-sm">Request a Quote →</a></p></div>
+<div class="card"><h3>Website Development — Starter from $0</h3><p>Growth from $2,500 · Premium from $7,500.</p><p style="margin-top:10px"><a href="/start/?service=websites&tier=starter" class="btn btn-primary btn-sm">Start Inquiry →</a></p></div>
+<div class="card"><h3>Workflow Automation — Starter from $199</h3><p>Growth from $1,200 · Premium from $5,000.</p><p style="margin-top:10px"><a href="/start/?service=automation&tier=starter" class="btn btn-primary btn-sm">Start Inquiry →</a></p></div>
+<div class="card"><h3>Web Applications — Starter from $799</h3><p>Growth from $3,500 · Premium from $12,000.</p><p style="margin-top:10px"><a href="/start/?service=webapps&tier=starter" class="btn btn-primary btn-sm">Start Inquiry →</a></p></div>
+<div class="card"><h3>Mobile Applications — Starter from $1,499</h3><p>Growth from $6,000 · Premium from $18,000.</p><p style="margin-top:10px"><a href="/start/?service=mobileapps&tier=starter" class="btn btn-primary btn-sm">Start Inquiry →</a></p></div>
+<div class="card"><h3>Data &amp; Dashboards — Starter from $499</h3><p>Growth from $2,800 · Premium from $9,000.</p><p style="margin-top:10px"><a href="/start/?service=data&tier=starter" class="btn btn-primary btn-sm">Start Inquiry →</a></p></div>
+<div class="card"><h3>Cloud Infrastructure — Starter from $399</h3><p>Growth from $2,200 · Premium from $8,000.</p><p style="margin-top:10px"><a href="/start/?service=cloud&tier=starter" class="btn btn-primary btn-sm">Start Inquiry →</a></p></div>
+<div class="card"><h3>Custom Integrations — Custom Quote</h3><p>Starter, Growth, Premium scoped per project.</p><p style="margin-top:10px"><a href="/start/?service=integrations&tier=starter" class="btn btn-primary btn-sm">Start Inquiry →</a></p></div>
+<div class="card"><h3>Business Systems — Custom Quote</h3><p>Starter, Growth, Premium scoped per project.</p><p style="margin-top:10px"><a href="/start/?service=business&tier=starter" class="btn btn-primary btn-sm">Start Inquiry →</a></p></div>
+<div class="card"><h3>Security Services — Custom Quote</h3><p>Starter, Growth, Premium scoped per project.</p><p style="margin-top:10px"><a href="/start/?service=security&tier=starter" class="btn btn-primary btn-sm">Start Inquiry →</a></p></div>
 </div></noscript>
 <p class="reveal" style="margin-top:16px;font-size:.85rem;color:var(--faint)">All figures are <b>example starting ranges</b> — your fixed quote is confirmed in writing before we build. Nothing here is a promise or an approved price.</p>
 <p class="reveal" style="margin-top:10px;font-size:.85rem;color:var(--muted)">Timelines are estimates, contingent on scope, responsiveness, review turnaround, content readiness, and tier availability — <b>customer delays extend turnarounds day-for-day</b>. Your tracker shows the delivery tier, original/current ETA, and any outstanding items.</p>
@@ -85,38 +93,50 @@
 
 <script>
 (function(){
-var promoSlot=document.getElementById('promoSlot'),tiers=document.getElementById('tierSections'),market=document.getElementById('upgradeMarket'),tgl=document.getElementById('billToggle'),showRecurring=false;
+var promoSlot=document.getElementById('promoSlot'),tiers=document.getElementById('tierSections'),market=document.getElementById('upgradeMarket'),tgl=document.getElementById('billToggle'),navRow=document.getElementById('svcNavRow'),showRecurring=false;
 function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;')}
-function tierCard(svc,tierKey,tier,emph){
+function tierCard(svc,tierKey,tier,emph,upsForSvc){
   var isGrowth=tierKey==='growth'&&emph;
   var feats=(tier.includes||[]).map(function(i){return '<li>'+esc(i)+'</li>'}).join('');
-  var prop=(tier.proposedPrice&&tier.price==null)?'<p class="example-tag">Indicative '+esc(tier.proposedPrice)+' — pending approval, shown as Custom Quote</p>':'';
-  var rec=(tier.recurring&&showRecurring)?'<p style="font-size:.8rem;color:var(--muted)">+ '+esc(tier.recurring)+'</p>':'';
+  var price=esc(tier.priceDisplay||'Custom Quote');
+  var rec=(tier.recurring)?'<p style="font-size:.8rem;color:var(--muted)">'+(showRecurring?'+ ':'')+esc(tier.recurring)+'</p>':'';
   var promoParam=(tier.promoId&&(window.__promo&&window.__promo.active))?'&promo='+encodeURIComponent(window.__promo.id):'';
+  var meta='<div class="tier-meta"><span>'+(tier.price==null?'Custom Quote':'Starting at')+'</span><span>'+(tier.delivery?esc(tier.delivery):'Scoped timeline')+'</span>'+(tier.recurring?'<span>Ongoing: '+esc(tier.recurring)+'</span>':'<span>No subscription</span>')+'</div>';
+  var excl=tier.excludes?'<p class="excl"><b>Not included:</b> '+esc(tier.excludes)+'</p>':'';
+  var pur=upsForSvc.length?'<p class="prem">Pairs with: '+esc(upsForSvc.slice(0,3).map(function(u){return u.name}).join(' · '))+(upsForSvc.length>3?' +'+(upsForSvc.length-3)+' more below':'')+'</p>':'';
   return '<div class="price-card'+(isGrowth?' hot':'')+'" style="display:flex;flex-direction:column"><p class="tier">'+esc(tierKey.toUpperCase())+(isGrowth?' · STRONG VALUE':'')+'</p>'
-    +'<h3>'+esc(tier.name)+'</h3><p class="amt">'+esc(tier.priceDisplay)+'</p>'+prop+rec
-    +'<p style="font-size:.84rem;color:var(--muted)">'+esc(tier.value||'')+'</p><ul>'+feats+'</ul>'
+    +'<h3>'+esc(tier.name)+'</h3><p class="amt">'+price+'</p>'+rec+meta
+    +'<p style="font-size:.84rem;color:var(--muted)">'+esc(tier.value||'')+'</p><ul>'+feats+'</ul>'+pur+excl
     +'<p style="margin-top:auto;padding-top:16px"><a href="/start/?service='+svc.id+'&tier='+tierKey+promoParam+'" class="btn '+(isGrowth?'btn-primary':'btn-ghost')+' btn-sm" style="width:100%;justify-content:center">'+esc(tier.cta||'Choose')+' →</a></p></div>';
+}
+function svcUpgrades(svcId,cfg){
+  return (cfg.upgrades||[]).filter(function(u){return (u.services||[]).indexOf(svcId)>=0});
 }
 function render(cfg){
   window.__pricing=cfg;
   var promo=(cfg.promotions&&cfg.promotions.active)?cfg.promotions:null;window.__promo=promo;
   var sbw=promo?promo.smallBusinessWebsite:null;
-  promoSlot.innerHTML=sbw?'<div class="price-card hot" style="margin-bottom:18px;text-align:center;padding:32px 26px"><p class="tier">✦ '+esc(promo.label||'Limited-Time Offer')+'</p>'
+  var promoCard=sbw?'<div class="price-card hot" style="margin-bottom:18px;text-align:center;padding:32px 26px"><p class="tier">✦ '+esc(promo.label||'Limited-Time Offer')+'</p>'
     +'<h3>Small-Business Website — Promotional Offer</h3>'
     +'<p class="amt"><s style="color:var(--faint);font-size:1.1rem">'+esc(sbw.regularBuildPrice)+' build</s> <span style="color:var(--purple)">'+esc(sbw.promoBuildPrice)+' — FREE build</span></p>'
     +'<p style="font-size:.9rem;color:var(--muted)">Subscription <b>'+esc(sbw.subscriptionPerMonth)+'</b> · first month <b>'+esc(sbw.firstMonth)+'</b>. '+esc(sbw.billingNote)+'</p>'
-    +'<p style="font-size:.78rem;color:var(--faint);margin-top:10px">'+esc(sbw.appliesTo)+' No payments taken online.</p>'
+    +'<p style="font-size:.78rem;color:var(--faint);margin-top:10px">'+esc(sbw.appliesTo)+' No payments taken online. First recurring payment starts in month two, from website launch / subscription activation.</p>'
     +'<p style="margin-top:14px"><a href="/start/?service=websites&tier=starter&promo='+esc(promo.id||'')+'" class="btn btn-primary btn-sm">Claim the Free Build →</a></p></div>':'';
+  promoSlot.innerHTML=promoCard;
+  if(navRow){navRow.innerHTML=(cfg.services||[]).map(function(svc){return '<a href="#svc-'+svc.id+'" data-svc="'+svc.id+'">'+esc(svc.name)+'</a>'}).join('');}
   tiers.innerHTML=(cfg.services||[]).map(function(svc){
-    return '<div class="reveal" style="margin-bottom:34px"><a id="svc-'+svc.id+'"></a><div class="sec-head"><div><p class="eyebrow">'+esc(svc.tagline||'Service')+'</p><h2>'+esc(svc.name)+'</h2></div></div>'
-      +'<div class="price-grid">'+['starter','growth','premium'].map(function(k){return tierCard(svc,k,svc[k],true)}).join('')+'</div></div>';
+    var ups=svcUpgrades(svc.id,cfg);
+    return '<section class="svc-sec reveal" id="sec-'+svc.id+'"><a id="svc-'+svc.id+'"></a><div class="sec-head"><div><p class="eyebrow">'+esc(svc.tagline||'Service')+'</p><h2>'+esc(svc.name)+'</h2></div></div>'
+      +'<div class="price-grid">'+['starter','growth','premium'].map(function(k){return tierCard(svc,k,svc[k],true,ups)}).join('')+'</div>'
+      +(ups.length?'<div class="svc-ups card" style="margin-top:16px"><h3 style="font-size:1rem">Popular upgrades for '+esc(svc.name)+'</h3><div class="up-cat">Relevant add-ons — Custom Quote unless noted</div><ul>'+ups.map(function(u){return '<li><b>'+esc(u.name)+'</b> — '+esc(u.priceDisplay||'Custom Quote')+(u.note?' <span style="color:var(--faint);font-size:.76rem">('+esc(u.note)+')</span>':'')+' <a href="/start/?service='+encodeURIComponent(svc.id)+'&upgrade='+encodeURIComponent(u.id)+(promo?'&promo='+encodeURIComponent(promo.id):'')+'" style="font-size:.78rem">Preselect in intake →</a></li>'}).join('')+'</ul></div>':'')
+      +'</section>';
   }).join('')+((promo&&(promo.serviceDiscounts||[]).length)?'<div class="price-card reveal" style="text-align:center;margin-bottom:34px"><p class="tier">LIMITED-TIME DEVELOPMENT DISCOUNTS</p><h3>Custom Services — Save Now</h3><ul style="text-align:left;max-width:36rem;margin:0 auto">'+promo.serviceDiscounts.map(function(d){return '<li><b>'+esc(d.discountPct)+'% OFF</b> '+esc(d.name)+' — Request a Quote</li>'}).join('')+'</ul><p style="font-size:.76rem;color:var(--faint);margin-top:10px">Custom-quoted development only. Excludes AWS bills, hosting, third-party fees, licenses, taxes &amp; subscriptions.</p><p style="margin-top:12px"><a href="/start/?promo='+esc(promo.id||'')+'" class="btn btn-primary btn-sm">Request a Quote →</a></p></div>':'');
   var cats={};(cfg.upgrades||[]).forEach(function(u){(cats[u.category]=cats[u.category]||[]).push(u)});
   market.innerHTML='<div class="sec-head reveal"><div><p class="eyebrow">Premium Upgrades</p><h2>Explore optional upgrades.</h2></div><p>Only upgrades that fit your service are offered in intake. One-time fees unless noted; third-party operating costs always excluded.</p></div>'
     +Object.keys(cats).map(function(c){
       return '<div class="card reveal" style="margin-bottom:14px"><h3>'+esc(c)+'</h3><ul>'+cats[c].map(function(u){return '<li><b>'+esc(u.name)+'</b> — '+esc(u.priceDisplay||'Custom Quote')+(u.note?' <span style="color:var(--faint);font-size:.76rem">('+esc(u.note)+')</span>':'')+' <a href="/start/?service='+encodeURIComponent(u.services[0])+'&upgrade='+encodeURIComponent(u.id)+(promo?'&promo='+encodeURIComponent(promo.id):'')+'" style="font-size:.78rem">Preselect in intake →</a>'+'</li>'}).join('')+'</ul></div>';
     }).join('');
+  if(window.__ngsReveal)window.__ngsReveal(document.getElementById('tierSections').parentNode);
 }
 fetch('/config/pricing.json').then(function(r){return r.json()}).then(render).catch(function(){tiers.innerHTML='<p style="color:var(--muted)">Pricing is temporarily unavailable — please <a href="/contact/">contact us</a> for current packages.</p>';});
 if(tgl){tgl.addEventListener('click',function(){showRecurring=!showRecurring;

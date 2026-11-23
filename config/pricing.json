@@ -1,6 +1,6 @@
 {
-  "$comment": "CENTRAL PRICING CATALOG — single source of truth. Pages + intake render from this file. Nothing here creates charges; all billing is manual until a payment system is approved. Growth/Premium prices marked 'proposed' need owner approval; unapproved tiers show Custom Quote. Set promotions.active=false to end promo site-wide.",
-  "version": 2,
+  "$comment": "CENTRAL PRICING CATALOG \u2014 single source of truth (v3: 9 services x 3 tiers). Pages + intake render from this file. Nothing here creates charges; all billing is manual until a payment system is approved. Tiers with price:null show Custom Quote \u2014 never invent prices. Set promotions.active=false to end promo site-wide.",
+  "version": 3,
   "promotions": {
     "active": true,
     "id": "SBW-LAUNCH-2026",
@@ -20,35 +20,35 @@
         "name": "Workflow Automation",
         "discountPct": 25,
         "pricing": "custom",
-        "note": "25% OFF development. Custom-quoted — Request a Quote. Excludes AWS bills, hosting, third-party fees, licenses, taxes, subscriptions."
+        "note": "25% OFF development. Custom-quoted \u2014 Request a Quote. Excludes AWS bills, hosting, third-party fees, licenses, taxes, subscriptions."
       },
       {
         "key": "apps",
         "name": "Web & Mobile App Development",
         "discountPct": 20,
         "pricing": "custom",
-        "note": "20% OFF development. Custom-quoted — Request a Quote. Excludes app-store fees, third-party licenses, cloud usage, taxes."
+        "note": "20% OFF development. Custom-quoted \u2014 Request a Quote. Excludes app-store fees, third-party licenses, cloud usage, taxes."
       },
       {
         "key": "data",
         "name": "Data Analytics & Dashboards",
         "discountPct": 20,
         "pricing": "custom",
-        "note": "20% OFF development. Custom-quoted — Request a Quote. Excludes cloud consumption, third-party data tools, taxes."
+        "note": "20% OFF development. Custom-quoted \u2014 Request a Quote. Excludes cloud consumption, third-party data tools, taxes."
       },
       {
         "key": "integrations",
         "name": "Custom Integrations",
         "discountPct": 20,
         "pricing": "custom",
-        "note": "20% OFF development. Custom-quoted — Request a Quote. Excludes third-party licenses and usage fees, taxes."
+        "note": "20% OFF development. Custom-quoted \u2014 Request a Quote. Excludes third-party licenses and usage fees, taxes."
       },
       {
         "key": "cloud-security",
         "name": "Cloud Infrastructure & Security",
         "discountPct": 15,
         "pricing": "custom",
-        "note": "15% OFF development. Custom-quoted — Request a Quote. Excludes AWS bills, hosting, licenses, taxes."
+        "note": "15% OFF development. Custom-quoted \u2014 Request a Quote. Excludes AWS bills, hosting, licenses, taxes."
       }
     ]
   },
@@ -58,7 +58,7 @@
       "name": "Website Development",
       "tagline": "Fast, accessible sites that rank and convert.",
       "starter": {
-        "name": "Starter — Build Your Foundation",
+        "name": "Starter \u2014 Build Your Foundation",
         "price": 0,
         "priceDisplay": "$0",
         "promoId": "SBW-LAUNCH-2026",
@@ -72,10 +72,11 @@
           "Basic SEO setup"
         ],
         "delivery": "Standard delivery",
-        "cta": "Claim the Free Build"
+        "cta": "Claim the Free Build",
+        "excludes": "Excludes hosting, domain, and third-party fees. Ongoing support quoted separately."
       },
       "growth": {
-        "name": "Growth — Expand Your Capabilities",
+        "name": "Growth \u2014 Expand Your Capabilities",
         "price": 2500,
         "priceDisplay": "From $2,500",
         "value": "More capabilities as your business grows.",
@@ -88,10 +89,11 @@
           "Basic business integrations"
         ],
         "delivery": "Standard delivery",
-        "cta": "Request a Quote"
+        "cta": "Request a Quote",
+        "excludes": "Excludes hosting, domain, third-party fees, and ongoing support unless listed."
       },
       "premium": {
-        "name": "Premium — Unlock Your Full Potential",
+        "name": "Premium \u2014 Unlock Your Full Potential",
         "price": 7500,
         "priceDisplay": "From $7,500",
         "value": "Powerful, intelligent solutions built around your vision.",
@@ -105,7 +107,8 @@
           "Advanced reporting"
         ],
         "delivery": "Scoped timeline",
-        "cta": "Request a Quote"
+        "cta": "Request a Quote",
+        "excludes": "Excludes hosting, domain, third-party integrations, licenses, and ongoing support unless listed."
       }
     },
     {
@@ -113,7 +116,7 @@
       "name": "Workflow Automation",
       "tagline": "Remove manual steps from quotes, onboarding, follow-ups, reporting.",
       "starter": {
-        "name": "Starter — Build Your Foundation",
+        "name": "Starter \u2014 Build Your Foundation",
         "price": 199,
         "priceDisplay": "From $199",
         "value": "Everything you need to get started.",
@@ -123,10 +126,11 @@
           "Basic setup and testing"
         ],
         "delivery": "Standard delivery",
-        "cta": "Start Inquiry"
+        "cta": "Start Inquiry",
+        "excludes": "Excludes third-party licenses, usage fees, and ongoing support unless listed."
       },
       "growth": {
-        "name": "Growth — Expand Your Capabilities",
+        "name": "Growth \u2014 Expand Your Capabilities",
         "price": 1200,
         "priceDisplay": "From $1,200",
         "value": "More capabilities as your business grows.",
@@ -138,10 +142,11 @@
           "Error notifications"
         ],
         "delivery": "Standard delivery",
-        "cta": "Request a Quote"
+        "cta": "Request a Quote",
+        "excludes": "Excludes third-party licenses, usage fees, and ongoing support unless listed."
       },
       "premium": {
-        "name": "Premium — Unlock Your Full Potential",
+        "name": "Premium \u2014 Unlock Your Full Potential",
         "price": 5000,
         "priceDisplay": "From $5,000",
         "value": "Powerful, intelligent solutions built around your vision.",
@@ -153,7 +158,8 @@
           "Monitoring and reporting"
         ],
         "delivery": "Scoped timeline",
-        "cta": "Request a Quote"
+        "cta": "Request a Quote",
+        "excludes": "Excludes third-party licenses, usage fees, and ongoing support unless listed."
       }
     },
     {
@@ -161,7 +167,7 @@
       "name": "Web Applications",
       "tagline": "Custom portals, tools, and systems for how you operate.",
       "starter": {
-        "name": "Starter — Build Your Foundation",
+        "name": "Starter \u2014 Build Your Foundation",
         "price": 799,
         "priceDisplay": "From $799",
         "value": "Everything you need to get started.",
@@ -172,10 +178,11 @@
           "Basic deployment"
         ],
         "delivery": "Standard delivery",
-        "cta": "Start Inquiry"
+        "cta": "Start Inquiry",
+        "excludes": "Excludes hosting, third-party licenses, app-store fees, and ongoing support unless listed."
       },
       "growth": {
-        "name": "Growth — Expand Your Capabilities",
+        "name": "Growth \u2014 Expand Your Capabilities",
         "price": 3500,
         "priceDisplay": "From $3,500",
         "value": "More capabilities as your business grows.",
@@ -187,10 +194,11 @@
           "API integrations"
         ],
         "delivery": "Standard delivery",
-        "cta": "Request a Quote"
+        "cta": "Request a Quote",
+        "excludes": "Excludes hosting, third-party licenses, cloud usage, and ongoing support unless listed."
       },
       "premium": {
-        "name": "Premium — Unlock Your Full Potential",
+        "name": "Premium \u2014 Unlock Your Full Potential",
         "price": 12000,
         "priceDisplay": "From $12,000",
         "value": "Powerful, intelligent solutions built around your vision.",
@@ -202,7 +210,8 @@
           "Custom architecture"
         ],
         "delivery": "Scoped timeline",
-        "cta": "Request a Quote"
+        "cta": "Request a Quote",
+        "excludes": "Excludes hosting, third-party licenses, cloud usage, and ongoing support unless listed."
       }
     },
     {
@@ -210,7 +219,7 @@
       "name": "Mobile Applications",
       "tagline": "iOS, Android, and cross-platform apps for customers and teams.",
       "starter": {
-        "name": "Starter — Build Your Foundation",
+        "name": "Starter \u2014 Build Your Foundation",
         "price": 1499,
         "priceDisplay": "From $1,499",
         "value": "Everything you need to get started.",
@@ -221,10 +230,11 @@
           "Basic interface"
         ],
         "delivery": "Standard delivery",
-        "cta": "Start Inquiry"
+        "cta": "Start Inquiry",
+        "excludes": "Excludes app-store fees, third-party licenses, backend hosting, and ongoing support unless listed."
       },
       "growth": {
-        "name": "Growth — Expand Your Capabilities",
+        "name": "Growth \u2014 Expand Your Capabilities",
         "price": 6000,
         "priceDisplay": "From $6,000",
         "value": "More capabilities as your business grows.",
@@ -236,10 +246,11 @@
           "API connectivity"
         ],
         "delivery": "Standard delivery",
-        "cta": "Request a Quote"
+        "cta": "Request a Quote",
+        "excludes": "Excludes app-store fees, third-party licenses, cloud usage, and ongoing support unless listed."
       },
       "premium": {
-        "name": "Premium — Unlock Your Full Potential",
+        "name": "Premium \u2014 Unlock Your Full Potential",
         "price": 18000,
         "priceDisplay": "From $18,000",
         "value": "Powerful, intelligent solutions built around your vision.",
@@ -251,18 +262,18 @@
           "Sophisticated integrations"
         ],
         "delivery": "Scoped timeline",
-        "cta": "Request a Quote"
+        "cta": "Request a Quote",
+        "excludes": "Excludes app-store fees, third-party licenses, cloud usage, and ongoing support unless listed."
       }
     },
     {
       "id": "data",
-      "name": "Data Dashboards & Analytics",
+      "name": "Data & Dashboards",
       "tagline": "Real-time KPIs and weekly numbers the whole team understands.",
       "starter": {
-        "name": "Starter — Build Your Foundation",
+        "name": "Starter \u2014 Build Your Foundation",
         "price": 499,
         "priceDisplay": "From $499",
-        "proposedNote": "PROPOSED — needs owner approval",
         "value": "Everything you need to get started.",
         "includes": [
           "Single data source connection",
@@ -271,10 +282,11 @@
           "Basic setup and training"
         ],
         "delivery": "Standard delivery",
-        "cta": "Start Inquiry"
+        "cta": "Start Inquiry",
+        "excludes": "Excludes cloud consumption, third-party data tools, and ongoing support unless listed."
       },
       "growth": {
-        "name": "Growth — Expand Your Capabilities",
+        "name": "Growth \u2014 Expand Your Capabilities",
         "price": 2800,
         "priceDisplay": "From $2,800",
         "value": "More capabilities as your business grows.",
@@ -286,10 +298,11 @@
           "KPI definitions"
         ],
         "delivery": "Standard delivery",
-        "cta": "Request a Quote"
+        "cta": "Request a Quote",
+        "excludes": "Excludes cloud consumption, third-party data tools, and ongoing support unless listed."
       },
       "premium": {
-        "name": "Premium — Unlock Your Full Potential",
+        "name": "Premium \u2014 Unlock Your Full Potential",
         "price": 9000,
         "priceDisplay": "From $9,000",
         "value": "Powerful, intelligent solutions built around your vision.",
@@ -301,18 +314,18 @@
           "Data governance support"
         ],
         "delivery": "Scoped timeline",
-        "cta": "Request a Quote"
+        "cta": "Request a Quote",
+        "excludes": "Excludes cloud consumption, third-party data tools, and ongoing support unless listed."
       }
     },
     {
       "id": "cloud",
-      "name": "Cloud Infrastructure & Security",
+      "name": "Cloud Infrastructure",
       "tagline": "Secure, observable environments that scale without rebuilds.",
       "starter": {
-        "name": "Starter — Build Your Foundation",
+        "name": "Starter \u2014 Build Your Foundation",
         "price": 399,
         "priceDisplay": "From $399",
-        "proposedNote": "PROPOSED — needs owner approval",
         "value": "Everything you need to get started.",
         "includes": [
           "Single-environment serverless setup",
@@ -321,10 +334,11 @@
           "Cost estimate"
         ],
         "delivery": "Standard delivery",
-        "cta": "Start Inquiry"
+        "cta": "Start Inquiry",
+        "excludes": "Excludes AWS bills, hosting fees, third-party licenses, and ongoing support unless listed."
       },
       "growth": {
-        "name": "Growth — Expand Your Capabilities",
+        "name": "Growth \u2014 Expand Your Capabilities",
         "price": 2200,
         "priceDisplay": "From $2,200",
         "value": "More capabilities as your business grows.",
@@ -336,10 +350,11 @@
           "Cost visibility"
         ],
         "delivery": "Standard delivery",
-        "cta": "Request a Quote"
+        "cta": "Request a Quote",
+        "excludes": "Excludes AWS bills, hosting fees, third-party licenses, and ongoing support unless listed."
       },
       "premium": {
-        "name": "Premium — Unlock Your Full Potential",
+        "name": "Premium \u2014 Unlock Your Full Potential",
         "price": 8000,
         "priceDisplay": "From $8,000",
         "value": "Powerful, intelligent solutions built around your vision.",
@@ -351,7 +366,158 @@
           "Specialized development"
         ],
         "delivery": "Scoped timeline",
-        "cta": "Request a Quote"
+        "cta": "Request a Quote",
+        "excludes": "Excludes AWS bills, hosting fees, third-party licenses, and ongoing support unless listed."
+      }
+    },
+    {
+      "id": "integrations",
+      "name": "Custom Integrations",
+      "tagline": "Connect the tools you already pay for \u2014 no more double entry.",
+      "starter": {
+        "name": "Starter \u2014 Build Your Foundation",
+        "price": null,
+        "priceDisplay": "Custom Quote",
+        "value": "One connection, scoped and documented.",
+        "includes": [
+          "One third-party integration (scoped)",
+          "Field mapping and initial sync",
+          "Error handling and logging basics",
+          "Handoff notes and testing"
+        ],
+        "delivery": "Scoped timeline",
+        "cta": "Start Inquiry",
+        "excludes": "Excludes third-party licenses, usage fees, and ongoing support unless listed."
+      },
+      "growth": {
+        "name": "Growth \u2014 Expand Your Capabilities",
+        "price": null,
+        "priceDisplay": "Custom Quote",
+        "value": "Several systems talking to each other.",
+        "includes": [
+          "Up to three integrations",
+          "Two-way sync where the APIs allow",
+          "Scheduled + event-driven triggers",
+          "Monitoring and failure alerts"
+        ],
+        "delivery": "Scoped timeline",
+        "cta": "Request a Quote",
+        "excludes": "Excludes third-party licenses, usage fees, and ongoing support unless listed."
+      },
+      "premium": {
+        "name": "Premium \u2014 Unlock Your Full Potential",
+        "price": null,
+        "priceDisplay": "Custom Quote",
+        "value": "A connected operation with room to grow.",
+        "includes": [
+          "Unlimited integrations within scope",
+          "Real-time sync and webhooks",
+          "Custom middleware where needed",
+          "Advanced monitoring and reporting"
+        ],
+        "delivery": "Scoped timeline",
+        "cta": "Request a Quote",
+        "excludes": "Excludes third-party licenses, usage fees, and ongoing support unless listed."
+      }
+    },
+    {
+      "id": "business",
+      "name": "Business Systems",
+      "tagline": "CRMs, booking, scheduling \u2014 one calm place to run the day.",
+      "starter": {
+        "name": "Starter \u2014 Build Your Foundation",
+        "price": null,
+        "priceDisplay": "Custom Quote",
+        "value": "One workflow, tamed.",
+        "includes": [
+          "One core workflow (CRM, booking, or scheduling)",
+          "Contact and record management basics",
+          "Standard notifications and reminders",
+          "Training walkthrough"
+        ],
+        "delivery": "Scoped timeline",
+        "cta": "Start Inquiry",
+        "excludes": "Excludes third-party licenses, usage fees, and ongoing support unless listed."
+      },
+      "growth": {
+        "name": "Growth \u2014 Expand Your Capabilities",
+        "price": null,
+        "priceDisplay": "Custom Quote",
+        "value": "Your operation, connected.",
+        "includes": [
+          "Multi-workflow system (CRM + booking + follow-up)",
+          "Customer portal basics",
+          "Payment collection setup",
+          "Roles and permissions"
+        ],
+        "delivery": "Scoped timeline",
+        "cta": "Request a Quote",
+        "excludes": "Excludes third-party licenses, payment processing fees, and ongoing support unless listed."
+      },
+      "premium": {
+        "name": "Premium \u2014 Unlock Your Full Potential",
+        "price": null,
+        "priceDisplay": "Custom Quote",
+        "value": "The system your business runs on.",
+        "includes": [
+          "Full business platform with custom modules",
+          "Advanced automation and AI assistance",
+          "Custom reporting and analytics",
+          "Dedicated onboarding and documentation"
+        ],
+        "delivery": "Scoped timeline",
+        "cta": "Request a Quote",
+        "excludes": "Excludes third-party licenses, payment processing fees, and ongoing support unless listed."
+      }
+    },
+    {
+      "id": "security",
+      "name": "Security Services",
+      "tagline": "Practical protection sized for small and mid-size businesses.",
+      "starter": {
+        "name": "Starter \u2014 Build Your Foundation",
+        "price": null,
+        "priceDisplay": "Custom Quote",
+        "value": "Know where you stand.",
+        "includes": [
+          "Security review and risk checklist",
+          "Access and password hygiene pass",
+          "Backup and recovery plan",
+          "Plain-English findings report"
+        ],
+        "delivery": "Scoped timeline",
+        "cta": "Start Inquiry",
+        "excludes": "Excludes remediation development, licenses, and ongoing monitoring unless listed."
+      },
+      "growth": {
+        "name": "Growth \u2014 Expand Your Capabilities",
+        "price": null,
+        "priceDisplay": "Custom Quote",
+        "value": "Harden what matters most.",
+        "includes": [
+          "MFA rollout and access control",
+          "Encryption and backup verification",
+          "Monitoring and alerting setup",
+          "Staff security basics session"
+        ],
+        "delivery": "Scoped timeline",
+        "cta": "Request a Quote",
+        "excludes": "Excludes remediation development, licenses, and ongoing monitoring unless listed."
+      },
+      "premium": {
+        "name": "Premium \u2014 Unlock Your Full Potential",
+        "price": null,
+        "priceDisplay": "Custom Quote",
+        "value": "Ongoing assurance for regulated work.",
+        "includes": [
+          "Advanced monitoring and audit logging",
+          "Compliance support (scoped frameworks)",
+          "Incident response planning",
+          "Quarterly security reviews"
+        ],
+        "delivery": "Scoped timeline",
+        "cta": "Request a Quote",
+        "excludes": "Excludes remediation development, licenses, and ongoing monitoring unless listed."
       }
     }
   ],
@@ -409,7 +575,8 @@
       "services": [
         "automation",
         "data",
-        "webapps"
+        "webapps",
+        "business"
       ],
       "price": null,
       "priceDisplay": "Custom Quote"
@@ -433,7 +600,8 @@
       "services": [
         "websites",
         "automation",
-        "webapps"
+        "webapps",
+        "business"
       ],
       "price": null,
       "priceDisplay": "Custom Quote"
@@ -446,7 +614,8 @@
         "automation",
         "webapps",
         "mobileapps",
-        "websites"
+        "websites",
+        "business"
       ],
       "price": null,
       "priceDisplay": "Custom Quote",
@@ -458,7 +627,9 @@
       "category": "Business Automation",
       "services": [
         "automation",
-        "webapps"
+        "webapps",
+        "integrations",
+        "business"
       ],
       "price": null,
       "priceDisplay": "Custom Quote"
@@ -470,7 +641,8 @@
       "services": [
         "websites",
         "webapps",
-        "automation"
+        "automation",
+        "business"
       ],
       "price": null,
       "priceDisplay": "Custom Quote"
@@ -482,7 +654,9 @@
       "services": [
         "automation",
         "webapps",
-        "data"
+        "data",
+        "integrations",
+        "business"
       ],
       "price": null,
       "priceDisplay": "Custom Quote"
@@ -494,7 +668,8 @@
       "services": [
         "automation",
         "webapps",
-        "websites"
+        "websites",
+        "business"
       ],
       "price": null,
       "priceDisplay": "Custom Quote"
@@ -506,7 +681,8 @@
       "services": [
         "websites",
         "webapps",
-        "mobileapps"
+        "mobileapps",
+        "business"
       ],
       "price": null,
       "priceDisplay": "Custom Quote"
@@ -531,7 +707,9 @@
         "webapps",
         "mobileapps",
         "data",
-        "websites"
+        "websites",
+        "business",
+        "integrations"
       ],
       "price": null,
       "priceDisplay": "Custom Quote"
@@ -542,7 +720,8 @@
       "category": "Application Functionality",
       "services": [
         "webapps",
-        "mobileapps"
+        "mobileapps",
+        "business"
       ],
       "price": null,
       "priceDisplay": "Custom Quote"
@@ -553,7 +732,8 @@
       "category": "Application Functionality",
       "services": [
         "websites",
-        "webapps"
+        "webapps",
+        "business"
       ],
       "price": null,
       "priceDisplay": "Custom Quote"
@@ -565,7 +745,8 @@
       "services": [
         "websites",
         "webapps",
-        "mobileapps"
+        "mobileapps",
+        "business"
       ],
       "price": null,
       "priceDisplay": "Custom Quote",
@@ -577,7 +758,8 @@
       "category": "Analytics & Data",
       "services": [
         "data",
-        "webapps"
+        "webapps",
+        "business"
       ],
       "price": null,
       "priceDisplay": "Custom Quote"
@@ -600,7 +782,9 @@
       "services": [
         "data",
         "automation",
-        "webapps"
+        "webapps",
+        "integrations",
+        "business"
       ],
       "price": null,
       "priceDisplay": "Custom Quote"
@@ -611,7 +795,8 @@
       "category": "Analytics & Data",
       "services": [
         "data",
-        "automation"
+        "automation",
+        "integrations"
       ],
       "price": null,
       "priceDisplay": "Custom Quote"
@@ -635,7 +820,10 @@
         "webapps",
         "mobileapps",
         "websites",
-        "cloud"
+        "cloud",
+        "security",
+        "business",
+        "integrations"
       ],
       "price": null,
       "priceDisplay": "Custom Quote"
@@ -647,7 +835,9 @@
       "services": [
         "webapps",
         "mobileapps",
-        "cloud"
+        "cloud",
+        "security",
+        "business"
       ],
       "price": null,
       "priceDisplay": "Custom Quote"
@@ -659,7 +849,8 @@
       "services": [
         "webapps",
         "cloud",
-        "data"
+        "data",
+        "security"
       ],
       "price": null,
       "priceDisplay": "Custom Quote"
@@ -671,7 +862,8 @@
       "services": [
         "cloud",
         "webapps",
-        "data"
+        "data",
+        "security"
       ],
       "price": null,
       "priceDisplay": "Custom Quote"
@@ -683,7 +875,8 @@
       "services": [
         "cloud",
         "webapps",
-        "data"
+        "data",
+        "security"
       ],
       "price": null,
       "priceDisplay": "Custom Quote",
@@ -695,28 +888,29 @@
       "category": "Security & Infrastructure",
       "services": [
         "cloud",
-        "webapps"
+        "webapps",
+        "security"
       ],
       "price": null,
       "priceDisplay": "Custom Quote"
     }
   ],
   "budgetsOnce": [
-    "$0 — Free Website Promotion",
-    "$1–$249",
-    "$250–$499",
-    "$500–$999",
-    "$1,000–$2,499",
-    "$2,500–$4,999",
-    "$5,000–$9,999",
+    "$0 \u2014 Free Website Promotion",
+    "$1\u2013$249",
+    "$250\u2013$499",
+    "$500\u2013$999",
+    "$1,000\u2013$2,499",
+    "$2,500\u2013$4,999",
+    "$5,000\u2013$9,999",
     "$10,000+",
-    "Not Sure — Help Me Estimate"
+    "Not Sure \u2014 Help Me Estimate"
   ],
   "budgetsMonthly": [
     "$50/month",
-    "$51–$99/month",
-    "$100–$199/month",
-    "$200–$499/month",
+    "$51\u2013$99/month",
+    "$100\u2013$199/month",
+    "$200\u2013$499/month",
     "$500+/month",
     "Not Sure"
   ],
@@ -751,7 +945,7 @@
       "target": "Custom applications, connected systems, and workflow automation.",
       "includes": [
         "Custom web or mobile app (scoped MVP)",
-        "1–2 core integrations with your tools",
+        "1\u20132 core integrations with your tools",
         "Workflow or notification automation",
         "Testing across devices",
         "Docs, handoff & training"
@@ -808,47 +1002,47 @@
   ],
   "optionalServices": [
     {
-      "icon": "☁️",
+      "icon": "\u2601\ufe0f",
       "name": "Hosting & cloud management",
       "note": "Quoted per project"
     },
     {
-      "icon": "🛠️",
+      "icon": "\ud83d\udee0\ufe0f",
       "name": "Website maintenance",
       "note": "Custom Quote"
     },
     {
-      "icon": "⚡",
+      "icon": "\u26a1",
       "name": "Workflow automation",
       "note": "From Business Systems"
     },
     {
-      "icon": "🔗",
+      "icon": "\ud83d\udd17",
       "name": "Additional integrations",
       "note": "Quoted per integration"
     },
     {
-      "icon": "🤖",
+      "icon": "\ud83e\udd16",
       "name": "AI integrations",
       "note": "Quoted per project"
     },
     {
-      "icon": "📊",
+      "icon": "\ud83d\udcca",
       "name": "Dashboards & reporting",
       "note": "From Data & Cloud"
     },
     {
-      "icon": "🛡️",
+      "icon": "\ud83d\udee1\ufe0f",
       "name": "Security monitoring",
       "note": "Custom Quote"
     },
     {
-      "icon": "✉️",
+      "icon": "\u2709\ufe0f",
       "name": "Email & notification systems",
       "note": "Quoted per project"
     },
     {
-      "icon": "🚨",
+      "icon": "\ud83d\udea8",
       "name": "Priority support",
       "note": "Custom Quote"
     }

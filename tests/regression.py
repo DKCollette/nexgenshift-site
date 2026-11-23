@@ -237,19 +237,26 @@ check("invalid-creates-nothing", t_invalid_creates_nothing)
 def t_catalog_valid():
     _, cfg = get("/config/pricing.json")
     d = json.loads(cfg)
-    assert d.get("version") == 2, "catalog not v2"
+    assert d.get("version") == 3, "catalog not v3"
     svcs = {x["id"]: x for x in d["services"]}
-    assert len(svcs) == 6, "want 6 services, got %d" % len(svcs)
+    assert len(svcs) == 9, "want 9 services, got %d: %s" % (len(svcs), sorted(svcs))
+    for want in ("websites", "automation", "webapps", "mobileapps", "data", "cloud",
+                 "integrations", "business", "security"):
+        assert want in svcs, "missing service " + want
     for sid, s in svcs.items():
         for t in ("starter", "growth", "premium"):
             assert t in s, "%s missing %s" % (sid, t)
             assert s[t]["priceDisplay"], "%s.%s no priceDisplay" % (sid, t)
             assert (s[t].get("includes") or []), "%s.%s no includes" % (sid, t)
+            assert s[t].get("excludes"), "%s.%s no excludes" % (sid, t)
+            assert s[t].get("delivery"), "%s.%s no delivery" % (sid, t)
+            if s[t].get("price") is None:
+                assert s[t]["priceDisplay"] == "Custom Quote", "%s.%s unpriced but not Custom Quote" % (sid, t)
     assert len(d.get("upgrades", [])) >= 25, "marketplace thin"
     assert len(d.get("budgetsOnce", [])) == 9 and len(d.get("budgetsMonthly", [])) == 6, "budget lists wrong"
     sbw = d["promotions"]["smallBusinessWebsite"]
     assert sbw["promoBuildPrice"] == "$0" and sbw["subscriptionPerMonth"] == "$50/month", "SBW terms drifted"
-    return "catalog v2: 6 services x 3 tiers, %d upgrades" % len(d["upgrades"])
+    return "catalog v3: 9 services x 3 tiers (%d upgrades)" % len(d["upgrades"])
 check("catalog-valid", t_catalog_valid)
 
 def t_pricing_renders_tiers():
@@ -302,8 +309,16 @@ def t_growth_premium_approved():
                 assert "Custom Quote" not in tier["priceDisplay"], "%s.%s shows Custom Quote despite approval" % (s["id"], t)
                 n_priced += 1
             assert "proposedPrice" not in tier and "pending approval" not in json.dumps(tier).lower(), "%s.%s still has proposal markers" % (s["id"], t)
-    assert n_priced == 18, "expected all 18 tiers priced, got %d" % n_priced
-    return "all 18 tiers show approved starting prices, no proposal markers"
+    assert n_priced == 18, "expected 18 priced tiers (6 priced svcs), got %d" % n_priced
+    n_quote = 0
+    for s in d["services"]:
+        for t in ("starter", "growth", "premium"):
+            tier = s[t]
+            if tier.get("price") is None:
+                assert tier["priceDisplay"] == "Custom Quote", "%s.%s unpriced but not Custom Quote" % (s["id"], t)
+                n_quote += 1
+    assert n_quote == 9, "expected 9 Custom-Quote tiers (3 consultative svcs), got %d" % n_quote
+    return "18 priced + 9 Custom-Quote tiers, no proposal markers"
 check("growth-premium-approved", t_growth_premium_approved)
 
 def t_unified_no_popup_divergence():
