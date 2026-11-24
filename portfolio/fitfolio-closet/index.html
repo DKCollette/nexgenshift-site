@@ -4,11 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FitFolio AI Closet case study | NexGenShift</title>
-<meta name="description" content="FitFolio AI Closet: Local-first virtual closet — single-user, photos persist in the browser.">
+<meta name="description" content="FitFolio AI Closet: a local-first virtual dressing room — working prototype with occasion-based outfit picks and optional AI try-on.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://nexgenshift.com/portfolio/fitfolio-closet/">
 <meta property="og:title" content="FitFolio AI Closet case study | NexGenShift">
-<meta property="og:description" content="FitFolio AI Closet: Local-first virtual closet — single-user, photos persist in the browser.">
+<meta property="og:description" content="FitFolio AI Closet: a local-first virtual dressing room — working prototype with occasion-based outfit picks and optional AI try-on.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://nexgenshift.com/portfolio/fitfolio-closet/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -34,19 +34,26 @@
 
 <section class="page-hero"><div class="container">
 <p class="crumbs"><a href="/">Home</a> / <a href="/portfolio/">Our Work</a> / FitFolio AI Closet</p>
-<p class="eyebrow">Our Work</p><h1 style="color:var(--plum);font-size:clamp(2rem,4.5vw,3.2rem);letter-spacing:-1px"><span class="pill concept">PROTOTYPE</span><br>FitFolio AI Closet</h1>
-<p style="color:var(--muted);max-width:36rem;margin-top:12px">Local-first virtual closet — single-user, photos persist in the browser.</p>
+<p class="eyebrow">Our Work</p><h1 style="color:var(--plum);font-size:clamp(2rem,4.5vw,3.2rem);letter-spacing:-1px"><span class="pill ok">WORKING PROTOTYPE</span><br>FitFolio AI Closet</h1>
+<p style="color:var(--muted);max-width:38rem;margin-top:12px">A local-first virtual dressing room: catalog your closet, get occasion-based outfit picks, and preview looks with optional AI try-on. Screenshots below are the real running app with demo data.</p>
 </div></section>
-<section class="block"><div class="container split">
-<div class="txt reveal"><p class="eyebrow">The brief</p><h2 style="color:var(--plum)">What this explores.</h2>
-<p style="color:var(--muted)">A working prototype (repo: fitfolio): plain Node API + static HTML/JS, no build step. Photos stay in browser localStorage; optional AI try-on uses a server-side key only.</p>
-<p style="background:var(--lavender);border:1px solid var(--line);border-radius:12px;padding:12px 16px;font-size:.85rem;color:var(--purple);font-weight:600">Working prototype/demo build with synthetic data — not a production engagement.</p></div>
-<div class="demo-box reveal"><h3>Scope highlights</h3><ul class="feat"><li>Zero-build static UI</li><li>Local-first photo storage</li><li>Optional server-side AI try-on</li></ul>
-<p style="color:var(--muted);font-size:.9rem;margin-top:10px">Closet grid, outfit shuffle, optional try-on panel. 29-check smoke contract in the repo.</p></div>
+<section class="block"><div class="container">
+<img src="/assets/portfolio/fitfolio-desktop.png" alt="FitFolio AI virtual closet app — fitting room and wardrobe" loading="lazy" style="width:100%;border-radius:16px;border:1px solid var(--line)">
+<div class="card-grid two reveal" style="margin-top:22px">
+<div class="card"><h3>Objective</h3><p>Cut the daily "what do I wear" tax: give one person a fast, private way to see their whole closet, get dressed for the occasion, and try looks before committing.</p></div>
+<div class="card"><h3>Problem</h3><p>Deciding what to wear wastes time and money — closets fill with unworn clothes while mornings fill with outfit indecision. Existing tools upload your photos to someone else's cloud.</p></div>
+<div class="card"><h3>Solution</h3><p>A local-first virtual closet. Photos stay in the browser's localStorage; an occasion rules engine ("Dress Me Today") suggests outfits; compare up to 3 looks side by side; optional single-garment AI try-on renders a preview.</p></div>
+<div class="card"><h3>Technology</h3><p>Dependency-free Node API serving a zero-build static UI (plain HTML/JS/CSS). AI try-on runs server-side so the key never touches the browser. Covered by a 29-check smoke contract in the repo.</p></div>
+</div>
+</div></section>
+<section class="block" style="padding-top:0"><div class="container split">
+<div class="txt reveal"><p class="eyebrow">Verified features</p><h2 style="color:var(--plum)">What it does today.</h2>
+<ul class="feat"><li>Inventory + outfit management in localStorage</li><li>Occasion rules engine (Dress Me Today)</li><li>Compare up to 3 looks + favorites</li><li>Optional single-garment AI try-on (server-side provider integration; multi-pass chain)</li><li>Demo Mode without a key — uploads, swipes, and outfits all work</li></ul></div>
+<div class="demo-box reveal"><h3>Status &amp; honest limits</h3><p style="color:var(--muted);font-size:.9rem">Working prototype. AI Generate requires a server-side key — without one it shows an explanatory message, never a fake image. Photos are local-only (clear site data before shared captures). Single user; no accounts, no sharing, no payments.</p><img src="/assets/portfolio/fitfolio-mobile.png" alt="FitFolio app on a phone screen" loading="lazy" style="width:100%;max-width:280px;border-radius:12px;border:1px solid var(--line);margin-top:10px"></div>
 </div></section>
 <section class="block" style="padding-top:0"><div class="container"><div class="card-grid two reveal">
 <div class="card"><h3>← Previous</h3><p><a class="go" href="/portfolio/">Back to all work</a></p></div>
-<div class="card"><h3>Like this direction?</h3><p>Start a project and reference this concept — we'll scope yours from here.</p><p><a class="btn btn-primary btn-sm" href="/start/">Start a Project →</a></p></div>
+<div class="card"><h3>Like this direction?</h3><p>Start a project and reference this prototype — we'll scope yours from here.</p><p><a class="btn btn-primary btn-sm" href="/start/">Start a Project →</a></p></div>
 </div></div></section>
 <section class="block final"><div class="container reveal">
 <h2>Ready to build something powerful?</h2><p>Let's turn your idea into a real solution that moves your business forward.</p>
