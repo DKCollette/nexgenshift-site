@@ -237,3 +237,9 @@ section.block{padding:60px 0}
 .dash-body{grid-template-columns:96px 1fr}
 .phone{width:132px}
 }
+
+/* our-work filter */
+.work-filters{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 18px}
+.work-filters button{border:1.5px solid var(--line);background:#FBFAFF;border-radius:999px;padding:8px 16px;font:inherit;font-size:.84rem;font-weight:700;color:var(--plum);cursor:pointer}
+.work-filters button[aria-pressed="true"]{background:rgba(147,51,234,.16);border-color:var(--purple)}
+.work-card[data-cat].hidden{display:none}
