@@ -1,0 +1,291 @@
+{
+  "$comment": "PROJECT REGISTRY — DESIGN DRAFT (not yet wired into the site). Single source of truth for the portfolio hub, case-study pages, and homepage Featured Work. Mirrors the config/pricing.json catalog-driven pattern: static JSON fetched at render time, full static HTML kept as the noscript/SEO fallback. published=false records never render publicly. featured=true records render on the homepage (max 3). lastVerified is the date the screenshots + honest-limits copy were last confirmed against the runnable build (YYYY-MM-DD). Status vocabulary is closed: Live | In Development | Working Prototype | Interactive Demo | Internal Innovation | Design Concept | Unpublished. Category vocabulary is closed: Websites | Applications | Automation & AI | Business Systems | Data & Dashboards | Cloud & Infrastructure. categoryKeys map to the existing portfolio filter keys (websites | applications | automation-ai | business-systems | data | cloud). demoUrl is null when there is no public demo — never invent a URL.",
+  "$schema": "project-registry-v1 (draft)",
+  "version": 1,
+  "projects": [
+    {
+      "id": "fitfolio-closet",
+      "name": "FitFolio AI Closet",
+      "tagline": "Virtual Dressing Room",
+      "slug": "fitfolio-closet",
+      "caseStudyUrl": "/portfolio/fitfolio-closet/",
+      "categories": [
+        "Applications",
+        "Automation & AI"
+      ],
+      "categoryKeys": [
+        "applications",
+        "automation-ai"
+      ],
+      "description": "A local-first virtual dressing room: catalog your closet, get occasion-based outfit picks, and preview looks with optional AI try-on. Screenshots below are the real running app with demo data.",
+      "objective": "Cut the daily \"what do I wear\" tax: give one person a fast, private way to see their whole closet, get dressed for the occasion, and try looks before committing.",
+      "problem": "Deciding what to wear wastes time and money — closets fill with unworn clothes while mornings fill with outfit indecision. Existing tools upload your photos to someone else's cloud.",
+      "solution": "A local-first virtual closet. Photos stay in the browser's localStorage; an occasion rules engine (\"Dress Me Today\") suggests outfits; compare up to 3 looks side by side; optional single-garment AI try-on renders a preview.",
+      "technology": "Dependency-free Node API serving a zero-build static UI (plain HTML/JS/CSS). AI try-on runs server-side so the key never touches the browser. Covered by a 29-check smoke contract in the repo.",
+      "status": "Working Prototype",
+      "honestLimits": "Working prototype. AI Generate requires a server-side key — without one it shows an explanatory message, never a fake image. Photos are local-only (clear site data before shared captures). Single user; no accounts, no sharing, no payments.",
+      "screenshots": [
+        {
+          "src": "/assets/portfolio/fitfolio-desktop.png",
+          "alt": "FitFolio AI virtual closet app — fitting room and wardrobe",
+          "viewport": "desktop"
+        },
+        {
+          "src": "/assets/portfolio/fitfolio-mobile.png",
+          "alt": "FitFolio app on a phone screen",
+          "viewport": "mobile"
+        }
+      ],
+      "features": [
+        "Inventory + outfit management in localStorage",
+        "Occasion rules engine (Dress Me Today)",
+        "Compare up to 3 looks + favorites",
+        "Optional single-garment AI try-on (server-side provider integration; multi-pass chain)",
+        "Demo Mode without a key — uploads, swipes, and outfits all work"
+      ],
+      "demoUrl": null,
+      "published": true,
+      "featured": true,
+      "lastVerified": "2026-11-24"
+    },
+    {
+      "id": "idealhope-recovery",
+      "name": "iDealHope Recovery",
+      "tagline": "Support Platform",
+      "slug": "idealhope-recovery",
+      "caseStudyUrl": "/portfolio/idealhope-recovery/",
+      "categories": [
+        "Websites",
+        "Applications",
+        "Data & Dashboards"
+      ],
+      "categoryKeys": [
+        "websites",
+        "applications",
+        "data"
+      ],
+      "description": "A recovery-support platform: searchable resources, consultation and appointment requests, client goal tracking, and a specialist dashboard. Screenshots below are the real running app with synthetic demo data.",
+      "objective": "Lower the first-step barrier: make it easy for someone seeking recovery support — or their family — to find help, ask for a consultation, and track progress in one calm place.",
+      "problem": "Finding addiction and mental-health support is overwhelming at the hardest moment: scattered listings, unclear costs, and no clear next step toward a real person.",
+      "solution": "A single platform: public resource directory (10+ seeded listings with search, category, and cost filters), validated consultation + appointment request flows, client portal with goals, and a specialist dashboard for clients, consultations, and appointments — with the 988 crisis line always visible.",
+      "technology": "Node API serving a static UI with a JSON file store. Seeded specialist/client demo logins; salted-hash auth with role gates; 31-check smoke suite green.",
+      "status": "Working Prototype",
+      "honestLimits": "Working prototype with 100% synthetic data — listings are not real providers, and no real patient data may ever be entered. Explicitly NOT HIPAA or 42 CFR Part 2 assessed: needs formal legal/security review, a BAA chain, encryption at rest, secure cookies, and a real session store before any clinical use. Contact-request only — no real-time or secure messaging. Educational content is informational only, not diagnoses or treatment. Not an emergency monitoring service.",
+      "screenshots": [
+        {
+          "src": "/assets/portfolio/idealhope-desktop.png",
+          "alt": "iDealHope recovery support platform — hero and support finder",
+          "viewport": "desktop"
+        },
+        {
+          "src": "/assets/portfolio/idealhope-mobile.png",
+          "alt": "iDealHope platform on a phone screen",
+          "viewport": "mobile"
+        }
+      ],
+      "features": [
+        "Searchable/filterable public resource directory (seeded listings)",
+        "Consultation + appointment request flows (validated)",
+        "Client portal: roadmap goals CRUD, check-ins, wellness history",
+        "Specialist dashboard: KPIs, client list, referral lifecycle, tasks, inbox",
+        "988 crisis banner always visible"
+      ],
+      "demoUrl": null,
+      "published": true,
+      "featured": true,
+      "lastVerified": "2026-11-24"
+    },
+    {
+      "id": "sacred-path-guidance",
+      "name": "Sacred Path Guidance",
+      "tagline": "Booking Website",
+      "slug": "sacred-path-guidance",
+      "caseStudyUrl": "/portfolio/sacred-path-guidance/",
+      "categories": [
+        "Websites",
+        "Automation & AI"
+      ],
+      "categoryKeys": [
+        "websites",
+        "automation-ai"
+      ],
+      "description": "A 12-page tarot and spiritual-guidance booking site: services, live availability, double-booking-safe reservations, and a token-gated owner dashboard. Screenshots below are the real running site with sample data.",
+      "objective": "Give a spiritual practitioner one home base: explain the offerings, let seekers check availability and request readings, and manage everything from a private dashboard — no patchwork of tools.",
+      "problem": "Bookings arrived by DM, availability lived in someone's head, and double-bookings happened. There was no single place to show services, take requests, and track clients.",
+      "solution": "A full marketing site plus booking engine: 12 public pages (home, readings, guidance, about, testimonials, pricing, privacy, terms), services + availability APIs, server-side double-booking prevention, spam-protected contact, and an owner dashboard for bookings, messages, testimonials, FAQs, and settings.",
+      "technology": "Dependency-free Node API serving static pages. Token-gated owner dashboard; honeypot + rate limiting on contact; moon-phase display clearly labeled as an approximation. 38/38 smoke checks green.",
+      "status": "Working Prototype",
+      "honestLimits": "Working prototype — the strongest of the three builds. Honest limits: no payments are collected (paymentStatus: not_collected); no email sending — bookings and messages persist for the owner to follow up. Testimonials ship as 3 clearly-labeled SAMPLE placeholders the owner replaces. Screenshots show public pages only; the admin dashboard is never published.",
+      "screenshots": [
+        {
+          "src": "/assets/portfolio/sacred-path-desktop.png",
+          "alt": "Sacred Path Guidance homepage — clarity for your path",
+          "viewport": "desktop"
+        },
+        {
+          "src": "/assets/portfolio/sacred-path-mobile.png",
+          "alt": "Sacred Path Guidance site on a phone screen",
+          "viewport": "mobile"
+        }
+      ],
+      "features": [
+        "12-page marketing site with readings, pricing, testimonials",
+        "Live availability + bookings with double-booking prevention",
+        "Contact form with honeypot + rate limiting",
+        "Owner dashboard: services, prices, availability, bookings, messages, FAQs, settings",
+        "Booking confirm/cancel flows"
+      ],
+      "demoUrl": null,
+      "published": true,
+      "featured": true,
+      "lastVerified": "2026-11-24"
+    },
+    {
+      "id": "ironwood-security",
+      "name": "Ironwood Security",
+      "tagline": "",
+      "slug": "ironwood-security",
+      "caseStudyUrl": "/portfolio/",
+      "categories": [],
+      "categoryKeys": [],
+      "description": "Removed from the portfolio. Stub page redirects to the portfolio hub.",
+      "objective": "",
+      "problem": "",
+      "solution": "",
+      "technology": "",
+      "status": "Unpublished",
+      "honestLimits": "",
+      "screenshots": [],
+      "features": [],
+      "demoUrl": null,
+      "published": false,
+      "featured": false,
+      "lastVerified": "2026-11-24"
+    },
+    {
+      "id": "field-ops-dashboard",
+      "name": "Field Ops Dashboard",
+      "tagline": "",
+      "slug": "field-ops-dashboard",
+      "caseStudyUrl": "/portfolio/",
+      "categories": [],
+      "categoryKeys": [],
+      "description": "Removed from the portfolio. Stub page redirects to the portfolio hub.",
+      "objective": "",
+      "problem": "",
+      "solution": "",
+      "technology": "",
+      "status": "Unpublished",
+      "honestLimits": "",
+      "screenshots": [],
+      "features": [],
+      "demoUrl": null,
+      "published": false,
+      "featured": false,
+      "lastVerified": "2026-11-24"
+    },
+    {
+      "id": "maple-main-booking",
+      "name": "Maple Main Booking",
+      "tagline": "",
+      "slug": "maple-main-booking",
+      "caseStudyUrl": "/portfolio/",
+      "categories": [],
+      "categoryKeys": [],
+      "description": "Removed from the portfolio. Stub page redirects to the portfolio hub.",
+      "objective": "",
+      "problem": "",
+      "solution": "",
+      "technology": "",
+      "status": "Unpublished",
+      "honestLimits": "",
+      "screenshots": [],
+      "features": [],
+      "demoUrl": null,
+      "published": false,
+      "featured": false,
+      "lastVerified": "2026-11-24"
+    },
+    {
+      "$comment": "PLACEHOLDERS for internal builds (per 2026-11-24 inventory). Never published to the portfolio surface; reserved so the admin dashboard + auto-candidate flow have records to promote through review. Categories/statuses are provisional and must be confirmed at QA time.",
+      "id": "nexgenshift-auth-platform",
+      "name": "Auth Platform (test mode)",
+      "tagline": "",
+      "slug": "placeholder-auth-platform",
+      "caseStudyUrl": null,
+      "categories": [
+        "Business Systems"
+      ],
+      "categoryKeys": [
+        "business-systems"
+      ],
+      "description": "PLACEHOLDER — local test-mode identity provider (signup/MFA/sessions/RBAC; Cognito not connected). Not portfolio-facing until it passes QA review.",
+      "objective": "",
+      "problem": "",
+      "solution": "",
+      "technology": "Dependency-free Node API + static web; 49-check smoke green (LOCAL TEST MODE).",
+      "status": "Working Prototype",
+      "honestLimits": "Local test mode only — not production auth. Never use real user passwords here.",
+      "screenshots": [],
+      "features": [],
+      "demoUrl": null,
+      "published": false,
+      "featured": false,
+      "lastVerified": null
+    },
+    {
+      "id": "nexgenshift-intake-platform",
+      "name": "Intake-to-Demo Pipeline",
+      "tagline": "",
+      "slug": "placeholder-intake-platform",
+      "caseStudyUrl": null,
+      "categories": [
+        "Business Systems",
+        "Automation & AI"
+      ],
+      "categoryKeys": [
+        "business-systems",
+        "automation-ai"
+      ],
+      "description": "PLACEHOLDER — intake wizard → review queue → approved demo loop. Internal pipeline tooling; portfolio candidacy only via admin approval.",
+      "objective": "",
+      "problem": "",
+      "solution": "",
+      "technology": "Node API + static wizard/admin/tracker pages; status machine received → reviewing → generating → awaiting_approval → approved.",
+      "status": "Internal Innovation",
+      "honestLimits": "Dev prototype backing staging demos. Submitter PII in data/ — never screenshot or publish.",
+      "screenshots": [],
+      "features": [],
+      "demoUrl": null,
+      "published": false,
+      "featured": false,
+      "lastVerified": null
+    },
+    {
+      "id": "nexgenshift-cloud",
+      "name": "Cloud Intake & Infrastructure",
+      "tagline": "",
+      "slug": "placeholder-cloud",
+      "caseStudyUrl": null,
+      "categories": [
+        "Cloud & Infrastructure"
+      ],
+      "categoryKeys": [
+        "cloud"
+      ],
+      "description": "PLACEHOLDER — AWS IaC (static-site + serverless tiers) plus intake-receiver Lambda. Infrastructure, not a showcase piece; would populate the currently-empty Cloud filter only after approval with an architecture-diagram visual.",
+      "objective": "",
+      "problem": "",
+      "solution": "",
+      "technology": "CloudFormation + Lambda + DynamoDB + SQS + SES.",
+      "status": "Internal Innovation",
+      "honestLimits": "Nothing renders locally — architecture diagram only. Deploy-time secrets (AdminApiKey) never published.",
+      "screenshots": [],
+      "features": [],
+      "demoUrl": null,
+      "published": false,
+      "featured": false,
+      "lastVerified": null
+    }
+  ]
+}

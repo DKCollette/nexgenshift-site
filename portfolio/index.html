@@ -47,6 +47,7 @@
 <button type="button" data-filter="cloud" aria-pressed="false">Cloud &amp; Infrastructure</button>
 </div>
 <p class="hint" id="filterCount" aria-live="polite" style="margin-bottom:14px"></p>
+<p class="hint" id="workEmpty" hidden>No pieces in this category yet.</p>
 <div class="card-grid two reveal" id="workGrid">
 <article class="card work-card" data-cat="applications automation-ai"><img src="/assets/portfolio/fitfolio-desktop.png" alt="FitFolio AI virtual closet app interface" loading="lazy" style="width:100%;border-radius:12px;border:1px solid var(--line)"><p style="margin-top:12px"><span class="pill ok">WORKING PROTOTYPE</span></p><h3>FitFolio AI Closet</h3><p><strong>Problem:</strong> deciding what to wear wastes time and leads to unworn clothes. <strong>Solution:</strong> a local-first virtual closet — catalog garments, get occasion-based outfit picks, and preview looks with optional AI try-on. <strong>Tech:</strong> dependency-free Node API + static HTML/JS, photos in browser localStorage, server-side AI key. <strong>Status:</strong> working prototype; AI Generate needs a key, otherwise full Demo Mode.</p><a class="go" href="/portfolio/fitfolio-closet/">View Project →</a></article>
 <article class="card work-card" data-cat="websites applications data"><img src="/assets/portfolio/idealhope-desktop.png" alt="iDealHope recovery support platform homepage" loading="lazy" style="width:100%;border-radius:12px;border:1px solid var(--line)"><p style="margin-top:12px"><span class="pill ok">WORKING PROTOTYPE</span></p><h3>iDealHope Recovery</h3><p><strong>Problem:</strong> finding recovery support is overwhelming at the hardest moment. <strong>Solution:</strong> a support platform — searchable resource directory, consultation and appointment requests, client goal tracking, and a specialist dashboard. <strong>Tech:</strong> Node API + static UI, JSON file store, salted-hash auth. <strong>Status:</strong> working prototype with synthetic demo data only — explicitly not HIPAA/42 CFR Part 2 assessed.</p><a class="go" href="/portfolio/idealhope-recovery/">View Project →</a></article>
@@ -98,5 +99,7 @@ btns.forEach(function(b){b.addEventListener('click',function(){apply(b.getAttrib
 <script src="/assets/intake-client.js"></script>
 <script src="/assets/site.js"></script>
 <script src="/assets/widgets.js"></script>
+<script>/* Registry enhancement: when /config/projects.json loads, assets/portfolio-grid.js re-renders #workGrid from published records w/ filter counts; silent-catch keeps the static cards above as fallback. Empty state: #workEmpty shows when a filter matches 0. */</script>
+<script src="/assets/portfolio-grid.js"></script>
 </body>
 </html>
