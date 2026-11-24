@@ -24,9 +24,8 @@
   <div class="nav-inner">
     <a class="logo" href="/" aria-label="NexGenShift home"><span class="logo-mark">N</span>NexGenShift</a>
     <button class="hamburger" id="hamburger" aria-expanded="false" aria-controls="primaryNav" aria-label="Open menu">☰</button>
-    <nav class="nav-links" id="primaryNav" aria-label="Primary"><a href="/">Home</a><a href="/services/">Services</a><a href="/solutions/">Solutions</a><a href="/portfolio/">Portfolio</a><a href="/reviews/">Reviews</a><a href="/process/">Process</a><a href="/pricing/" aria-current="page" class="active">Pricing</a><a href="/about/">About</a><a href="/contact/">Contact</a><a href="/start/">Start</a><a class="linklike mobile-only" href="/contact/?mode=consult">Book a Consultation</a><a href="/start/" class="mobile-only">Start a Project →</a></nav>
+    <nav class="nav-links" id="primaryNav" aria-label="Primary"><a href="/services/">Services</a><a href="/portfolio/">Our Work</a><a href="/pricing/" aria-current="page" class="active">Pricing</a><a href="/about/">About</a><a href="/start/" class="mobile-only">Start a Project →</a></nav>
     <div class="nav-cta">
-      <a class="btn btn-ghost btn-sm" href="/contact/?mode=consult">Book a Consultation</a>
       <a class="btn btn-primary btn-sm" href="/start/">Start a Project →</a>
     </div>
   </div>
@@ -36,7 +35,7 @@
 <section class="page-hero"><div class="container">
 <p class="crumbs"><a href="/">Home</a> / Pricing</p>
 <p class="eyebrow">Pricing</p><h1 style="color:var(--plum);font-size:clamp(2rem,4.5vw,3.2rem);letter-spacing:-1px">Transparent ranges. Fixed quotes.</h1>
-<p style="color:var(--muted);max-width:40rem;margin-top:12px">Pick a service, compare Starter / Growth / Premium, see what each includes — and start your project with the right package preselected. Your fixed quote lands in writing before we build.</p>
+<p style="color:var(--muted);max-width:40rem;margin-top:12px">Pick a category, expand to compare Starter / Growth / Premium, and start with the right service preselected. Your fixed quote lands in writing before we build. Big ideas. Flexible pricing.</p>
 </div></section>
 <section class="block"><div class="container">
 <div class="reveal" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:18px">
@@ -45,24 +44,48 @@
 </div>
 <div class="reveal svc-nav" id="svcNav" aria-label="Service shortcuts"><div class="row" id="svcNavRow"></div></div>
 <div class="reveal" id="promoSlot"></div>
-<div id="tierSections"></div>
+<div id="catSections"></div>
 <noscript><div class="card-grid">
-<div class="card"><h3>Website Development — Starter from $0</h3><p>Growth from $2,500 · Premium from $7,500.</p><p style="margin-top:10px"><a href="/start/?service=websites&tier=starter" class="btn btn-primary btn-sm">Start Inquiry →</a></p></div>
-<div class="card"><h3>Workflow Automation — Starter from $199</h3><p>Growth from $1,200 · Premium from $5,000.</p><p style="margin-top:10px"><a href="/start/?service=automation&tier=starter" class="btn btn-primary btn-sm">Start Inquiry →</a></p></div>
-<div class="card"><h3>Web Applications — Starter from $799</h3><p>Growth from $3,500 · Premium from $12,000.</p><p style="margin-top:10px"><a href="/start/?service=webapps&tier=starter" class="btn btn-primary btn-sm">Start Inquiry →</a></p></div>
-<div class="card"><h3>Mobile Applications — Starter from $1,499</h3><p>Growth from $6,000 · Premium from $18,000.</p><p style="margin-top:10px"><a href="/start/?service=mobileapps&tier=starter" class="btn btn-primary btn-sm">Start Inquiry →</a></p></div>
-<div class="card"><h3>Data &amp; Dashboards — Starter from $499</h3><p>Growth from $2,800 · Premium from $9,000.</p><p style="margin-top:10px"><a href="/start/?service=data&tier=starter" class="btn btn-primary btn-sm">Start Inquiry →</a></p></div>
-<div class="card"><h3>Cloud Infrastructure — Starter from $399</h3><p>Growth from $2,200 · Premium from $8,000.</p><p style="margin-top:10px"><a href="/start/?service=cloud&tier=starter" class="btn btn-primary btn-sm">Start Inquiry →</a></p></div>
-<div class="card"><h3>Custom Integrations — Custom Quote</h3><p>Starter, Growth, Premium scoped per project.</p><p style="margin-top:10px"><a href="/start/?service=integrations&tier=starter" class="btn btn-primary btn-sm">Start Inquiry →</a></p></div>
-<div class="card"><h3>Business Systems — Custom Quote</h3><p>Starter, Growth, Premium scoped per project.</p><p style="margin-top:10px"><a href="/start/?service=business&tier=starter" class="btn btn-primary btn-sm">Start Inquiry →</a></p></div>
-<div class="card"><h3>Security Services — Custom Quote</h3><p>Starter, Growth, Premium scoped per project.</p><p style="margin-top:10px"><a href="/start/?service=security&tier=starter" class="btn btn-primary btn-sm">Start Inquiry →</a></p></div>
+<div class="card"><h3>🌐 Websites — from $0</h3><p>Fast, accessible sites that rank and convert.</p><p style="margin-top:10px"><a href="/start/?service=websites" class="btn btn-primary btn-sm">Start Inquiry →</a></p></div>
+<div class="card"><h3>📱 Web &amp; Mobile Applications — from $799</h3><p>Custom portals, tools, and systems for how you operate.</p><p style="margin-top:10px"><a href="/start/?service=webapps" class="btn btn-primary btn-sm">Start Inquiry →</a></p></div>
+<div class="card"><h3>⚙️ Automation &amp; AI — from $199</h3><p>Remove manual steps from quotes, onboarding, follow-ups, reporting.</p><p style="margin-top:10px"><a href="/start/?service=automation" class="btn btn-primary btn-sm">Start Inquiry →</a></p></div>
+<div class="card"><h3>📊 Data &amp; Dashboards — from $499</h3><p>Real-time KPIs and weekly numbers the whole team understands.</p><p style="margin-top:10px"><a href="/start/?service=data" class="btn btn-primary btn-sm">Start Inquiry →</a></p></div>
 </div></noscript>
 <p class="reveal" style="margin-top:16px;font-size:.85rem;color:var(--faint)">All figures are <b>example starting ranges</b> — your fixed quote is confirmed in writing before we build. Nothing here is a promise or an approved price.</p>
-<p class="reveal" style="margin-top:10px;font-size:.85rem;color:var(--muted)">Timelines are estimates, contingent on scope, responsiveness, review turnaround, content readiness, and tier availability — <b>customer delays extend turnarounds day-for-day</b>. Your tracker shows the delivery tier, original/current ETA, and any outstanding items.</p>
 </div></section>
+
 <section class="block" style="padding-top:0"><div class="container">
-<div class="sec-head reveal"><div><p class="eyebrow">Add-ons</p><h2>Extend any package.</h2></div></div>
-<div class="card-grid reveal" id="upgradeMarket"></div>
+<div class="sec-head reveal"><div><p class="eyebrow">Enhancements</p><h2>Extend any package.</h2></div><p>Popular add-ons below — every one is Custom Quote and preselected into your intake. The full upgrade market follows, collapsed.</p></div>
+<div class="reveal card" id="enhanceBox" style="margin-bottom:14px"><div class="table-wrap"><table class="clean" id="enhanceTable"><thead><tr><th>Enhancement</th><th>Fits</th><th>Price</th><th></th></tr></thead><tbody></tbody></table></div></div>
+<details class="reveal card" id="fullMarketWrap" style="margin-bottom:14px"><summary style="font-weight:800;color:var(--plum);cursor:pointer">Full upgrade market — all categories (collapsed)</summary><div id="upgradeMarket" style="margin-top:12px"></div></details>
+</div></section>
+
+<section class="block" style="padding-top:0"><div class="container">
+<div class="sec-head reveal"><div><p class="eyebrow">Delivery</p><h2>How work ships.</h2></div><p>Every tier notes its delivery pace. Timelines are estimates — switch tabs for the two stages.</p></div>
+<div class="reveal">
+<div class="tablist" role="tablist" aria-label="Delivery stages" style="display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap">
+<button role="tab" id="tab-demo" aria-controls="panel-demo" aria-selected="true" class="btn btn-primary btn-sm">Demo preview</button>
+<button role="tab" id="tab-prod" aria-controls="panel-prod" aria-selected="false" tabindex="-1" class="btn btn-ghost btn-sm">Production launch</button>
+</div>
+<div id="panel-demo" role="tabpanel" aria-labelledby="tab-demo" class="card">
+<h3>Review on a demo link first</h3>
+<p style="color:var(--muted);font-size:.92rem">Staging-to-production flow — nothing ships untested. You review everything on a demo link, request changes, and approve before anything goes live. Demos use synthetic sample data only — your data stays in your accounts.</p>
+<ul><li>Demo link for review and feedback</li><li>Change requests before go-live</li><li>Your approval gates every launch</li></ul>
+</div>
+<div id="panel-prod" role="tabpanel" aria-labelledby="tab-prod" class="card" hidden>
+<h3>Launched, tracked, supported</h3>
+<p style="color:var(--muted);font-size:.92rem">Timelines are estimates, contingent on scope, responsiveness, review turnaround, content readiness, and tier availability — <b>customer delays extend turnarounds day-for-day</b>. Your tracker shows the delivery tier, original/current ETA, and any outstanding items. Expedited delivery is confirmed only after we review requirements and queue availability.</p>
+<ul><li>Standard delivery or a scoped timeline, noted per tier</li><li>Tracker with delivery tier and current ETA</li><li>Ongoing support is optional — you own the system either way</li></ul>
+</div>
+</div>
+</div></section>
+
+<section class="block" style="padding-top:0"><div class="container">
+<div class="sec-head reveal"><div><p class="eyebrow">More capabilities</p><h2>Specialist services &amp; bundles.</h2></div><p>Cloud, integrations, business systems, security, packaged bundles, and discounts — all collapsed, all priced from the same catalog.</p></div>
+<div class="reveal" id="moreSections"></div>
+<details class="reveal card" style="margin-bottom:14px"><summary style="font-weight:800;color:var(--plum);cursor:pointer">Bundled packages (collapsed)</summary><div id="packageBox" style="margin-top:12px"></div></details>
+<details class="reveal card" style="margin-bottom:14px"><summary style="font-weight:800;color:var(--plum);cursor:pointer">Ongoing support options (collapsed)</summary><div id="supportBox" style="margin-top:12px"></div></details>
+<details class="reveal card" style="margin-bottom:14px"><summary style="font-weight:800;color:var(--plum);cursor:pointer">Limited-time development discounts (collapsed)</summary><div id="discountBox" style="margin-top:12px"></div></details>
 <p style="margin-top:22px"><a href="/start/" class="btn btn-primary">Start a Project Inquiry →</a></p>
 </div></section>
 <section class="block" style="padding-top:0"><div class="container">
@@ -72,18 +95,19 @@
 <h2>Ready to build something powerful?</h2><p>Let's turn your idea into a real solution that moves your business forward.</p>
 <div class="row">
 <a class="btn btn-primary" href="/start/">Start a Project <span aria-hidden="true">→</span></a>
-<a class="btn btn-ghost" href="/contact/?mode=consult">📅 Book a Consultation</a>
+<p style="margin-top:10px;font-size:.9rem">Prefer to talk first? <a href="/start/#consult" style="color:var(--purple);font-weight:700">Book a consultation →</a></p>
 </div></div></section>
 </main>
 <footer>
   <div class="container">
     <div class="foot-grid">
       <div><a class="logo" href="/" style="margin-bottom:12px"><span class="logo-mark">N</span>NexGenShift</a><p>Websites, apps, automation, cloud, data, and security for growing businesses. Serving businesses remotely across the US.</p></div>
-      <div><h4>Explore</h4><a href="/">Home</a><a href="/services/">Services</a><a href="/solutions/">Solutions</a><a href="/portfolio/">Portfolio</a><a href="/reviews/">Reviews</a></div>
-      <div><h4>Company</h4><a href="/process/">Process</a><a href="/pricing/">Pricing</a><a href="/about/">About</a><a href="/contact/">Contact</a></div>
-      <div><h4>Get Started</h4><a href="/start/">Start a Project</a><a class="linklike" href="/contact/?mode=consult">Book a Consultation</a></div>
+      <div><h4>Explore</h4><a href="/services/">Services</a><a href="/portfolio/">Our Work</a><a href="/pricing/">Pricing</a></div>
+      <div><h4>Company</h4><a href="/services/">Services</a><a href="/about/">About</a><a href="/solutions/">Who We Help</a><a href="/portfolio/#reviews">Reviews</a></div>
+      <div><h4>Resources</h4><a href="/pricing/">Pricing &amp; Packages</a><a href="/start/#consult">Book a Consultation</a><a href="/solutions/">Who We Help</a></div>
+      <div><h4>Customer Access</h4><a href="/start/">Start a Project</a><a href="mailto:contact@nexgenshift.com">contact@nexgenshift.com</a><span style="font-size:.82rem;color:var(--muted)">Replies within one business day.</span></div>
     </div>
-    <div class="foot-base"><span>© <span id="year">2026</span> NexGenShift · We Build the Systems Behind Your Business.</span><span>Replies within one business day.</span></div>
+    <div class="foot-base"><span>© <span id="year">2026</span> NexGenShift.</span><span>Replies within one business day.</span></div>
   </div>
 </footer>
 
@@ -93,14 +117,24 @@
 
 <script>
 (function(){
-var promoSlot=document.getElementById('promoSlot'),tiers=document.getElementById('tierSections'),market=document.getElementById('upgradeMarket'),tgl=document.getElementById('billToggle'),navRow=document.getElementById('svcNavRow'),showRecurring=false;
+var promoSlot=document.getElementById('promoSlot'),cats=document.getElementById('catSections'),more=document.getElementById('moreSections'),enhBody=document.querySelector('#enhanceTable tbody'),market=document.getElementById('upgradeMarket'),pkgBox=document.getElementById('packageBox'),supBox=document.getElementById('supportBox'),discBox=document.getElementById('discountBox'),tgl=document.getElementById('billToggle'),navRow=document.getElementById('svcNavRow'),showRecurring=false;
+var CATS=[
+  {id:'websites',icon:'🌐',name:'Websites',svcIds:['websites'],startSvc:'websites'},
+  {id:'apps',icon:'📱',name:'Web & Mobile Applications',svcIds:['webapps','mobileapps'],startSvc:'webapps'},
+  {id:'automation',icon:'⚙️',name:'Automation & AI',svcIds:['automation'],startSvc:'automation'},
+  {id:'data',icon:'📊',name:'Data & Dashboards',svcIds:['data'],startSvc:'data'}
+];
+var MORE=['cloud','integrations','business','security'];
+var CURATED=['ai-chatbot','ai-support','ai-agents','payments','cust-portal','auth-plus','data-int','ai-analytics','wf-triggers'];
+var SHORT={websites:'Websites',webapps:'Web apps',mobileapps:'Mobile apps',automation:'Automation',data:'Data',business:'Business systems',integrations:'Integrations',cloud:'Cloud',security:'Security'};
 function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;')}
+function svcUpgrades(svcId,cfg){return (cfg.upgrades||[]).filter(function(u){return (u.services||[]).indexOf(svcId)>=0});}
 function tierCard(svc,tierKey,tier,emph,upsForSvc){
   var isGrowth=tierKey==='growth'&&emph;
   var feats=(tier.includes||[]).map(function(i){return '<li>'+esc(i)+'</li>'}).join('');
   var price=esc(tier.priceDisplay||'Custom Quote');
   var rec=(tier.recurring)?'<p style="font-size:.8rem;color:var(--muted)">'+(showRecurring?'+ ':'')+esc(tier.recurring)+'</p>':'';
-  var promoParam=(tier.promoId&&(window.__promo&&window.__promo.active))?'&promo='+encodeURIComponent(window.__promo.id):'';
+  var promoParam=(tier.promoId&&(window.__promo&&window.__promo.active)?'&promo='+encodeURIComponent(window.__promo.id):'');
   var meta='<div class="tier-meta"><span>'+(tier.price==null?'Custom Quote':'Starting at')+'</span><span>'+(tier.delivery?esc(tier.delivery):'Scoped timeline')+'</span>'+(tier.recurring?'<span>Ongoing: '+esc(tier.recurring)+'</span>':'<span>No subscription</span>')+'</div>';
   var excl=tier.excludes?'<p class="excl"><b>Not included:</b> '+esc(tier.excludes)+'</p>':'';
   var pur=upsForSvc.length?'<p class="prem">Pairs with: '+esc(upsForSvc.slice(0,3).map(function(u){return u.name}).join(' · '))+(upsForSvc.length>3?' +'+(upsForSvc.length-3)+' more below':'')+'</p>':'';
@@ -109,12 +143,16 @@ function tierCard(svc,tierKey,tier,emph,upsForSvc){
     +'<p style="font-size:.84rem;color:var(--muted)">'+esc(tier.value||'')+'</p><ul>'+feats+'</ul>'+pur+excl
     +'<p style="margin-top:auto;padding-top:16px"><a href="/start/?service='+svc.id+'&tier='+tierKey+promoParam+'" class="btn '+(isGrowth?'btn-primary':'btn-ghost')+' btn-sm" style="width:100%;justify-content:center">'+esc(tier.cta||'Choose')+' →</a></p></div>';
 }
-function svcUpgrades(svcId,cfg){
-  return (cfg.upgrades||[]).filter(function(u){return (u.services||[]).indexOf(svcId)>=0});
+function svcTierBlock(svc,cfg,promo){
+  var ups=svcUpgrades(svc.id,cfg);
+  var cards=['starter','growth','premium'].map(function(k){return tierCard(svc,k,svc[k],true,ups)}).join('');
+  return '<a id="svc-'+svc.id+'"></a><h3 style="font-size:1.05rem;color:var(--plum);margin:14px 0 10px">'+esc(svc.name)+' — Starter / Growth / Premium</h3><div class="price-grid">'+cards+'</div>';
 }
+function svcLookup(cfg){var m={};(cfg.services||[]).forEach(function(s){m[s.id]=s});return m;}
 function render(cfg){
   window.__pricing=cfg;
   var promo=(cfg.promotions&&cfg.promotions.active)?cfg.promotions:null;window.__promo=promo;
+  var byId=svcLookup(cfg);
   var sbw=promo?promo.smallBusinessWebsite:null;
   var promoCard=sbw?'<div class="price-card hot" style="margin-bottom:18px;text-align:center;padding:32px 26px"><p class="tier">✦ '+esc(promo.label||'Limited-Time Offer')+'</p>'
     +'<h3>Small-Business Website — Promotional Offer</h3>'
@@ -124,21 +162,49 @@ function render(cfg){
     +'<p style="margin-top:14px"><a href="/start/?service=websites&tier=starter&promo='+esc(promo.id||'')+'" class="btn btn-primary btn-sm">Claim the Free Build →</a></p></div>':'';
   promoSlot.innerHTML=promoCard;
   if(navRow){navRow.innerHTML=(cfg.services||[]).map(function(svc){return '<a href="#svc-'+svc.id+'" data-svc="'+svc.id+'">'+esc(svc.name)+'</a>'}).join('');}
-  tiers.innerHTML=(cfg.services||[]).map(function(svc){
-    var ups=svcUpgrades(svc.id,cfg);
-    return '<section class="svc-sec reveal" id="sec-'+svc.id+'"><a id="svc-'+svc.id+'"></a><div class="sec-head"><div><p class="eyebrow">'+esc(svc.tagline||'Service')+'</p><h2>'+esc(svc.name)+'</h2></div></div>'
-      +'<div class="price-grid">'+['starter','growth','premium'].map(function(k){return tierCard(svc,k,svc[k],true,ups)}).join('')+'</div>'
-      +(ups.length?'<div class="svc-ups card" style="margin-top:16px"><h3 style="font-size:1rem">Popular upgrades for '+esc(svc.name)+'</h3><div class="up-cat">Relevant add-ons — Custom Quote unless noted</div><ul>'+ups.map(function(u){return '<li><b>'+esc(u.name)+'</b> — '+esc(u.priceDisplay||'Custom Quote')+(u.note?' <span style="color:var(--faint);font-size:.76rem">('+esc(u.note)+')</span>':'')+' <a href="/start/?service='+encodeURIComponent(svc.id)+'&upgrade='+encodeURIComponent(u.id)+(promo?'&promo='+encodeURIComponent(promo.id):'')+'" style="font-size:.78rem">Preselect in intake →</a></li>'}).join('')+'</ul></div>':'')
-      +'</section>';
-  }).join('')+((promo&&(promo.serviceDiscounts||[]).length)?'<div class="price-card reveal" style="text-align:center;margin-bottom:34px"><p class="tier">LIMITED-TIME DEVELOPMENT DISCOUNTS</p><h3>Custom Services — Save Now</h3><ul style="text-align:left;max-width:36rem;margin:0 auto">'+promo.serviceDiscounts.map(function(d){return '<li><b>'+esc(d.discountPct)+'% OFF</b> '+esc(d.name)+' — Request a Quote</li>'}).join('')+'</ul><p style="font-size:.76rem;color:var(--faint);margin-top:10px">Custom-quoted development only. Excludes AWS bills, hosting, third-party fees, licenses, taxes &amp; subscriptions.</p><p style="margin-top:12px"><a href="/start/?promo='+esc(promo.id||'')+'" class="btn btn-primary btn-sm">Request a Quote →</a></p></div>':'');
-  var cats={};(cfg.upgrades||[]).forEach(function(u){(cats[u.category]=cats[u.category]||[]).push(u)});
-  market.innerHTML='<div class="sec-head reveal"><div><p class="eyebrow">Premium Upgrades</p><h2>Explore optional upgrades.</h2></div><p>Only upgrades that fit your service are offered in intake. One-time fees unless noted; third-party operating costs always excluded.</p></div>'
-    +Object.keys(cats).map(function(c){
-      return '<div class="card reveal" style="margin-bottom:14px"><h3>'+esc(c)+'</h3><ul>'+cats[c].map(function(u){return '<li><b>'+esc(u.name)+'</b> — '+esc(u.priceDisplay||'Custom Quote')+(u.note?' <span style="color:var(--faint);font-size:.76rem">('+esc(u.note)+')</span>':'')+' <a href="/start/?service='+encodeURIComponent(u.services[0])+'&upgrade='+encodeURIComponent(u.id)+(promo?'&promo='+encodeURIComponent(promo.id):'')+'" style="font-size:.78rem">Preselect in intake →</a>'+'</li>'}).join('')+'</ul></div>';
-    }).join('');
-  if(window.__ngsReveal)window.__ngsReveal(document.getElementById('tierSections').parentNode);
+  cats.innerHTML=CATS.map(function(c){
+    var svcs=c.svcIds.map(function(id){return byId[id]}).filter(Boolean);
+    if(!svcs.length)return '';
+    var first=svcs[0];
+    var priceLine=svcs.length===1?esc(first.starter.priceDisplay||'Custom Quote'):svcs.map(function(s){return esc(SHORT[s.id]||s.name)+' '+esc(s.starter.priceDisplay||'Custom Quote')}).join(' · ');
+    var top3=(first.starter.includes||[]).slice(0,3).map(function(i){return '<li>'+esc(i)+'</li>'}).join('');
+    var detail=svcs.map(function(s){return svcTierBlock(s,cfg,promo)}).join('');
+    return '<section class="svc-sec reveal" id="sec-'+c.id+'"><div class="card" style="margin-bottom:18px">'
+      +'<h2 style="color:var(--plum)">'+c.icon+' '+esc(c.name)+'</h2>'
+      +'<p style="color:var(--muted);font-size:.92rem">'+esc(first.tagline||'')+'</p>'
+      +'<p class="amt" style="font-size:1.4rem;font-weight:900;color:var(--plum)">'+priceLine+'</p>'
+      +'<ul style="font-size:.88rem;color:var(--muted);margin:10px 0">'+top3+'</ul>'
+      +'<p style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px"><a href="/start/?service='+c.startSvc+'" class="btn btn-primary btn-sm">Start →</a></p>'
+      +'<details style="margin-top:10px"><summary style="font-weight:800;color:var(--purple);cursor:pointer">Expand — compare Starter / Growth / Premium</summary><div style="margin-top:12px">'+detail+'</div></details>'
+      +'</div></section>';
+  }).join('');
+  more.innerHTML=MORE.map(function(id){
+    var s=byId[id];if(!s)return '';
+    return '<details class="card" style="margin-bottom:14px"><summary style="font-weight:800;color:var(--plum);cursor:pointer">'+esc(s.name)+' — '+esc(s.starter.priceDisplay||'Custom Quote')+' · '+esc(s.tagline||'')+'</summary><div style="margin-top:12px">'+svcTierBlock(s,cfg,promo)+'</div></details>';
+  }).join('');
+  var upById={};(cfg.upgrades||[]).forEach(function(u){upById[u.id]=u});
+  enhBody.innerHTML=CURATED.map(function(id){
+    var u=upById[id];if(!u)return '';
+    var fits=(u.services||[]).map(function(s){return esc(SHORT[s]||s)}).join(', ');
+    var firstSvc=(u.services||[])[0]||'websites';
+    var href='/start/?service='+encodeURIComponent(firstSvc)+'&upgrade='+encodeURIComponent(u.id)+(promo?'&promo='+encodeURIComponent(promo.id):'');
+    return '<tr><td><b>'+esc(u.name)+'</b>'+(u.note?' <span style="color:var(--faint);font-size:.76rem">('+esc(u.note)+')</span>':'')+'</td><td style="font-size:.82rem;color:var(--muted)">'+fits+'</td><td>'+esc(u.priceDisplay||'Custom Quote')+'</td><td><a href="'+href+'" style="font-size:.8rem">Add →</a></td></tr>';
+  }).join('');
+  var cats2={};(cfg.upgrades||[]).forEach(function(u){(cats2[u.category]=cats2[u.category]||[]).push(u)});
+  market.innerHTML=Object.keys(cats2).map(function(c){
+    return '<div class="card" style="margin-bottom:14px"><h3>'+esc(c)+'</h3><ul>'+cats2[c].map(function(u){return '<li><b>'+esc(u.name)+'</b> — '+esc(u.priceDisplay||'Custom Quote')+(u.note?' <span style="color:var(--faint);font-size:.76rem">('+esc(u.note)+')</span>':'')+' <a href="/start/?service='+encodeURIComponent(u.services[0])+'&upgrade='+encodeURIComponent(u.id)+(promo?'&promo='+encodeURIComponent(promo.id):'')+'" style="font-size:.78rem">Preselect in intake →</a></li>'}).join('')+'</ul></div>';
+  }).join('');
+  pkgBox.innerHTML=(cfg.packages||[]).map(function(p){
+    return '<div class="card" style="margin-bottom:12px"><h3>'+esc(p.name)+'</h3><p><b>'+esc(p.priceNote?p.priceNote+' ':'')+esc(p.price||'Custom Quote')+'</b> <span style="font-size:.8rem;color:var(--muted)">Support: '+esc(p.supportPrice||'Custom Quote')+'</span></p>'
+    +'<p style="font-size:.88rem;color:var(--muted)">'+esc(p.target||'')+'</p><ul>'+(p.includes||[]).map(function(i){return '<li>'+esc(i)+'</li>'}).join('')+'</ul>'
+    +'<p style="font-size:.78rem;color:var(--faint)">'+esc(p.exclusions||'')+'</p>'
+    +'<p><a href="/start/?package='+encodeURIComponent(p.id)+'" class="btn btn-ghost btn-sm">Start with '+esc(p.name)+' →</a></p></div>';
+  }).join('');
+  supBox.innerHTML='<ul>'+(cfg.optionalServices||[]).map(function(o){return '<li><b>'+esc(o.icon||'')+' '+esc(o.name)+'</b> — '+esc(o.note||'Custom Quote')+'</li>'}).join('')+'</ul>';
+  discBox.innerHTML=((promo&&(promo.serviceDiscounts||[]).length)?'<ul>'+promo.serviceDiscounts.map(function(d){return '<li><b>'+esc(String(d.discountPct))+'% OFF</b> '+esc(d.name)+' — '+esc(d.note||'Request a Quote')+'</li>'}).join('')+'</ul><p style="margin-top:12px"><a href="/start/?promo='+esc(promo.id||'')+'" class="btn btn-primary btn-sm">Request a Quote →</a></p>':'<p style="color:var(--muted)">No active discounts in the catalog.</p>');
+  if(window.__ngsReveal)window.__ngsReveal(document.getElementById('catSections').parentNode);
 }
-fetch('/config/pricing.json').then(function(r){return r.json()}).then(render).catch(function(){tiers.innerHTML='<p style="color:var(--muted)">Pricing is temporarily unavailable — please <a href="/contact/">contact us</a> for current packages.</p>';});
+fetch('/config/pricing.json').then(function(r){return r.json()}).then(render).catch(function(){cats.innerHTML='<p style="color:var(--muted)">Pricing is temporarily unavailable — please <a href="/start/">contact us</a> for current packages.</p>';});
 if(tgl){tgl.addEventListener('click',function(){showRecurring=!showRecurring;
 tgl.setAttribute('aria-pressed',showRecurring?'true':'false');
 tgl.textContent=showRecurring?'Recurring Charges Shown ✓ · Click to Hide':'One-Time Development ✓ · Click for Recurring Charges';

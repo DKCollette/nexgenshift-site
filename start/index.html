@@ -40,10 +40,9 @@
   <div class="nav-inner">
     <a class="logo" href="/" aria-label="NexGenShift home"><span class="logo-mark">N</span>NexGenShift</a>
     <button class="hamburger" id="hamburger" aria-expanded="false" aria-controls="primaryNav" aria-label="Open menu">☰</button>
-    <nav class="nav-links" id="primaryNav" aria-label="Primary"><a href="/">Home</a><a href="/services/">Services</a><a href="/solutions/">Solutions</a><a href="/portfolio/">Portfolio</a><a href="/reviews/">Reviews</a><a href="/process/">Process</a><a href="/pricing/">Pricing</a><a href="/about/">About</a><a href="/contact/">Contact</a><a href="/start/" aria-current="page" class="active">Start</a><a class="linklike mobile-only" href="/contact/?mode=consult">Book a Consultation</a><a href="/start/" class="mobile-only">Start a Project →</a></nav>
+    <nav class="nav-links" id="primaryNav" aria-label="Primary"><a href="/services/">Services</a><a href="/portfolio/">Our Work</a><a href="/pricing/">Pricing</a><a href="/about/">About</a><a href="/start/" class="mobile-only">Start a Project →</a></nav>
     <div class="nav-cta">
-      <a class="btn btn-ghost btn-sm" href="/contact/?mode=consult">Book a Consultation</a>
-      <a class="btn btn-primary btn-sm" href="/start/">Start a Project →</a>
+      <a class="btn btn-primary btn-sm" href="/start/" aria-current="page">Start a Project →</a>
     </div>
   </div>
 </header>
@@ -52,7 +51,7 @@
 <section class="page-hero"><div class="container">
 <p class="crumbs"><a href="/">Home</a> / Start</p>
 <p class="eyebrow">Start a Project</p><h1 style="color:var(--plum);font-size:clamp(2rem,4.5vw,3.2rem);letter-spacing:-1px">Tell Us About Your Project</h1>
-<p style="color:var(--muted);max-width:40rem;margin-top:12px">Pick a service, choose a package, customize it, set your budget and timeline — about three minutes. Your selections shape a preliminary estimate only; your fixed quote lands in writing before we build. Not sure yet? <a href="/contact/?mode=consult">Book a consultation</a>.</p>
+<p style="color:var(--muted);max-width:40rem;margin-top:12px">Pick a service, choose a package, customize it, set your budget and timeline — about three minutes. Your selections shape a preliminary estimate only; your fixed quote lands in writing before we build. Not sure yet? <a href="/start/#consult">Book a consultation</a>.</p>
 </div></section>
 <section class="block"><div class="container" style="max-width:820px">
 <div id="stepBar" class="reveal" style="display:flex;gap:6px;margin:0 0 8px" aria-hidden="true"><div style="flex:1;height:6px;border-radius:99px;background:var(--line)"></div><div style="flex:1;height:6px;border-radius:99px;background:var(--line)"></div><div style="flex:1;height:6px;border-radius:99px;background:var(--line)"></div><div style="flex:1;height:6px;border-radius:99px;background:var(--line)"></div><div style="flex:1;height:6px;border-radius:99px;background:var(--line)"></div><div style="flex:1;height:6px;border-radius:99px;background:var(--line)"></div></div>
@@ -114,28 +113,44 @@
 <div style="font-size:2.4rem;margin-bottom:10px">✉️</div>
 <h3>Intake received!</h3>
 <p style="color:var(--muted)" id="doneText">Thank you — we&apos;ll reply within one business day with clear next steps.</p>
-<p style="margin-top:14px;font-size:.85rem;color:var(--muted)">Prefer to talk it through? <a href="/contact/?mode=consult">Book a consultation</a>.</p>
+<p style="margin-top:14px;font-size:.85rem;color:var(--muted)">Prefer to talk it through? See <a href="#consult">consultation mode</a> below.</p>
 </div>
 <p id="preselectNote" role="status" style="display:none;font-size:.85rem;color:var(--purple);margin-top:12px"></p>
-</div></section><section class="block" style="padding-top:0"><div class="container">
+</div></section>
+<section class="block" id="consult" style="padding-top:0"><div class="container" style="max-width:820px">
+<div class="demo-box reveal"><p class="eyebrow">Consultation — secondary</p><h3>Need guidance before you're ready to build?</h3>
+<p style="color:var(--muted);font-size:.92rem">Book a 30-minute plain-English consultation: bring one frustrating process (scheduling, follow-ups, reporting…), leave with a written summary and a scoped next step. No commitment, no jargon.</p>
+<p class="hint">We reply within one business day. No spam, no obligation.</p>
+<div class="form-err" id="cf-e" role="alert"></div><div class="form-ok" id="cf-o" role="status"></div>
+<form id="consultForm" novalidate style="margin-top:14px">
+<input type="checkbox" name="botcheck" id="cf-company" value="" style="display:none" tabindex="-1" autocomplete="off">
+<div class="form-group"><label for="cf-name">Name *</label><input id="cf-name" name="name" type="text" autocomplete="name" placeholder="Jordan Smith"></div>
+<div class="form-group"><label for="cf-email">Email *</label><input id="cf-email" name="email" type="email" autocomplete="email" placeholder="you@business.com"></div>
+<div class="form-group"><label for="cf-budget">Estimated budget range</label><select id="cf-budget" name="budget"><option value="">Select a range (optional)</option></select></div>
+<div class="form-group"><label for="cfc-msg">Where does work feel slow, manual, or disconnected? *</label><textarea id="cfc-msg" name="message_consult" rows="4" placeholder="Describe one process that frustrates you — e.g. scheduling, follow-ups, inventory, reporting…"></textarea></div>
+<button class="btn btn-primary" type="submit" id="cf-send">Request consultation →</button>
+</form></div>
+</div></section>
+<section class="block" style="padding-top:0"><div class="container">
 <div class="sec-head reveal"><div><p class="eyebrow">FAQ</p><h2>Common questions.</h2></div></div>
 <div class="faq"><details class='reveal'><summary>Is there really a free website build?</summary><p>Yes — qualifying standard small-business websites get a <b>$0 (FREE) build</b> (regularly $750) plus the <b>first subscription month free</b> at <b>$50/month</b>, with billing from month two at launch. Select the promotion in your intake — no payment is taken online. Custom apps and complex builds are quoted separately.</p></details><details class='reveal'><summary>Are Growth and Premium prices final?</summary><p>All tiers show fixed <b>starting prices</b>. Your fixed quote is confirmed in writing before we build — the starting price is the floor for the smallest useful scope, not a cap.</p></details><details class='reveal'><summary>Is my budget a guaranteed quote?</summary><p>No — your budget selection helps us scope. Your fixed quote is confirmed in writing before we build.</p></details><details class='reveal'><summary>Do I pay to start a conversation?</summary><p>No — discovery and scoping are free; you pay only when the build begins.</p></details><details class='reveal'><summary>Can I change my brief after sending?</summary><p>Anytime before the scope is signed — just send an update.</p></details><details class='reveal'><summary>How fast do you reply?</summary><p>Within one business day — usually faster.</p></details></div></div></section>
 <section class="block final"><div class="container reveal">
 <h2>Ready to build something powerful?</h2><p>Let's turn your idea into a real solution that moves your business forward.</p>
 <div class="row">
 <a class="btn btn-primary" href="/start/">Start a Project <span aria-hidden="true">→</span></a>
-<a class="btn btn-ghost" href="/contact/?mode=consult">📅 Book a Consultation</a>
+<p style="margin-top:10px;font-size:.9rem">Prefer to talk first? <a href="/start/#consult" style="color:var(--purple);font-weight:700">Book a consultation →</a></p>
 </div></div></section>
 </main>
 <footer>
   <div class="container">
     <div class="foot-grid">
       <div><a class="logo" href="/" style="margin-bottom:12px"><span class="logo-mark">N</span>NexGenShift</a><p>Websites, apps, automation, cloud, data, and security for growing businesses. Serving businesses remotely across the US.</p></div>
-      <div><h4>Explore</h4><a href="/">Home</a><a href="/services/">Services</a><a href="/solutions/">Solutions</a><a href="/portfolio/">Portfolio</a><a href="/reviews/">Reviews</a></div>
-      <div><h4>Company</h4><a href="/process/">Process</a><a href="/pricing/">Pricing</a><a href="/about/">About</a><a href="/contact/">Contact</a></div>
-      <div><h4>Get Started</h4><a href="/start/">Start a Project</a><a class="linklike" href="/contact/?mode=consult">Book a Consultation</a></div>
+      <div><h4>Explore</h4><a href="/services/">Services</a><a href="/portfolio/">Our Work</a><a href="/pricing/">Pricing</a></div>
+      <div><h4>Company</h4><a href="/about/">About</a><a href="/solutions/">Who We Help</a><a href="/portfolio/#reviews">Reviews</a></div>
+      <div><h4>Resources</h4><a href="/pricing/">Pricing &amp; Packages</a><a href="/start/#consult">Book a Consultation</a><a href="/solutions/">Who We Help</a></div>
+      <div><h4>Customer Access</h4><a href="/start/">Start a Project</a><a href="mailto:contact@nexgenshift.com">contact@nexgenshift.com</a><span style="font-size:.82rem;color:var(--muted)">Replies within one business day.</span></div>
     </div>
-    <div class="foot-base"><span>© <span id="year">2026</span> NexGenShift · We Build the Systems Behind Your Business.</span><span>Replies within one business day.</span></div>
+    <div class="foot-base"><span>© <span id="year">2026</span> NexGenShift.</span><span>Replies within one business day.</span></div>
   </div>
 </footer>
 

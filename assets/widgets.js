@@ -44,6 +44,22 @@
     });
   });
 
+  /* ---- Standalone consult form (#consultForm on /start/) -> AWS intake receiver ---- */
+  (function () {
+    var f = document.getElementById('consultForm');
+    if (!f || f.hasAttribute('data-live-contact')) return;
+    f.setAttribute('data-live-contact', '');
+    var sel = document.getElementById('cf-budget');
+    if (sel && sel.options.length <= 1) {
+      ['$0 — Free Website Promotion','$1–$249','$250–$499','$500–$999','$1,000–$2,499','$2,500–$4,999','$5,000–$9,999','$10,000+','Not Sure — Help Me Estimate'].forEach(function (b) {
+        var o = document.createElement('option'); o.textContent = b; sel.appendChild(o);
+      });
+    }
+    // rename message field so the shared live-contact handler picks it up
+    var msg = document.getElementById('cfc-msg');
+    if (msg && !document.getElementById('cf-msg')) msg.id = 'cf-msg';
+  })();
+
 /* ---- Reviews: public list render + submission queue (localStorage, rate-limited) ---- */
   function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
   var listEl = $("#review-list");

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Portfolio | NexGenShift</title>
+<title>Our Work | NexGenShift</title>
 <meta name="description" content="Illustrative concepts and prototypes — honestly labeled.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://nexgenshift.com/portfolio/">
@@ -24,9 +24,8 @@
   <div class="nav-inner">
     <a class="logo" href="/" aria-label="NexGenShift home"><span class="logo-mark">N</span>NexGenShift</a>
     <button class="hamburger" id="hamburger" aria-expanded="false" aria-controls="primaryNav" aria-label="Open menu">☰</button>
-    <nav class="nav-links" id="primaryNav" aria-label="Primary"><a href="/">Home</a><a href="/services/">Services</a><a href="/solutions/">Solutions</a><a href="/portfolio/" aria-current="page" class="active">Portfolio</a><a href="/reviews/">Reviews</a><a href="/process/">Process</a><a href="/pricing/">Pricing</a><a href="/about/">About</a><a href="/contact/">Contact</a><a href="/start/">Start</a><a class="linklike mobile-only" href="/contact/?mode=consult">Book a Consultation</a><a href="/start/" class="mobile-only">Start a Project →</a></nav>
+    <nav class="nav-links" id="primaryNav" aria-label="Primary"><a href="/services/">Services</a><a href="/portfolio/" aria-current="page" class="active">Our Work</a><a href="/pricing/">Pricing</a><a href="/about/">About</a><a href="/start/" class="mobile-only">Start a Project →</a></nav>
     <div class="nav-cta">
-      <a class="btn btn-ghost btn-sm" href="/contact/?mode=consult">Book a Consultation</a>
       <a class="btn btn-primary btn-sm" href="/start/">Start a Project →</a>
     </div>
   </div>
@@ -34,26 +33,69 @@
 <main id="main">
 
 <section class="page-hero"><div class="container">
-<p class="crumbs"><a href="/">Home</a> / Portfolio</p>
-<p class="eyebrow">Portfolio</p><h1 style="color:var(--plum);font-size:clamp(2rem,4.5vw,3.2rem);letter-spacing:-1px">Selected work, honestly labeled.</h1>
-<p style="color:var(--muted);max-width:36rem;margin-top:12px">Every piece below is labeled for what it actually is — concept or prototype. Nothing here claims to be a client engagement or promises results.</p>
-</div></section><section class="block"><div class="container"><div class="card-grid two reveal"><div class="card"><p><span class="pill concept">CONCEPT</span></p><h3>Ironwood Security</h3><p>Exec-protection firm marketing site — services, vetting story, discreet contact.</p><a class="go" href="/portfolio/ironwood-security/">Case study →</a></div><div class="card"><p><span class="pill concept">PROTOTYPE</span></p><h3>iDealHope Recovery</h3><p>Recovery-support resource hub — program finder, stories of hope, gentle first-step contact.</p><a class="go" href="/portfolio/idealhope-recovery/">Case study →</a></div><div class="card"><p><span class="pill concept">PROTOTYPE</span></p><h3>FitFolio AI Closet</h3><p>Local-first virtual closet — single-user, photos persist in the browser.</p><a class="go" href="/portfolio/fitfolio-closet/">Case study →</a></div><div class="card"><p><span class="pill concept">CONCEPT</span></p><h3>Field Ops Dashboard</h3><p>Internal tool concept for a service business — job board, crew scheduling, revenue KPIs.</p><a class="go" href="/portfolio/field-ops-dashboard/">Case study →</a></div><div class="card"><p><span class="pill concept">CONCEPT</span></p><h3>Sacred Path Guidance</h3><p>Tarot & spiritual-guidance site — services, availability, bookings, contact.</p><a class="go" href="/portfolio/sacred-path-guidance/">Case study →</a></div><div class="card"><p><span class="pill concept">CONCEPT</span></p><h3>Maple & Main Booking</h3><p>Sample booking flow for a home-services shop — 60-second online booking.</p><a class="go" href="/portfolio/maple-main-booking/">Case study →</a></div></div><p class='disclaimer reveal' style='margin-top:22px'>All pieces are illustrative. No client relationships, outcomes, testimonials, or live URLs are claimed or implied. Fictional names (Maple &amp; Main, Ironwood) exist only inside this preview.</p></div></section>
+<p class="crumbs"><a href="/">Home</a> / Our Work</p>
+<p class="eyebrow">Our Work</p><h1 style="color:var(--plum);font-size:clamp(2rem,4.5vw,3.2rem);letter-spacing:-1px">Selected work, honestly labeled.</h1>
+<p style="color:var(--muted);max-width:36rem;margin-top:12px">Every piece below is labeled for what it actually is — concept or prototype. Nothing here claims to be a client engagement or promises results. Ideas turned into reality.</p>
+</div></section>
+<section class="block"><div class="container">
+<div class="work-filters reveal" role="group" aria-label="Filter work by category">
+<button type="button" data-filter="all" aria-pressed="true">All</button>
+<button type="button" data-filter="websites" aria-pressed="false">Websites</button>
+<button type="button" data-filter="applications" aria-pressed="false">Applications</button>
+<button type="button" data-filter="automation" aria-pressed="false">Automation</button>
+<button type="button" data-filter="systems" aria-pressed="false">Business Systems</button>
+<button type="button" data-filter="data" aria-pressed="false">Data</button>
+<button type="button" data-filter="ai" aria-pressed="false">AI</button>
+</div>
+<p class="hint" id="filterCount" aria-live="polite" style="margin-bottom:14px"></p>
+<div class="card-grid two reveal" id="workGrid">
+<div class="card work-card" data-cat="websites"><p><span class="pill concept">CONCEPT</span></p><h3>Ironwood Security</h3><p>Exec-protection firm marketing site — services, vetting story, discreet contact.</p><a class="go" href="/portfolio/ironwood-security/">Case study →</a></div>
+<div class="card work-card" data-cat="websites"><p><span class="pill concept">PROTOTYPE</span></p><h3>iDealHope Recovery</h3><p>Recovery-support resource hub — program finder, stories of hope, gentle first-step contact.</p><a class="go" href="/portfolio/idealhope-recovery/">Case study →</a></div>
+<div class="card work-card" data-cat="applications ai"><p><span class="pill concept">PROTOTYPE</span></p><h3>FitFolio AI Closet</h3><p>Local-first virtual closet — single-user, photos persist in the browser.</p><a class="go" href="/portfolio/fitfolio-closet/">Case study →</a></div>
+<div class="card work-card" data-cat="automation systems data"><p><span class="pill concept">CONCEPT</span></p><h3>Field Ops Dashboard</h3><p>Internal tool concept for a service business — job board, crew scheduling, revenue KPIs.</p><a class="go" href="/portfolio/field-ops-dashboard/">Case study →</a></div>
+<div class="card work-card" data-cat="websites"><p><span class="pill concept">CONCEPT</span></p><h3>Sacred Path Guidance</h3><p>Tarot &amp; spiritual-guidance site — services, availability, bookings, contact.</p><a class="go" href="/portfolio/sacred-path-guidance/">Case study →</a></div>
+<div class="card work-card" data-cat="automation systems websites"><p><span class="pill concept">CONCEPT</span></p><h3>Maple &amp; Main Booking</h3><p>Sample booking flow for a home-services shop — 60-second online booking.</p><a class="go" href="/portfolio/maple-main-booking/">Case study →</a></div>
+</div>
+<p class='disclaimer reveal' style='margin-top:22px'>All pieces are illustrative. No client relationships, outcomes, testimonials, or live URLs are claimed or implied. Fictional names (Maple &amp; Main, Ironwood) exist only inside this preview.</p>
+<script>(function(){var btns=Array.prototype.slice.call(document.querySelectorAll('.work-filters [data-filter]'));var cards=Array.prototype.slice.call(document.querySelectorAll('#workGrid .work-card'));var count=document.getElementById('filterCount');
+function apply(f){var n=0;cards.forEach(function(c){var cats=(c.getAttribute('data-cat')||'').split(' ');var show=(f==='all'||cats.indexOf(f)>=0);c.classList.toggle('hidden',!show);if(show)n++;});btns.forEach(function(b){b.setAttribute('aria-pressed',b.getAttribute('data-filter')===f?'true':'false');});if(count)count.textContent='Showing '+n+' of '+cards.length+' pieces.';}
+btns.forEach(function(b){b.addEventListener('click',function(){apply(b.getAttribute('data-filter'));});});apply('all');})();</script>
+</div></section>
+
+<section class="block" id="reviews" style="padding-top:0"><div class="container split">
+<div class="txt reveal"><p class="eyebrow">Client reviews</p><h2 style="color:var(--plum)">What clients say — published only with permission.</h2>
+<p style="color:var(--muted)">This wall starts empty on purpose: we publish zero fake reviews, ever. Nothing below is invented — approved client reviews will appear here once they exist.</p>
+<div id="review-list" aria-live="polite"><div class="card"><p>Loading reviews…</p></div></div>
+<p style="margin-top:14px"><a href="/start/" class="btn btn-ghost btn-sm">Worked with us? Start a project to begin →</a></p></div>
+<div class="demo-box reveal"><h3>Leave a review</h3>
+<p class="hint">Queued for human moderation before anything appears publicly.</p>
+<div class="form-err" id="rf-err" role="alert"></div><div class="form-ok" id="rf-ok" role="status"></div>
+<form id="review-form" novalidate>
+<div class="field"><label for="rf-name">Your name</label><input id="rf-name" type="text" autocomplete="name" maxlength="80" placeholder="Jordan Smith"></div>
+<div class="field"><label for="rf-rating">Rating</label><select id="rf-rating"><option value="0">Choose…</option><option value="5">★★★★★ (5)</option><option value="4">★★★★ (4)</option><option value="3">★★★ (3)</option><option value="2">★★ (2)</option><option value="1">★ (1)</option></select></div>
+<div class="field"><label for="rf-project">Project (optional)</label><input id="rf-project" type="text" maxlength="120" placeholder="e.g. Booking website"></div>
+<div class="field"><label for="rf-text">Your review (20–1500 characters)</label><textarea id="rf-text" rows="4" maxlength="1500" placeholder="What did we build, and how did it go?"></textarea></div>
+<div class="field" style="position:absolute;left:-9999px" aria-hidden="true"><label>Leave blank<input id="rf-website" type="text" tabindex="-1" autocomplete="off"></label></div>
+<div class="field"><label style="font-weight:600"><input id="rf-consent" type="checkbox" style="width:auto;margin-right:8px">I consent to publishing this review with my name.</label></div>
+<button class="btn btn-primary" type="submit">Submit for moderation</button>
+</form></div>
+</div></section>
 <section class="block final"><div class="container reveal">
-<h2>Ready to build something powerful?</h2><p>Let's turn your idea into a real solution that moves your business forward.</p>
+<h2>Tell us what's slowing you down.</h2><p>One brief, one team, one fixed quote. We reply within one business day.</p>
 <div class="row">
 <a class="btn btn-primary" href="/start/">Start a Project <span aria-hidden="true">→</span></a>
-<a class="btn btn-ghost" href="/contact/?mode=consult">📅 Book a Consultation</a>
 </div></div></section>
 </main>
 <footer>
   <div class="container">
     <div class="foot-grid">
       <div><a class="logo" href="/" style="margin-bottom:12px"><span class="logo-mark">N</span>NexGenShift</a><p>Websites, apps, automation, cloud, data, and security for growing businesses. Serving businesses remotely across the US.</p></div>
-      <div><h4>Explore</h4><a href="/">Home</a><a href="/services/">Services</a><a href="/solutions/">Solutions</a><a href="/portfolio/">Portfolio</a><a href="/reviews/">Reviews</a></div>
-      <div><h4>Company</h4><a href="/process/">Process</a><a href="/pricing/">Pricing</a><a href="/about/">About</a><a href="/contact/">Contact</a></div>
-      <div><h4>Get Started</h4><a href="/start/">Start a Project</a><a class="linklike" href="/contact/?mode=consult">Book a Consultation</a></div>
+      <div><h4>Explore</h4><a href="/services/">Services</a><a href="/portfolio/">Our Work</a><a href="/pricing/">Pricing</a></div>
+      <div><h4>Company</h4><a href="/about/">About</a><a href="/solutions/">Who We Help</a><a href="/portfolio/#reviews">Reviews</a></div>
+      <div><h4>Resources</h4><a href="/pricing/">Pricing &amp; Packages</a><a href="/start/#consult">Book a Consultation</a><a href="/solutions/">Who We Help</a></div>
+      <div><h4>Customer Access</h4><a href="/start/">Start a Project</a><a href="mailto:contact@nexgenshift.com">contact@nexgenshift.com</a><span style="font-size:.82rem;color:var(--muted)">Replies within one business day.</span></div>
     </div>
-    <div class="foot-base"><span>© <span id="year">2026</span> NexGenShift —.</span><span>Replies within one business day.</span></div>
+    <div class="foot-base"><span>© <span id="year">2026</span> NexGenShift.</span><span>Replies within one business day.</span></div>
   </div>
 </footer>
 
