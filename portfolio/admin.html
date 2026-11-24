@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio admin (staff only) | NexGenShift</title>
+<meta name="description" content="Local-only portfolio registry review queue.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="canonical" href="https://nexgenshift.com/portfolio/admin.html">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="stylesheet" href="/assets/extra.css">
+</head>
+<body>
+<!--
+  Access note (mirrors sacred-path owner dashboard pattern):
+  production must sit behind a server-printed token gate (server issues a one-time
+  token, browser sends it as a header, server validates — no public link, never
+  client-side-only auth). This page ships with NO gate so the review queue
+  can be exercised locally; explicitly never auto-publishes — Approve writes to a
+  localStorage queue only. Owner commits config/projects.json manually, same as the
+  reviews flow (data/reviews.json). Auth is NOT the auth-platform test-mode IdP
+  (documented local-only, never production auth).
+-->
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="nav-inner">
+    <a class="logo" href="/" aria-label="NexGenShift home"><span class="logo-mark">N</span>NexGenShift</a>
+    <button class="hamburger" id="hamburger" aria-expanded="false" aria-controls="primaryNav" aria-label="Open menu">☰</button>
+    <nav class="nav-links" id="primaryNav" aria-label="Primary"><a href="/services/">Services</a><a href="/portfolio/" class="active">Our Work</a><a href="/pricing/">Pricing</a><a href="/about/">About</a><a href="/start/" class="mobile-only">Start a Project →</a></nav>
+    <div class="nav-cta"><a class="btn btn-primary btn-sm" href="/start/">Start a Project →</a></div>
+  </div>
+</header>
+<main id="main">
+<section class="page-hero"><div class="container">
+<p class="crumbs"><a href="/">Home</a> / <a href="/portfolio/">Our Work</a> / Admin</p>
+<p class="eyebrow">Internal</p><h1 style="color:var(--plum);font-size:clamp(2rem,4.5vw,3.2rem);letter-spacing:-1px">Portfolio review queue — this browser only.</h1>
+<p style="color:var(--muted);max-width:38rem;margin-top:12px">All registry records below. Approve / request-changes writes to a localStorage queue only — nothing publishes from this page. The owner commits config/projects.json manually.</p>
+</div></section>
+<section class="block"><div class="container">
+<div class="demo-box reveal"><h3>Records</h3><div id="reg-records"><p class="hint">Loading…</p></div>
+<p style="margin-top:14px"><button class="btn btn-ghost btn-sm" id="reg-export">Export queue (.json)</button></p>
+<p class="hint">Approve flips are proposals only — they land in the export queue for the owner to commit. Production needs a server token gate — see the comment at the top of this file.</p></div>
+</div></section>
+</main>
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div><a class="logo" href="/" style="margin-bottom:12px"><span class="logo-mark">N</span>NexGenShift</a><p>Websites, apps, automation, cloud, data, and security for growing businesses.</p></div>
+      <div><h4>Explore</h4><a href="/services/">Services</a><a href="/portfolio/">Our Work</a><a href="/pricing/">Pricing</a></div>
+      <div><h4>Company</h4><a href="/about/">About</a><a href="/solutions/">Who We Help</a></div>
+      <div><h4>Customer Access</h4><a href="/start/">Start a Project</a><a href="mailto:contact@nexgenshift.com">contact@nexgenshift.com</a></div>
+    </div>
+    <div class="foot-base"><span>© <span id="year">2026</span> NexGenShift.</span></div>
+  </div>
+</footer>
+<script src="/assets/site.js"></script>
+<script>
+/* Portfolio admin queue: lists config/projects.json records; approve/request-changes
+   writes to localStorage key ngs_registry_queue only. NEVER auto-publishes. */
+(function () {
+  "use strict";
+  function esc(s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+  var box = document.getElementById("reg-records");
+  function queue() { try { return JSON.parse(localStorage.getItem("ngs_registry_queue") || "[]"); } catch (e) { return []; } }
+  function save(q) { try { localStorage.setItem("ngs_registry_queue", JSON.stringify(q)); } catch (e) {} }
+  fetch("/config/projects.json").then(function (r) { return r.json(); }).then(function (cfg) {
+    var recs = (cfg && cfg.projects) || [];
+    if (!recs.length) { box.innerHTML = "<p class='hint'>No records.</p>"; return; }
+    box.innerHTML = "<table class='admin-table'><thead><tr><th>ID</th><th>Status</th><th>Flags</th><th>Verified</th><th>Action</th></tr></thead><tbody>"
+      + recs.map(function (p, i) {
+        var shots = ((p.screenshots || []).map(function (s) { return "<img src='" + esc(s.src) + "'>"; }).join(" "));
+        var checks = "<ul class='hint' style='margin:4px 0 0;padding-left:16px'>"
+          + "<li>Screenshots " + ((p.published && !(p.screenshots || []).length) ? "MISSING" : "ok (" + (p.screenshots || []).length + ")") + "</li>"
+          + "<li>Copy sweep " + ((p.published && !p.honestLimits) ? "MISSING" : "ok") + "</li>"
+          + "<li>Status pill: " + esc(p.status || "—") + "</li></ul>";
+        return "<tr><td><b>" + esc(p.name || p.id) + "</b><br><span class='hint'>" + esc(p.id) + "</span><br>" + shots + checks + "</td>"
+          + "<td>" + esc(p.status || "—") + "</td>"
+          + "<td>published:" + (p.published ? "yes" : "no") + "<br>featured:" + (p.featured ? "yes" : "no") + "</td>"
+          + "<td>" + esc(p.lastVerified || "null") + "</td>"
+          + "<td><button class='btn btn-primary btn-sm' data-approve='" + i + "'>Approve</button> "
+          + "<button class='btn btn-ghost btn-sm' data-changes='" + i + "'>Request changes</button></td></tr>";
+      }).join("") + "</tbody></table>"
+      + "<p class='hint' style='margin-top:10px'>Queued decisions this browser: <span id='reg-count'>" + queue().length + "</span></p>";
+    box.querySelectorAll("[data-approve]").forEach(function (b) {
+      b.addEventListener("click", function () {
+        var p = recs[parseInt(b.getAttribute("data-approve"), 10)];
+        var q = queue(); q.push({ id: p.id, decision: "approve", at: new Date().toISOString() }); save(q);
+        b.textContent = "Queued ✓"; var c = document.getElementById("reg-count"); if (c) c.textContent = q.length;
+      });
+    });
+    box.querySelectorAll("[data-changes]").forEach(function (b) {
+      b.addEventListener("click", function () {
+        var p = recs[parseInt(b.getAttribute("data-changes"), 10)];
+        var note = prompt("Note for " + p.id + " (stored locally, record stays hidden):", "") || "";
+        var q = queue(); q.push({ id: p.id, decision: "request-changes", note: note.slice(0, 500), at: new Date().toISOString() }); save(q);
+        b.textContent = "Queued ✓"; var c = document.getElementById("reg-count"); if (c) c.textContent = q.length;
+      });
+    });
+    var exp = document.getElementById("reg-export");
+    if (exp) exp.addEventListener("click", function () {
+      var blob = new Blob([localStorage.getItem("ngs_registry_queue") || "[]"], { type: "application/json" });
+      var a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = "registry-review-queue.json"; a.click();
+    });
+  }).catch(function () { box.innerHTML = "<p class='hint'>Could not load /config/projects.json.</p>"; });
+})();
+</script>
+</body>
+</html>
