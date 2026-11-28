@@ -1,0 +1,410 @@
+{
+ "version": "1-public",
+ "generated": "2026-11-28",
+ "promotions": {
+  "active": true,
+  "id": "SBW-LAUNCH-2026",
+  "label": "Limited-Time Offer",
+  "smallBusinessWebsite": {
+   "appliesTo": "Qualifying standard small-business websites only. Excludes custom applications, extensive integrations, specialized functionality, and complex development (separately priced).",
+   "regularBuildPrice": "$750",
+   "promoBuildPrice": "$0",
+   "promoBuildNote": "FREE promotional build",
+   "subscriptionPerMonth": "$50/month",
+   "firstMonth": "FREE",
+   "billingNote": "First subscription month free. First recurring payment starts in month two, measured from website launch / subscription activation."
+  },
+  "serviceDiscounts": [
+   {
+    "key": "automation",
+    "name": "Workflow Automation",
+    "discountPct": 25,
+    "pricing": "custom",
+    "note": "25% OFF development. Custom-quoted — Request a Quote. Excludes AWS bills, hosting, third-party fees, licenses, taxes, subscriptions."
+   },
+   {
+    "key": "apps",
+    "name": "Web & Mobile App Development",
+    "discountPct": 20,
+    "pricing": "custom",
+    "note": "20% OFF development. Custom-quoted — Request a Quote. Excludes app-store fees, third-party licenses, cloud usage, taxes."
+   },
+   {
+    "key": "data",
+    "name": "Data Analytics & Dashboards",
+    "discountPct": 20,
+    "pricing": "custom",
+    "note": "20% OFF development. Custom-quoted — Request a Quote. Excludes cloud consumption, third-party data tools, taxes."
+   },
+   {
+    "key": "integrations",
+    "name": "Custom Integrations",
+    "discountPct": 20,
+    "pricing": "custom",
+    "note": "20% OFF development. Custom-quoted — Request a Quote. Excludes third-party licenses and usage fees, taxes."
+   },
+   {
+    "key": "cloud-security",
+    "name": "Cloud Infrastructure & Security",
+    "discountPct": 15,
+    "pricing": "custom",
+    "note": "15% OFF development. Custom-quoted — Request a Quote. Excludes AWS bills, hosting, licenses, taxes."
+   }
+  ]
+ },
+ "services": [
+  {
+   "id": "websites",
+   "name": "Website Development",
+   "icon": "",
+   "starter": {
+    "monthly_cents": 27500,
+    "annual_upfront_cents": 254000,
+    "annual_list_cents": 329900,
+    "includes": [
+     "Responsive website (essential pages)",
+     "Basic design customization",
+     "Contact form",
+     "Basic SEO setup"
+    ],
+    "excludes": "Excludes hosting, domain, and third-party fees. Ongoing support quoted separately.",
+    "unavailable": false
+   },
+   "consult_tiers": [
+    {
+     "name": "Growth",
+     "benefits": [
+      "Additional pages",
+      "More advanced design",
+      "Appointment booking",
+      "CMS capabilities",
+      "Additional forms"
+     ]
+    },
+    {
+     "name": "Premium",
+     "benefits": [
+      "AI chatbot",
+      "Customer portals",
+      "Custom integrations",
+      "E-commerce",
+      "Advanced automation"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "webapps",
+   "name": "Web Applications",
+   "icon": "",
+   "starter": {
+    "monthly_cents": 60000,
+    "annual_upfront_cents": 554400,
+    "annual_list_cents": 720000,
+    "includes": [
+     "Limited-scope functional MVP",
+     "Basic UI",
+     "One core business function",
+     "Basic deployment"
+    ],
+    "excludes": "Excludes hosting, third-party licenses, app-store fees, and ongoing support unless listed.",
+    "unavailable": false
+   },
+   "consult_tiers": [
+    {
+     "name": "Growth",
+     "benefits": [
+      "User authentication",
+      "Persistent database",
+      "Multiple workflows",
+      "Dashboards",
+      "API integrations"
+     ]
+    },
+    {
+     "name": "Premium",
+     "benefits": [
+      "AI-powered features",
+      "Complex permissions",
+      "Advanced integrations",
+      "Real-time capabilities",
+      "Custom architecture"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "mobileapps",
+   "name": "Mobile Applications",
+   "icon": "",
+   "starter": {
+    "monthly_cents": 53000,
+    "annual_upfront_cents": 489700,
+    "annual_list_cents": 636000,
+    "includes": [
+     "Limited-scope starter application",
+     "One defined platform",
+     "Core functionality",
+     "Basic interface"
+    ],
+    "excludes": "Excludes app-store fees, third-party licenses, backend hosting, and ongoing support unless listed.",
+    "unavailable": false
+   },
+   "consult_tiers": [
+    {
+     "name": "Growth",
+     "benefits": [
+      "More screens and workflows",
+      "Cloud database",
+      "Push notifications",
+      "User profiles",
+      "API connectivity"
+     ]
+    },
+    {
+     "name": "Premium",
+     "benefits": [
+      "Advanced AI features",
+      "Complex backend services",
+      "Cross-platform functionality where scoped",
+      "Custom analytics",
+      "Sophisticated integrations"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "automation",
+   "name": "Workflow Automation",
+   "icon": "",
+   "starter": {
+    "monthly_cents": 8000,
+    "annual_upfront_cents": 73500,
+    "annual_list_cents": 95400,
+    "includes": [
+     "One simple automated workflow",
+     "Basic trigger/action functionality",
+     "Basic setup and testing"
+    ],
+    "excludes": "Excludes third-party licenses, usage fees, and ongoing support unless listed.",
+    "unavailable": false
+   },
+   "consult_tiers": [
+    {
+     "name": "Growth",
+     "benefits": [
+      "Multiple workflow steps",
+      "Conditional logic",
+      "Multiple application connections",
+      "Scheduled automation",
+      "Error notifications"
+     ]
+    },
+    {
+     "name": "Premium",
+     "benefits": [
+      "AI-assisted workflows",
+      "Custom agents",
+      "Advanced business integrations",
+      "Complex orchestration",
+      "Monitoring and reporting"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "business",
+   "name": "Business Systems & CRM",
+   "icon": "",
+   "starter": {
+    "monthly_cents": 18300,
+    "annual_upfront_cents": 168900,
+    "annual_list_cents": 219300,
+    "includes": [
+     "One core workflow (CRM, booking, or scheduling)",
+     "Contact and record management basics",
+     "Standard notifications and reminders",
+     "Training walkthrough"
+    ],
+    "excludes": "Excludes third-party licenses, usage fees, and ongoing support unless listed.",
+    "unavailable": false
+   },
+   "consult_tiers": [
+    {
+     "name": "Growth",
+     "benefits": [
+      "Multi-workflow system (CRM + booking + follow-up)",
+      "Customer portal basics",
+      "Payment collection setup",
+      "Roles and permissions"
+     ]
+    },
+    {
+     "name": "Premium",
+     "benefits": [
+      "Full business platform with custom modules",
+      "Advanced automation and AI assistance",
+      "Custom reporting and analytics",
+      "Dedicated onboarding and documentation"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "data",
+   "name": "Data & Dashboards",
+   "icon": "",
+   "starter": {
+    "monthly_cents": 22200,
+    "annual_upfront_cents": 205200,
+    "annual_list_cents": 266500,
+    "includes": [
+     "Single data source connection",
+     "Core KPI dashboard (up to 5 views)",
+     "Manual data refresh",
+     "Basic setup and training"
+    ],
+    "excludes": "Excludes cloud consumption, third-party data tools, and ongoing support unless listed.",
+    "unavailable": false
+   },
+   "consult_tiers": [
+    {
+     "name": "Growth",
+     "benefits": [
+      "Multiple data connections",
+      "Automated pipelines",
+      "Scheduled reports",
+      "Operational dashboards",
+      "KPI definitions"
+     ]
+    },
+    {
+     "name": "Premium",
+     "benefits": [
+      "Advanced customization",
+      "Real-time processing",
+      "AI-assisted analytics",
+      "Custom dashboards",
+      "Data governance support"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "cloud",
+   "name": "Cloud Infrastructure",
+   "icon": "",
+   "starter": {
+    "monthly_cents": 142500,
+    "annual_upfront_cents": 1316700,
+    "annual_list_cents": 1710000,
+    "includes": [
+     "Single-environment serverless setup",
+     "Backups and recovery plan",
+     "Basic monitoring and alerts",
+     "Cost estimate"
+    ],
+    "excludes": "Excludes AWS bills, hosting fees, third-party licenses, and ongoing support unless listed.",
+    "unavailable": false
+   },
+   "consult_tiers": [
+    {
+     "name": "Growth",
+     "benefits": [
+      "Staging + production environments",
+      "CI/CD release flow",
+      "Expanded monitoring",
+      "Security hardening review",
+      "Cost visibility"
+     ]
+    },
+    {
+     "name": "Premium",
+     "benefits": [
+      "Scalable cloud architecture",
+      "Advanced access control",
+      "Audit logging",
+      "Security and compliance requirements",
+      "Specialized development"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "security",
+   "name": "Cybersecurity",
+   "icon": "",
+   "starter": {
+    "monthly_cents": 13500,
+    "annual_upfront_cents": 125000,
+    "annual_list_cents": 162400,
+    "includes": [
+     "Security review and risk checklist",
+     "Access and password hygiene pass",
+     "Backup and recovery plan",
+     "Plain-English findings report"
+    ],
+    "excludes": "Excludes remediation development, licenses, and ongoing monitoring unless listed.",
+    "unavailable": false
+   },
+   "consult_tiers": [
+    {
+     "name": "Growth",
+     "benefits": [
+      "MFA rollout and access control",
+      "Encryption and backup verification",
+      "Monitoring and alerting setup",
+      "Staff security basics session"
+     ]
+    },
+    {
+     "name": "Premium",
+     "benefits": [
+      "Advanced monitoring and audit logging",
+      "Compliance support (scoped frameworks)",
+      "Incident response planning",
+      "Quarterly security reviews"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "integrations",
+   "name": "Custom Integrations",
+   "icon": "",
+   "starter": {
+    "monthly_cents": null,
+    "annual_upfront_cents": null,
+    "annual_list_cents": null,
+    "includes": [
+     "One third-party integration (scoped)",
+     "Field mapping and initial sync",
+     "Error handling and logging basics",
+     "Handoff notes and testing"
+    ],
+    "excludes": "Excludes third-party licenses, usage fees, and ongoing support unless listed.",
+    "unavailable": true
+   },
+   "consult_tiers": [
+    {
+     "name": "Growth",
+     "benefits": [
+      "Up to three integrations",
+      "Two-way sync where the APIs allow",
+      "Scheduled + event-driven triggers",
+      "Monitoring and failure alerts"
+     ]
+    },
+    {
+     "name": "Premium",
+     "benefits": [
+      "Unlimited integrations within scope",
+      "Real-time sync and webhooks",
+      "Custom middleware where needed",
+      "Advanced monitoring and reporting"
+     ]
+    }
+   ]
+  }
+ ]
+}
